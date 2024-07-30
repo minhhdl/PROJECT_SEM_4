@@ -1,7 +1,8 @@
 package com.example.project_sem_4.restController;
 
-import com.example.project_sem_4.object.Product;
-import com.example.project_sem_4.service.ProductService;
+import com.example.project_sem_4.object.Book;
+import com.example.project_sem_4.object.Users;
+import com.example.project_sem_4.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,18 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/book")
+public class BookController {
     @Autowired
-    private ProductService productService;
+    private BookService productService;
 
-    @GetMapping("/products")
-    public ResponseEntity<?> getProducts() {
-        List<Product> productList = productService.getProducts();
-        if (productList.isEmpty()) {
+    @GetMapping("/books")
+    public ResponseEntity<?> getBooks() {
+        List<Book> bookList = productService.getBooks();
+        if (bookList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK).body("No data yet");
         }
-        System.out.println("adadsds");
-        return ResponseEntity.ok(productList);
+        return ResponseEntity.ok(bookList);
     }
 }
