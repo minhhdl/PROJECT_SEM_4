@@ -3,15 +3,13 @@ package com.example.project_sem_4.object;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class CategoryUser {
     @Id
     private int categoryId;
