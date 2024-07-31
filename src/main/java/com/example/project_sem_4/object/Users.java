@@ -1,15 +1,13 @@
 package com.example.project_sem_4.object;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Users {
     @Id
     private int userId;
