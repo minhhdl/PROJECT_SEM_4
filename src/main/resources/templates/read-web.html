@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Read Web</title>
+    <script>
+        function readText() {
+            const text = document.getElementById("webText").innerText;
+            const speechSynthesisUtterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(speechSynthesisUtterance);
+        }
+    </script>
+</head>
+<body>
+<h1>Read Web</h1>
+<div id="webText" th:text="${text}"></div>
+<button onclick="readText()">Read Text</button>
+</body>
+</html>
