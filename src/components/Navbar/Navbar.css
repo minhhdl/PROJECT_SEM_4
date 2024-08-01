@@ -1,0 +1,124 @@
+nav {
+    height: 100px;
+    display: grid;
+    place-items: center;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-bg-1);
+    z-index: 100;
+    border: -1px solid var(--color-dark-ex);
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--color-white);
+}
+.nav-container .logo {
+    width: 100px;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.nav-links a {
+    color: var(--color-black);
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+}
+.nav-links .active {
+    color: var(--color-red);
+    transition: var(--transition);
+}
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.nav-right a {
+    color: var(--color-black);
+    font-size: 17px;
+}
+@keyframes navAnimation {
+    to {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+}
+.nav-links li:nth-child(2) {
+    animation-delay: 200ms;
+}
+.nav-links li:nth-child(3) {
+    animation-delay: 400ms;
+}
+.nav-links li:nth-child(4) {
+    animation-delay: 600ms;
+}
+.nav-links li:nth-child(5) {
+    animation-delay: 800ms;
+}
+.nav-links li:nth-child(6) {
+    animation-delay: 1000ms;
+}
+.nav-links li:nth-child(7) {
+    animation-delay: 1200ms;
+}
+.menu-button {
+    display: none;
+}
+
+/* Media max with 1024px  */
+@media (max-width: 1024px) {
+    nav {
+        height: 90px;
+    }
+    .nav-container {
+        position: relative;
+        height: 100%;
+    }
+    .nav-container .logo {
+        width: 80px;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+        width: 20rem;
+        transition: var(--transition);
+        top: 90px;
+        right: 0;
+        position: fixed;
+        /* perspective: 400px; */
+    }
+    .nav-links li {
+        height: 100%;
+        width: 100%;
+        animation: navAnimation 0.3s ease-in-out forwards;
+        opacity: 0;
+        transform: rotateY(-90deg);
+    }
+    .nav-links a {
+        display: inline-block;
+        background: var(--color-bg-1);
+        height: 80px;
+        width: 100%;
+        font-size: 14px;
+        display: flex;
+        padding-left: 40px;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: -1rem 5rem 5rem rgb(0, 0, 0, 0.4);
+    }
+    .menu-button {
+        display: inline-block;
+        color: var(--color-black);
+        font-size: 18px;
+    }
+    .navLinksShow {
+        display: flex;
+    }
+    .navLinkHide {
+        display: none;
+    }
+}   
