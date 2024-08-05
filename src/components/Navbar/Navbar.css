@@ -89,12 +89,12 @@ nav {
         top: 90px;
         right: 0;
         position: fixed;
-        /* perspective: 400px; */
+        perspective: 400px;
     }
     .nav-links li {
         height: 100%;
         width: 100%;
-        animation: navAnimation 0.3s ease-in-out forwards;
+        animation: navAnimation 0.1s ease-in-out forwards;
         opacity: 0;
         transform: rotateY(-90deg);
     }
@@ -122,3 +122,9 @@ nav {
         display: none;
     }
 }   
+/* Media max with 600px  */
+@media (max-width: 600px) {
+    .nav-links {
+        width: 18rem;
+    }
+}
