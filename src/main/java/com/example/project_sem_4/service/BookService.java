@@ -1,12 +1,11 @@
 package com.example.project_sem_4.service;
 
-import com.example.project_sem_4.object.Book;
-import com.example.project_sem_4.object.CategoryBook;
-import com.example.project_sem_4.repository.BookRepository;
+import com.example.project_sem_4.object.*;
+import com.example.project_sem_4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -15,6 +14,9 @@ import java.util.Random;
 public class BookService implements IBookService {
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    CateBookService cateBookService;
 
     @Override
     public List<Book> getBooks() {
@@ -32,13 +34,19 @@ public class BookService implements IBookService {
         Random random = new Random();
         book.setBookId(Math.abs(random.nextInt()));
         boolean status = false;
-        try {
-            Book bookAdded = bookRepository.save(book);
-            if (bookAdded.getBookId() > 0) {
-                status = true;
+        Book bookExist = getBookById(book.getBookId());
+        CategoryBook cateBookExist = cateBookService.getCateBookById(book.getCategoryId());
+        if (cateBookExist != null) {
+            if (bookExist == null) {
+                try {
+                    Book bookAdded = bookRepository.save(book);
+                    if (bookAdded.getBookId() > 0) {
+                        status = true;
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
         return status;
     }
@@ -47,14 +55,19 @@ public class BookService implements IBookService {
     public boolean updateBook(Book book) {
         boolean status = false;
         Book bookExist = getBookById(book.getBookId());
-        if (bookExist != null) {
-            try {
-                Book bookAdded = bookRepository.save(book);
-                if (bookAdded.getBookId() > 0) {
-                    status = true;
+        CategoryBook cateBookExist = cateBookService.getCateBookById(book.getCategoryId());
+        if (cateBookExist != null) {
+            if (bookExist != null) {
+                book.setCreatedAt(bookExist.getCreatedAt());
+                book.setUpdatedAt(ZonedDateTime.now());
+                try {
+                    Book bookAdded = bookRepository.save(book);
+                    if (bookAdded.getBookId() > 0) {
+                        status = true;
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
         }
         return status;

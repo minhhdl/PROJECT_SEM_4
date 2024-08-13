@@ -3,15 +3,22 @@ package com.example.project_sem_4.service;
 import com.example.project_sem_4.object.*;
 import com.example.project_sem_4.repository.TotalReadersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+@Service
 public class TotalReaderService implements ITotalReaderService {
 
     @Autowired
     TotalReadersRepository totalReadersRepository;
+    @Autowired
+    BookService bookService;
+    @Autowired
+    UserService userService;
 
     @Override
     public List<TotalReaders> getTotalReaders() {
@@ -29,13 +36,22 @@ public class TotalReaderService implements ITotalReaderService {
         Random random = new Random();
         totalReaders.setTotalId(Math.abs(random.nextInt()));
         boolean status = false;
-        try {
-            TotalReaders totalReadersAdded = totalReadersRepository.save(totalReaders);
-            if (totalReadersAdded.getTotalId() > 0) {
-                status = true;
+        Book bookExist = bookService.getBookById(totalReaders.getBookId());
+        Users userExist = userService.getUserById(totalReaders.getUserId());
+        if (bookExist != null) {
+            if (userExist != null) {
+                TotalReaders totalReadersExist = getTotalReaderById(totalReaders.getTotalId());
+                if (totalReadersExist == null) {
+                    try {
+                        TotalReaders totalReadersAdded = totalReadersRepository.save(totalReaders);
+                        if (totalReadersAdded.getTotalId() > 0) {
+                            status = true;
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
         return status;
     }
@@ -43,15 +59,23 @@ public class TotalReaderService implements ITotalReaderService {
     @Override
     public boolean updateTotalReader(TotalReaders totalReaders) {
         boolean status = false;
-        TotalReaders totalReadersExist = getTotalReaderById(totalReaders.getTotalId());
-        if (totalReadersExist != null) {
-            try {
-                TotalReaders totalReadersAdded = totalReadersRepository.save(totalReaders);
-                if (totalReadersAdded.getTotalId() > 0) {
-                    status = true;
+        Book bookExist = bookService.getBookById(totalReaders.getBookId());
+        Users userExist = userService.getUserById(totalReaders.getUserId());
+        if (bookExist != null) {
+            if (userExist != null) {
+                TotalReaders totalReadersExist = getTotalReaderById(totalReaders.getTotalId());
+                if (totalReadersExist != null) {
+                    totalReaders.setCreatedAt(totalReadersExist.getCreatedAt());
+                    totalReadersExist.setUpdatedAt(ZonedDateTime.now());
+                    try {
+                        TotalReaders totalReadersAdded = totalReadersRepository.save(totalReaders);
+                        if (totalReadersAdded.getTotalId() > 0) {
+                            status = true;
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
         }
         return status;

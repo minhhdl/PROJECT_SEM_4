@@ -3,15 +3,22 @@ package com.example.project_sem_4.service;
 import com.example.project_sem_4.object.*;
 import com.example.project_sem_4.repository.CommentBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+@Service
 public class CommentBookService implements ICommentBookService {
 
     @Autowired
     CommentBookRepository commentBookRepository;
+    @Autowired
+    BookService bookService;
+    @Autowired
+    UserService userService;
 
     @Override
     public List<CommentBook> getCommentBooks() {
@@ -29,13 +36,22 @@ public class CommentBookService implements ICommentBookService {
         Random random = new Random();
         comment.setCommentId(Math.abs(random.nextInt()));
         boolean status = false;
-        try {
-            CommentBook commentAdded = commentBookRepository.save(comment);
-            if (commentAdded.getBookId() > 0) {
-                status = true;
+        Book bookExist = bookService.getBookById(comment.getBookId());
+        Users userExist = userService.getUserById(comment.getUserId());
+        if (bookExist != null) {
+            if (userExist != null) {
+                CommentBook commentExist = getCommentBookById(comment.getBookId());
+                if (commentExist == null) {
+                    try {
+                        CommentBook commentAdded = commentBookRepository.save(comment);
+                        if (commentAdded.getBookId() > 0) {
+                            status = true;
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
         return status;
     }
@@ -43,15 +59,23 @@ public class CommentBookService implements ICommentBookService {
     @Override
     public boolean updateCommentBook(CommentBook comment) {
         boolean status = false;
-        CommentBook commentExist = getCommentBookById(comment.getBookId());
-        if (commentExist != null) {
-            try {
-                CommentBook commentAdded = commentBookRepository.save(comment);
-                if (commentAdded.getBookId() > 0) {
-                    status = true;
+        Book bookExist = bookService.getBookById(comment.getBookId());
+        Users userExist = userService.getUserById(comment.getUserId());
+        if (bookExist != null) {
+            if (userExist != null) {
+                CommentBook commentExist = getCommentBookById(comment.getBookId());
+                if (commentExist != null) {
+                    comment.setCreatedAt(commentExist.getCreatedAt());
+                    comment.setUpdatedAt(ZonedDateTime.now());
+                    try {
+                        CommentBook commentAdded = commentBookRepository.save(comment);
+                        if (commentAdded.getBookId() > 0) {
+                            status = true;
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
         }
         return status;
