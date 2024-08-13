@@ -5,13 +5,13 @@ import com.example.project_sem_4.object.*;
 import java.util.List;
 
 public interface IRoleService {
-    List<Role> getRoles();
+    List<Roles> getRoles();
 
-    Role getRoleById(int roleId);
+    Roles getRoleById(int roleId);
 
-    boolean insertRole(Role role);
+    boolean insertRole(Roles roles);
 
-    boolean updateRole(Role role);
+    boolean updateRole(Roles roles);
 
     boolean deleteRole(int roleId);
 }

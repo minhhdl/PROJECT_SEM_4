@@ -4,11 +4,14 @@ import com.example.project_sem_4.object.Book;
 import com.example.project_sem_4.object.CategoryUser;
 import com.example.project_sem_4.repository.CateUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+@Service
 public class CateUserService implements ICateUserService {
 
     @Autowired
@@ -30,13 +33,16 @@ public class CateUserService implements ICateUserService {
         Random random = new Random();
         categoryUser.setCategoryId(Math.abs(random.nextInt()));
         boolean status = false;
-        try {
-            CategoryUser categoryUserAdded = cateUserRepository.save(categoryUser);
-            if (categoryUserAdded.getCategoryId() > 0) {
-                status = true;
+        CategoryUser categoryUserExist = getCateUserById(categoryUser.getCategoryId());
+        if (categoryUserExist == null) {
+            try {
+                CategoryUser categoryUserAdded = cateUserRepository.save(categoryUser);
+                if (categoryUserAdded.getCategoryId() > 0) {
+                    status = true;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
         return status;
     }
@@ -46,6 +52,8 @@ public class CateUserService implements ICateUserService {
         boolean status = false;
         CategoryUser categoryUserExist = getCateUserById(categoryUser.getCategoryId());
         if (categoryUserExist != null) {
+            categoryUser.setCreatedAt(categoryUserExist.getCreatedAt());
+            categoryUser.setUpdatedAt(ZonedDateTime.now());
             try {
                 CategoryUser categoryUserAdded = cateUserRepository.save(categoryUser);
                 if (categoryUserAdded.getCategoryId() > 0) {

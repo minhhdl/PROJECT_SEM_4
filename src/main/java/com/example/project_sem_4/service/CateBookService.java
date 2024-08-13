@@ -1,10 +1,12 @@
 package com.example.project_sem_4.service;
 
+import com.example.project_sem_4.object.Book;
 import com.example.project_sem_4.object.CategoryBook;
 import com.example.project_sem_4.repository.CateBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 @Service
@@ -30,13 +32,16 @@ public class CateBookService implements ICateBookService {
         Random random = new Random();
         categoryBook.setCategoryId(Math.abs(random.nextInt()));
         boolean status = false;
-        try {
-            CategoryBook cate = cateBookRepository.save(categoryBook);
-            if (cate.getCategoryId() > 0) {
-                status = true;
+        CategoryBook cateExist = getCateBookById(categoryBook.getCategoryId());
+        if (cateExist == null) {
+            try {
+                CategoryBook cate = cateBookRepository.save(categoryBook);
+                if (cate.getCategoryId() > 0) {
+                    status = true;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
         return status;
     }
@@ -46,6 +51,8 @@ public class CateBookService implements ICateBookService {
         boolean status = false;
         CategoryBook cateExist = getCateBookById(categoryBook.getCategoryId());
         if (cateExist != null) {
+            categoryBook.setCreatedAt(cateExist.getCreatedAt());
+            categoryBook.setUpdatedAt(ZonedDateTime.now());
             try {
                 CategoryBook cate = cateBookRepository.save(categoryBook);
                 if (cate.getCategoryId() > 0) {
