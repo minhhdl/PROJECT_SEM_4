@@ -33,7 +33,7 @@ public class RoleService implements IRoleService {
         roles.setRoleId(Math.abs(random.nextInt()));
         boolean status = false;
         Roles rolesExist = getRoleById(roles.getRoleId());
-        if (rolesExist != null) {
+        if (rolesExist == null) {
             try {
                 Roles rolesAdded = roleRepository.save(roles);
                 if (rolesAdded.getRoleId() > 0) {

@@ -63,7 +63,7 @@ public class CommentBookService implements ICommentBookService {
         Users userExist = userService.getUserById(comment.getUserId());
         if (bookExist != null) {
             if (userExist != null) {
-                CommentBook commentExist = getCommentBookById(comment.getBookId());
+                CommentBook commentExist = getCommentBookById(comment.getCommentId());
                 if (commentExist != null) {
                     comment.setCreatedAt(commentExist.getCreatedAt());
                     comment.setUpdatedAt(ZonedDateTime.now());

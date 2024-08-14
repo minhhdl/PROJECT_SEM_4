@@ -25,7 +25,7 @@ public class RoleController {
     public ResponseEntity<?> getCommentBooks() {
         List<Roles> roleList = roleService.getRoles();
         if (roleList.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("There are no role yet");
+            return ResponseEntity.status(HttpStatus.OK).body("There are no roles yet");
         }
         return ResponseEntity.ok(roleList);
     }
@@ -44,7 +44,7 @@ public class RoleController {
         }
         // End Validate
         Roles roleExist = roleService.getRoleById(role.getRoleId());
-        if (roleExist != null) {
+        if (roleExist == null) {
             boolean isSuccessfully = roleService.insertRole(role);
             if (!isSuccessfully) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Created failed. Please check your data and try again!");
@@ -56,7 +56,7 @@ public class RoleController {
     // END POST: API
 
     // PUT: API
-    @PutMapping("/updaterole/{cateid}")
+    @PutMapping("/updaterole/{roleid}")
     public ResponseEntity<?> updateRole(@PathVariable("roleid") int roleId, @Valid @RequestBody Roles role, BindingResult result) {
         // Validate
         if (result.hasErrors()) {
