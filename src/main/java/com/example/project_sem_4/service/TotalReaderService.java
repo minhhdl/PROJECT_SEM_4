@@ -66,7 +66,7 @@ public class TotalReaderService implements ITotalReaderService {
                 TotalReaders totalReadersExist = getTotalReaderById(totalReaders.getTotalId());
                 if (totalReadersExist != null) {
                     totalReaders.setCreatedAt(totalReadersExist.getCreatedAt());
-                    totalReadersExist.setUpdatedAt(ZonedDateTime.now());
+                    totalReaders.setUpdatedAt(ZonedDateTime.now());
                     try {
                         TotalReaders totalReadersAdded = totalReadersRepository.save(totalReaders);
                         if (totalReadersAdded.getTotalId() > 0) {

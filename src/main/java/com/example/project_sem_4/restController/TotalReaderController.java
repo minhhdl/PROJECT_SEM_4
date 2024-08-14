@@ -31,7 +31,7 @@ public class TotalReaderController {
     public ResponseEntity<?> getTotalReaders() {
         List<TotalReaders> totalReaderList = totalReaderService.getTotalReaders();
         if (totalReaderList.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("There are no reader yet");
+            return ResponseEntity.status(HttpStatus.OK).body("There are no readers yet");
         }
         return ResponseEntity.ok(totalReaderList);
     }
