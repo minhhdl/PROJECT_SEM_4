@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/LOGO2.png";
 import { navLinks } from "../../data/data";
 import ReponsiveMenu from "./ReponsiveMenu";
@@ -9,6 +9,11 @@ export default function Navbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isScrolledBlur, setIsScrolledBlur] = useState(false);
   const menuRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    setShowMobileMenu(false);
+  }, [location]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,12 +24,10 @@ export default function Navbar() {
     window.addEventListener("resize", handleResize);
 
     return () => {
-      // Cleanup event listener khi component handleResize
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // Effect to handle scroll blur
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -39,6 +42,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <>
       <nav className="text-white top-2 fixed w-full z-[9990]">

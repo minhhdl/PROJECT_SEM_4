@@ -7,7 +7,7 @@ export default function NotFound() {
       <div className="flex flex-col items-center gap-5">
         <h1 className="text-6xl font-bold">404</h1>
         <h3 className="text-2xl font-medium text-red-500">
-          Lỗi, không tìm thấy trang này !
+          Error, this page could not be found!
         </h3>
         <Link
           to={"/"}

@@ -8,7 +8,7 @@ import TitleTypeOne from "../../UI/TitleTypeOne/TitleTypeOne";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -16,6 +16,8 @@ import "swiper/css/pagination";
 
 // Import react icon
 import { BsArrowReturnRight } from "react-icons/bs";
+import { GoArrowRight } from "react-icons/go";
+import { GoArrowLeft } from "react-icons/go";
 
 //Swiper breakpoint
 const breakpoints = {
@@ -58,8 +60,11 @@ export default function FeaturesBooks() {
           spaceBetween={50}
           slidesPerView={5}
           loop={true}
-          modules={[Pagination]}
-          // pagination={{ el: ".swiper-pagination", clickable: true }}
+          modules={[Pagination, Navigation]}
+          navigation={{
+            prevEl: ".button-prev-slide",
+            nextEl: ".button-next-slide",
+          }}
           breakpoints={breakpoints}
         >
           {featuredBooksData.map(
@@ -74,7 +79,7 @@ export default function FeaturesBooks() {
                       <img src={img} alt="" />
                     </Link>
                     <div className="featurebook-info">
-                      <Link to={nameLink}>
+                      <Link to={nameLink} className="hover:text-primary">
                         <h4>{name}</h4>
                       </Link>
                       <div className="mt-2 mb-5">
@@ -86,6 +91,14 @@ export default function FeaturesBooks() {
               );
             }
           )}
+          <div className="slider-button">
+            <div className="button-prev-slide slidebutton flex items-center justify-center w-10 h-10 bg-primary bg-opacity-80 text-white rounded-full cursor-pointer absolute top-1/2 -translate-y-1/2 left-0 z-10 hover:bg-primaryHover hover:bg-opacity-100 active:bg-opacity-60 transition-all duration-300 ease-in-out">
+              <GoArrowLeft />
+            </div>
+            <div className="button-next-slide slidebutton flex items-center justify-center w-10 h-10 bg-primary bg-opacity-80 text-white rounded-full cursor-pointer absolute top-1/2 -translate-y-1/2 right-0 z-10 hover:bg-primaryHover hover:bg-opacity-100 active:bg-opacity-60 transition-all duration-300 ease-in-out">
+              <GoArrowRight />
+            </div>
+          </div>
         </Swiper>
         <div className="featurebook-border mt-14 h-px bg-dark-ex w-full"></div>
       </div>
