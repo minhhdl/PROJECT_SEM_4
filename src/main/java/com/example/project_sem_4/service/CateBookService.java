@@ -28,6 +28,11 @@ public class CateBookService implements ICateBookService {
     }
 
     @Override
+    public String getCateBookNameById(int cateId) {
+        return cateBookRepository.getCateBookNameById(cateId);
+    }
+
+    @Override
     public boolean insertCategory(CategoryBook categoryBook) {
         Random random = new Random();
         categoryBook.setCategoryId(Math.abs(random.nextInt()));

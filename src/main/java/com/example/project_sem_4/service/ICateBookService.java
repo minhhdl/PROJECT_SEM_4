@@ -9,6 +9,8 @@ public interface ICateBookService {
 
     CategoryBook getCateBookById(int cateId);
 
+    String getCateBookNameById(int cateId);
+
     boolean insertCategory(CategoryBook categoryBook);
 
     boolean updateCategory(CategoryBook categoryBook);

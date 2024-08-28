@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class CategoryBook {
     @Id
     private int categoryId;
@@ -28,4 +29,8 @@ public class CategoryBook {
     @OneToMany(mappedBy = "category")
     @JsonIgnore
     private List<Book> books;
+
+    public CategoryBook(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }

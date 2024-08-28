@@ -14,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class CategoryUser {
     @Id
     private int categoryId;
@@ -31,4 +32,8 @@ public class CategoryUser {
     @OneToMany(mappedBy = "categoryUser")
     @JsonIgnore
     private List<Users> users;
+
+    public CategoryUser(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }

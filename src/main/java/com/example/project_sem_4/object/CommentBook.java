@@ -10,6 +10,7 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class CommentBook {
     @Id
     private int commentId;
@@ -36,4 +37,10 @@ public class CommentBook {
     @JoinColumn(name = "userId", insertable = false, updatable = false)
     @JsonIgnore
     private Users user;
+
+    public CommentBook(int bookId, int userId, String contents) {
+        this.bookId = bookId;
+        this.userId = userId;
+        this.contents = contents;
+    }
 }

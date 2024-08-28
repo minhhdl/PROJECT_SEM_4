@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Users {
     @Id
     private int userId;
@@ -51,4 +52,12 @@ public class Users {
     @JoinColumn(name = "roleId")
     @JsonIgnore
     private Roles roles;
+
+    public Users(int categoryId, String username, int age, String password, String avatar) {
+        this.categoryId = categoryId;
+        this.username = username;
+        this.age = age;
+        this.password = password;
+        this.avatar = avatar;
+    }
 }
