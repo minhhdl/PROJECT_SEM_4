@@ -12,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Book {
     @Id
     private int bookId;
@@ -52,4 +53,18 @@ public class Book {
     @OneToMany(mappedBy = "book")
     @JsonIgnore
     private List<CommentBook> commentBooks;
+
+    public Book(String bookName, int categoryId, String author, String publisher, double bookPrice, String bookDescription,
+                String picture, int readCount, double star, boolean isFavorite) {
+        this.categoryId = categoryId;
+        this.bookName = bookName;
+        this.author = author;
+        this.publisher = publisher;
+        this.bookPrice = bookPrice;
+        this.bookDescription = bookDescription;
+        this.picture = picture;
+        this.readCount = readCount;
+        this.star = star;
+        this.isFavorite = isFavorite;
+    }
 }

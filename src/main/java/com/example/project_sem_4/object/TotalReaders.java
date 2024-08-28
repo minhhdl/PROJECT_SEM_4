@@ -13,6 +13,7 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class TotalReaders {
     @Id
     private int totalId;
@@ -35,4 +36,9 @@ public class TotalReaders {
     @JoinColumn(name = "bookId", insertable = false, updatable = false)
     @JsonIgnore
     private Book book;
+
+    public TotalReaders(int bookId, int userId) {
+        this.bookId = bookId;
+        this.userId = userId;
+    }
 }

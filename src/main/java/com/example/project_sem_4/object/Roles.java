@@ -11,6 +11,7 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Roles {
     @Id
     private int roleId;
@@ -23,4 +24,8 @@ public class Roles {
     private ZonedDateTime createdAt = ZonedDateTime.now();
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private ZonedDateTime updatedAt;
+
+    public Roles(String roleName) {
+        this.roleName = roleName;
+    }
 }

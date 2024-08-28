@@ -34,6 +34,17 @@ public class CategoryBookController {
     }
     // END GET: API
 
+    // GET BY ID: API
+    @GetMapping("/catebook/{cateid}")
+    public ResponseEntity<?> getCateBooks(@PathVariable("cateid") int cateId) {
+        CategoryBook categoryBook = cateBookService.getCateBookById(cateId);
+        if (categoryBook == null) {
+            return ResponseEntity.status(HttpStatus.OK).body("This category book could not be found by id: " + cateId);
+        }
+        return ResponseEntity.ok(categoryBook);
+    }
+    // END GET: API
+
     // POST: API
     @PostMapping("/insertcatebook")
     public ResponseEntity<?> insertCateBook(@Valid @RequestBody CategoryBook categoryBook, BindingResult result) {
