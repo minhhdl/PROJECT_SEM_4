@@ -1,0 +1,89 @@
+/* Contact.css */
+.contact-page {
+  text-align: center;
+}
+
+.contact-header {
+  background-color: #262626;
+  color: #fff;
+  padding: 20px 0;
+  height: 80px;
+}
+.contact-form-container {
+  padding: 40px;
+  background-color: #fff;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-form button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #444;
+}
+
+.new-arrivals {
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  background-color: #f0f0f0;
+}
+
+.new-arrivals-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.new-arrivals-content h2 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #002c3e;
+}
+
+.new-arrivals-content p {
+  font-size: 16px;
+  color: #333;
+}
+
+.new-arrivals button {
+  background-color: #fa3e3e;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-arrivals button:hover {
+  background-color: #e02e2e;
+}
+
+.new-arrivals-image {
+  flex: 1;
+  text-align: center;
+}
+
+.new-arrivals-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
