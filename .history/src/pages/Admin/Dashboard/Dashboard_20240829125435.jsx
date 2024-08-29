@@ -2,7 +2,7 @@ import "../../../assets/css/styles.min.css";
 import "../../../assets/libs/jquery/dist/jquery.js";
 import "../../../assets/libs/bootstrap/dist/js/bootstrap.bundle.js";
 import "../../../assets/js/sidebarmenu.js";
-import "../../../assets/libs/apexcharts/dist/apexcharts.js";
+import "../../../assets/libs/apexcharts/dist/apexcharts.min.js";
 import "../../../assets/libs/simplebar/dist/simplebar.js";
 import "../../../assets/js/dashboard.js";
 
