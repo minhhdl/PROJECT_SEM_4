@@ -97,7 +97,7 @@ const Register = () => {
                     <div className="d-flex align-items-center justify-content-center">
                       <p className="fs-4 mb-0 fw-bold">Have an account?</p>
                       <a className="text-primary fw-bold ms-2" href="/sign-in">
-                        Sign in
+                        Login
                       </a>
                     </div>
                   </form>

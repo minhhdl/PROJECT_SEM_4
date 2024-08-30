@@ -13,11 +13,11 @@ const Register = lazy(() => import("../pages/Register/register"));
 
 export default function routes() {
   var isAdminRoute = location.pathname.includes("admin");
-  var isSignInRoute = location.pathname === "/sign-in";
-  var isSignUpRoute = location.pathname === "/sign-up";
+  var isLoginRoute = location.pathname === "/login";
+  var isRegisterRoute = location.pathname === "/register";
   return (
     <BrowserRouter>
-      {!isAdminRoute && !isSignInRoute && !isSignUpRoute && <Navbar />}
+      {!isAdminRoute && !isLoginRoute && !isRegisterRoute && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
@@ -28,7 +28,7 @@ export default function routes() {
         <Route path="/sign-up" element={<Register />} />
       </Routes>
       <VoiceControl></VoiceControl>
-      {!isAdminRoute && !isSignInRoute && !isSignUpRoute && <Footer />}
+      {!isAdminRoute && !isLoginRoute && !isRegisterRoute && <Footer />}
     </BrowserRouter>
   );
 }
