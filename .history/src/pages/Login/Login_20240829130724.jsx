@@ -2,7 +2,7 @@ import "../../assets/css/styles.min.css";
 import "../../assets/libs/jquery/dist/jquery.min.js";
 import "../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js";
 
-const Register = () => {
+const Login = () => {
   return (
     <div
       className="page-wrapper"
@@ -39,21 +39,9 @@ const Register = () => {
                         Username
                       </label>
                       <input
-                        type="text"
+                        type="email"
                         className="form-control"
                         id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        required
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="exampleInputAge" className="form-label">
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="exampleInputAge"
                         aria-describedby="emailHelp"
                         required
                       />
@@ -92,12 +80,12 @@ const Register = () => {
                       </a>
                     </div>
                     <button className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
-                      Sign Up
+                      Sign In
                     </button>
                     <div className="d-flex align-items-center justify-content-center">
-                      <p className="fs-4 mb-0 fw-bold">Have an account?</p>
-                      <a className="text-primary fw-bold ms-2" href="/sign-in">
-                        Sign in
+                      <p className="fs-4 mb-0 fw-bold">No account?</p>
+                      <a className="text-primary fw-bold ms-2" href="/sign-up">
+                        Create an account
                       </a>
                     </div>
                   </form>
@@ -111,4 +99,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

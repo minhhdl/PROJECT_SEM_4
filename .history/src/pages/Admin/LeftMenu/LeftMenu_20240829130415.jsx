@@ -150,19 +150,27 @@ const LeftMenu = () => {
               <span className="hide-menu">Auth</span>
             </li>
             <li className="sidebar-item">
-              <a className="sidebar-link" href="/sign-in" aria-expanded="false">
+              <a
+                className="sidebar-link"
+                href="./authentication-login.html"
+                aria-expanded="false"
+              >
                 <span>
-                  <i className="ti ti-login"></i>
+                  <i className="ti ti-logout"></i>
                 </span>
-                <span className="hide-menu">Sign in</span>
+                <span className="hide-menu">Login</span>
               </a>
             </li>
             <li className="sidebar-item">
-              <a className="sidebar-link" href="/sign-up" aria-expanded="false">
+              <a
+                className="sidebar-link"
+                href="./authentication-register.html"
+                aria-expanded="false"
+              >
                 <span>
                   <i className="ti ti-user-plus"></i>
                 </span>
-                <span className="hide-menu">Sign up</span>
+                <span className="hide-menu">Register</span>
               </a>
             </li>
           </ul>
