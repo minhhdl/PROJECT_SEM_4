@@ -37,6 +37,9 @@ public class Users {
     private ZonedDateTime createdAt = ZonedDateTime.now();
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private ZonedDateTime updatedAt;
+    @Min(value = 1, message = "Role id cannot be empty and cannot be zero")
+    private int roleId;
+
 
     // Create relationship
     @ManyToOne
@@ -49,15 +52,16 @@ public class Users {
     private List<CommentBook> commentBooks;
 
     @OneToOne
-    @JoinColumn(name = "roleId")
+    @JoinColumn(name = "roleId", insertable = false, updatable = false)
     @JsonIgnore
     private Roles roles;
 
-    public Users(int categoryId, String username, int age, String password, String avatar) {
+    public Users(int categoryId, String username, int age, String password, String avatar, int roleId) {
         this.categoryId = categoryId;
         this.username = username;
         this.age = age;
         this.password = password;
         this.avatar = avatar;
+        this.roleId = roleId;
     }
 }

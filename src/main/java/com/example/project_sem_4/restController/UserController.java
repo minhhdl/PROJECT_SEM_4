@@ -1,5 +1,7 @@
 package com.example.project_sem_4.restController;
 
+import com.example.project_sem_4.dto.LoginRequest;
+import com.example.project_sem_4.dto.RegisterRequest;
 import com.example.project_sem_4.object.*;
 import com.example.project_sem_4.service.*;
 import jakarta.validation.Valid;
@@ -21,6 +23,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    RoleService roleService;
     // END VARIABLE
 
     // GET: API
@@ -61,15 +66,51 @@ public class UserController {
             if (isDuplicate) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("This username already exists. Please try another username!");
             }
-            boolean isSuccessfully = userService.insertUser(user);
-            if (!isSuccessfully) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Created failed. Please check your data and try again!");
+            Roles roleExist = roleService.getRoleById(user.getRoleId());
+            if (roleExist != null) {
+                boolean isSuccessfully = userService.register(user);
+                if (!isSuccessfully) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Created failed. Please check your data and try again!");
+                }
+                return ResponseEntity.status(HttpStatus.OK).body("Created successfully");
             }
-            return ResponseEntity.status(HttpStatus.OK).body("Created successfully");
+            return ResponseEntity.status(HttpStatus.OK).body("This role id does not exist");
         }
         return ResponseEntity.status(HttpStatus.OK).body("This user category id does not exist");
     }
     // END POST: API
+
+    // POST LOGIN: API
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        Users user = userService.login(loginRequest.getUsername(), loginRequest.getPassword());
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Username or password is incorrect");
+        }
+        return ResponseEntity.ok(user);
+    }
+    // END POST LOGIN: API
+
+    // POST LOGIN: API
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@Valid @RequestBody Users user, BindingResult result) {
+        // Validate
+        if (result.hasErrors()) {
+            List<String> errorMessages = new ArrayList<>();
+            for (var item : result.getFieldErrors()) {
+                errorMessages.add("Error: " + item.getDefaultMessage());
+            }
+            return ResponseEntity.badRequest().body(errorMessages);
+        }
+        // End Validate
+
+        boolean isCreated = userService.register(user);
+        if (!isCreated) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration failed. Please check your data and try again!");
+        }
+        return ResponseEntity.ok("Registered successfully");
+    }
+    // END POST LOGIN: API
 
     // PUT: API
     @PutMapping("/updateuser/{userid}")

@@ -43,6 +43,19 @@ public class RoleController {
             return ResponseEntity.badRequest().body(errorMessages);
         }
         // End Validate
+
+        // Check duplicate book
+        boolean isDuplicate = false;
+        List<Roles> roleList = roleService.getRoles();
+        for (Roles item : roleList) {
+            if (item.getRoleName().equals(role.getRoleName())) {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (isDuplicate) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("This role name already exists. Please try another username!");
+        }
         Roles roleExist = roleService.getRoleById(role.getRoleId());
         if (roleExist == null) {
             boolean isSuccessfully = roleService.insertRole(role);

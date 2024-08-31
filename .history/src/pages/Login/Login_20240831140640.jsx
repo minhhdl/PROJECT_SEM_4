@@ -1,35 +1,23 @@
 import "../../assets/css/styles.min.css";
 import "../../assets/libs/jquery/dist/jquery.min.js";
 import "../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
+  const [data, setData] = useState([]);
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    fetch("http://localhost:8080/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: username, password: password }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          return response.text().then((text) => {
-            alert(text);
-          });
-        }
-        return response.text().then((text) => {
-          alert(text);
-        });
-      })
-      .then((data) => console.log("Data received:", data))
-      .catch((error) => {
-        alert("There was a problem with the fetch operation: " + error.message);
-      });
-  };
+  useEffect(() => {
+    fetch("http://localhost:8080/user/login").then((response) => {
+      if (!response.ok) {
+        alert("Network response was not ok");
+      }
+      return response.json();
+    }).then;
+  });
+
+  const handleSubmit = () => {};
   return (
     <div
       className="page-wrapper"
@@ -66,7 +54,7 @@ const Login = () => {
                         Username
                       </label>
                       <input
-                        type="text"
+                        type="email"
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"

@@ -6,30 +6,7 @@ import { useState } from "react";
 const Login = () => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
-
-  const handleSubmit = () => {
-    fetch("http://localhost:8080/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: username, password: password }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          return response.text().then((text) => {
-            alert(text);
-          });
-        }
-        return response.text().then((text) => {
-          alert(text);
-        });
-      })
-      .then((data) => console.log("Data received:", data))
-      .catch((error) => {
-        alert("There was a problem with the fetch operation: " + error.message);
-      });
-  };
+  const handleSubmit = () => {};
   return (
     <div
       className="page-wrapper"
@@ -66,7 +43,7 @@ const Login = () => {
                         Username
                       </label>
                       <input
-                        type="text"
+                        type="email"
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"

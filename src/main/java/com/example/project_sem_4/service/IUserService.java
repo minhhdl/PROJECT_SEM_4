@@ -9,9 +9,11 @@ public interface IUserService {
 
     Users getUserById(int userId);
 
-    boolean insertUser(Users user);
+    boolean register(Users user);
 
     boolean updateUser(Users user);
 
     boolean deleteBook(int userId);
+
+    Users login(String username, String password);
 }

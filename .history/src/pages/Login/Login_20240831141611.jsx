@@ -1,9 +1,10 @@
 import "../../assets/css/styles.min.css";
 import "../../assets/libs/jquery/dist/jquery.min.js";
 import "../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
+  const [data, setData] = useState([]);
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
@@ -17,13 +18,9 @@ const Login = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          return response.text().then((text) => {
-            alert(text);
-          });
+          alert("Network response was not ok");
         }
-        return response.text().then((text) => {
-          alert(text);
-        });
+        return response.json();
       })
       .then((data) => console.log("Data received:", data))
       .catch((error) => {

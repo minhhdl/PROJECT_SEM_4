@@ -3,9 +3,10 @@ import "../../assets/libs/jquery/dist/jquery.min.js";
 import "../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useState } from "react";
 
-const Login = () => {
+const Register = () => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
+  let [age, setAge] = useState("");
 
   const handleSubmit = () => {
     fetch("http://localhost:8080/user/login", {
@@ -75,6 +76,20 @@ const Login = () => {
                         required
                       />
                     </div>
+                    <div className="mb-3">
+                      <label htmlFor="exampleInputAge" className="form-label">
+                        Age
+                      </label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="exampleInputAge"
+                        aria-describedby="emailHelp"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        required
+                      />
+                    </div>
                     <div className="mb-4">
                       <label
                         htmlFor="exampleInputPassword1"
@@ -96,27 +111,33 @@ const Login = () => {
                         <input
                           className="form-check-input primary"
                           type="checkbox"
-                          value=""
+                          value="agree-policy"
                           id="flexCheckChecked"
+                          required
                         />
                         <label
                           className="form-check-label text-dark"
                           htmlFor="flexCheckChecked"
                         >
-                          Remeber this Device
+                          Agree to our{" "}
+                          <span
+                            style={{
+                              color: "blue",
+                              textDecoration: "underline",
+                            }}
+                          >
+                            policy
+                          </span>
                         </label>
                       </div>
-                      <a className="text-primary fw-bold" href="./index.html">
-                        Forgot Password ?
-                      </a>
                     </div>
                     <button className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
-                      Sign In
+                      Sign Up
                     </button>
                     <div className="d-flex align-items-center justify-content-center">
-                      <p className="fs-4 mb-0 fw-bold">No account?</p>
-                      <a className="text-primary fw-bold ms-2" href="/sign-up">
-                        Sign up
+                      <p className="fs-4 mb-0 fw-bold">Have an account?</p>
+                      <a className="text-primary fw-bold ms-2" href="/sign-in">
+                        Sign in
                       </a>
                     </div>
                   </form>
@@ -130,4 +151,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
