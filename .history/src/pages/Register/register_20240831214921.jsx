@@ -1,9 +1,8 @@
 import "../../assets/css/styles.min.css";
 import "../../assets/libs/jquery/dist/jquery.min.js";
 import "../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useState } from "react";
 
-const Login = () => {
+const Register = () => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
@@ -70,8 +69,18 @@ const Login = () => {
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="exampleInputAge" className="form-label">
+                        Age
+                      </label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="exampleInputAge"
+                        aria-describedby="emailHelp"
                         required
                       />
                     </div>
@@ -86,8 +95,6 @@ const Login = () => {
                         type="password"
                         className="form-control"
                         id="exampleInputPassword1"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
                         required
                       />
                     </div>
@@ -111,12 +118,12 @@ const Login = () => {
                       </a>
                     </div>
                     <button className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
-                      Sign In
+                      Sign Up
                     </button>
                     <div className="d-flex align-items-center justify-content-center">
-                      <p className="fs-4 mb-0 fw-bold">No account?</p>
-                      <a className="text-primary fw-bold ms-2" href="/sign-up">
-                        Sign up
+                      <p className="fs-4 mb-0 fw-bold">Have an account?</p>
+                      <a className="text-primary fw-bold ms-2" href="/sign-in">
+                        Sign in
                       </a>
                     </div>
                   </form>
@@ -130,4 +137,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

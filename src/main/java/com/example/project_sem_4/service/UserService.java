@@ -29,7 +29,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean insertUser(Users user) {
+    public boolean register(Users user) {
         Random random = new Random();
         user.setUserId(Math.abs(random.nextInt()));
         boolean status = false;
@@ -85,5 +85,11 @@ public class UserService implements IUserService {
             }
         }
         return status;
+    }
+
+    @Override
+    public Users login(String username, String password) {
+        Users user = userRepository.login(username, password);
+        return user;
     }
 }

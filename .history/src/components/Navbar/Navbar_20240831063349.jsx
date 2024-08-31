@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/LOGO2.png";
 import { navLinks } from "../../data/data";
@@ -72,12 +72,9 @@ export default function Navbar() {
               ))}
               <li className="flex items-center gap-4">
                 {/* Btn Login */}
-                <a
-                  href="/sign-in"
-                  className="border border-white px-4 py-2 rounded-full hover:bg-primaryHover transition-all duration-300 ease-in-out"
-                >
-                  Login
-                </a>
+                <button className="border border-white px-4 py-2 rounded-full hover:bg-primaryHover transition-all duration-300 ease-in-out">
+                  <a href="/sign-in"> Login</a>
+                </button>
                 {/* Btn show menu */}
                 <button
                   onClick={() => setShowMobileMenu(!showMobileMenu)}
