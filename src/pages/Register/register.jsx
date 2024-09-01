@@ -1,14 +1,74 @@
 import "../../assets/css/styles.min.css";
 import "../../assets/libs/jquery/dist/jquery.min.js";
 import "../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Register = () => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [age, setAge] = useState("");
+  let [role, setRole] = useState("");
+  let [roles, setRoles] = useState([]);
+  let [cateUsers, setCateUsers] = useState([]);
+  let [cateUser, setCateUser] = useState([]);
 
-  const handleSubmit = () => {
+  // Get roles
+  useEffect(() => {
+    fetch("http://localhost:8080/role/roles")
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            alert(text);
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setRoles(data);
+      })
+      .catch((error) => {
+        alert("There was a problem with the fetch operation: " + error.message);
+      });
+  }, []);
+
+  // Get Category users
+  useEffect(() => {
+    fetch("http://localhost:8080/cateuser/cateusers")
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            alert(text);
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCateUsers(data);
+      })
+      .catch((error) => {
+        alert("There was a problem with the fetch operation: " + error.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    roles.map((item, index) => {
+      if (item.roleName === "User") {
+        // alert(item.roleId);
+        setRole(item.roleId);
+      }
+    });
+  });
+
+  useEffect(() => {
+    cateUsers.map((item, index) => {
+      if (item.categoryName === "Visually impaired") {
+        // alert(item.categoryId);
+        setCateUser(item.categoryId);
+      }
+    });
+  });
+  const handleSubmit = (event) => {
+    event.preventDefault();
     fetch("http://localhost:8080/user/register", {
       method: "POST",
       headers: {
@@ -18,6 +78,8 @@ const Register = () => {
         username: username,
         age: age,
         password: password,
+        categoryId: cateUser,
+        roleId: role,
       }),
     })
       .then((response) => {
@@ -28,6 +90,7 @@ const Register = () => {
         }
         return response.text().then((text) => {
           alert(text);
+          window.location.href = "/sign-in";
         });
       })
       .then((data) => console.log("Data received:", data))
@@ -75,6 +138,7 @@ const Register = () => {
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        autoFocus
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
