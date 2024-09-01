@@ -25,7 +25,7 @@ public class CategoryBookController {
 
     // GET: API
     @GetMapping("/catebooks")
-    public ResponseEntity<?> getCateBooks() {
+    public ResponseEntity<?> getCateBookById() {
         List<CategoryBook> categoryBookList = cateBookService.getCategories();
         if (categoryBookList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK).body("There are no book categories yet");
@@ -36,7 +36,7 @@ public class CategoryBookController {
 
     // GET BY ID: API
     @GetMapping("/catebook/{cateid}")
-    public ResponseEntity<?> getCateBooks(@PathVariable("cateid") int cateId) {
+    public ResponseEntity<?> getCateBookById(@PathVariable("cateid") int cateId) {
         CategoryBook categoryBook = cateBookService.getCateBookById(cateId);
         if (categoryBook == null) {
             return ResponseEntity.status(HttpStatus.OK).body("This category book could not be found by id: " + cateId);

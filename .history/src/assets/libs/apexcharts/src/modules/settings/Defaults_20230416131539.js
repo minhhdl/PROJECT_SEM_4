@@ -1,5 +1,5 @@
-import Utils from '../../utils/Utils'
-import RangeBar from '../../charts/RangeBar'
+import Utils from "../../utils/Utils";
+import RangeBar from "../../charts/RangeBar";
 
 /**
  * ApexCharts Default Class for setting default options for all chart types.
@@ -9,43 +9,43 @@ import RangeBar from '../../charts/RangeBar'
 
 export default class Defaults {
   constructor(opts) {
-    this.opts = opts
+    this.opts = opts;
   }
 
   line() {
     return {
       chart: {
         animations: {
-          easing: 'swing'
-        }
+          easing: "swing",
+        },
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
         width: 5,
-        curve: 'straight'
+        curve: "straight",
       },
       markers: {
         size: 0,
         hover: {
-          sizeOffset: 6
-        }
+          sizeOffset: 6,
+        },
       },
       xaxis: {
         crosshairs: {
-          width: 1
-        }
-      }
-    }
+          width: 1,
+        },
+      },
+    };
   }
 
   sparkline(defaults) {
-    this.opts.yaxis[0].show = false
-    this.opts.yaxis[0].title.text = ''
-    this.opts.yaxis[0].axisBorder.show = false
-    this.opts.yaxis[0].axisTicks.show = false
-    this.opts.yaxis[0].floating = true
+    this.opts.yaxis[0].show = false;
+    this.opts.yaxis[0].title.text = "";
+    this.opts.yaxis[0].axisBorder.show = false;
+    this.opts.yaxis[0].axisTicks.show = false;
+    this.opts.yaxis[0].floating = true;
 
     const ret = {
       grid: {
@@ -54,40 +54,40 @@ export default class Defaults {
           left: 0,
           right: 0,
           top: 0,
-          bottom: 0
-        }
+          bottom: 0,
+        },
       },
       legend: {
-        show: false
+        show: false,
       },
       xaxis: {
         labels: {
-          show: false
+          show: false,
         },
         tooltip: {
-          enabled: false
+          enabled: false,
         },
         axisBorder: {
-          show: false
+          show: false,
         },
         axisTicks: {
-          show: false
-        }
+          show: false,
+        },
       },
       chart: {
         toolbar: {
-          show: false
+          show: false,
         },
         zoom: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       dataLabels: {
-        enabled: false
-      }
-    }
+        enabled: false,
+      },
+    };
 
-    return Utils.extend(defaults, ret)
+    return Utils.extend(defaults, ret);
   }
 
   bar() {
@@ -95,75 +95,75 @@ export default class Defaults {
       chart: {
         stacked: false,
         animations: {
-          easing: 'swing'
-        }
+          easing: "swing",
+        },
       },
       plotOptions: {
         bar: {
           dataLabels: {
-            position: 'center'
-          }
-        }
+            position: "center",
+          },
+        },
       },
       dataLabels: {
         style: {
-          colors: ['#fff']
+          colors: ["#fff"],
         },
         background: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       stroke: {
         width: 0,
-        lineCap: 'round'
+        lineCap: "round",
       },
       fill: {
-        opacity: 0.85
+        opacity: 0.85,
       },
       legend: {
         markers: {
-          shape: 'square',
+          shape: "square",
           radius: 2,
-          size: 8
-        }
+          size: 8,
+        },
       },
       tooltip: {
         shared: false,
-        intersect: true
+        intersect: true,
       },
       xaxis: {
         tooltip: {
-          enabled: false
+          enabled: false,
         },
-        tickPlacement: 'between',
+        tickPlacement: "between",
         crosshairs: {
-          width: 'barWidth',
-          position: 'back',
+          width: "barWidth",
+          position: "back",
           fill: {
-            type: 'gradient'
+            type: "gradient",
           },
           dropShadow: {
-            enabled: false
+            enabled: false,
           },
           stroke: {
-            width: 0
-          }
-        }
-      }
-    }
+            width: 0,
+          },
+        },
+      },
+    };
   }
 
   candlestick() {
     return {
       stroke: {
         width: 1,
-        colors: ['#333']
+        colors: ["#333"],
       },
       fill: {
-        opacity: 1
+        opacity: 1,
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       tooltip: {
         shared: true,
@@ -172,24 +172,24 @@ export default class Defaults {
             w,
             seriesIndex,
             dataPointIndex,
-            ['Open', 'High', '', 'Low', 'Close'],
-            'candlestick'
-          )
-        }
+            ["Open", "High", "", "Low", "Close"],
+            "candlestick"
+          );
+        },
       },
       states: {
         active: {
           filter: {
-            type: 'none'
-          }
-        }
+            type: "none",
+          },
+        },
       },
       xaxis: {
         crosshairs: {
-          width: 1
-        }
-      }
-    }
+          width: 1,
+        },
+      },
+    };
   }
 
   boxPlot() {
@@ -197,16 +197,16 @@ export default class Defaults {
       chart: {
         animations: {
           dynamicAnimation: {
-            enabled: false
-          }
-        }
+            enabled: false,
+          },
+        },
       },
       stroke: {
         width: 1,
-        colors: ['#24292e']
+        colors: ["#24292e"],
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       tooltip: {
         shared: true,
@@ -215,88 +215,78 @@ export default class Defaults {
             w,
             seriesIndex,
             dataPointIndex,
-            ['Minimum', 'Q1', 'Median', 'Q3', 'Maximum'],
-            'boxPlot'
-          )
-        }
+            ["Minimum", "Q1", "Median", "Q3", "Maximum"],
+            "boxPlot"
+          );
+        },
       },
       markers: {
         size: 5,
         strokeWidth: 1,
-        strokeColors: '#111'
+        strokeColors: "#111",
       },
       xaxis: {
         crosshairs: {
-          width: 1
-        }
-      }
-    }
+          width: 1,
+        },
+      },
+    };
   }
 
   rangeBar() {
     const handleTimelineTooltip = (opts) => {
-      const rangeCtx = new RangeBar(opts.ctx, null)
+      const rangeCtx = new RangeBar(opts.ctx, null);
 
-      const {
-        color,
-        seriesName,
-        ylabel,
-        startVal,
-        endVal
-      } = rangeCtx.getTooltipValues(opts)
+      const { color, seriesName, ylabel, startVal, endVal } =
+        rangeCtx.getTooltipValues(opts);
       return rangeCtx.buildCustomTooltipHTML({
         color,
         seriesName,
         ylabel,
         start: startVal,
-        end: endVal
-      })
-    }
+        end: endVal,
+      });
+    };
 
     const handleRangeColumnTooltip = (opts) => {
-      const rangeCtx = new RangeBar(opts.ctx, null)
+      const rangeCtx = new RangeBar(opts.ctx, null);
 
-      const {
-        color,
-        seriesName,
-        ylabel,
-        start,
-        end
-      } = rangeCtx.getTooltipValues(opts)
+      const { color, seriesName, ylabel, start, end } =
+        rangeCtx.getTooltipValues(opts);
       return rangeCtx.buildCustomTooltipHTML({
         color,
         seriesName,
         ylabel,
         start,
-        end
-      })
-    }
+        end,
+      });
+    };
     return {
       stroke: {
         width: 0,
-        lineCap: 'square'
+        lineCap: "square",
       },
       plotOptions: {
         bar: {
           borderRadius: 0,
           dataLabels: {
-            position: 'center'
-          }
-        }
+            position: "center",
+          },
+        },
       },
       dataLabels: {
         enabled: false,
         formatter(val, { ctx, seriesIndex, dataPointIndex, w }) {
-          const start = w.globals.seriesRangeStart[seriesIndex][dataPointIndex]
-          const end = w.globals.seriesRangeEnd[seriesIndex][dataPointIndex]
-          return end - start
+          const start = w.globals.seriesRangeStart[seriesIndex][dataPointIndex];
+          const end = w.globals.seriesRangeEnd[seriesIndex][dataPointIndex];
+          return end - start;
         },
         background: {
-          enabled: false
+          enabled: false,
         },
         style: {
-          colors: ['#fff']
-        }
+          colors: ["#fff"],
+        },
       },
       tooltip: {
         shared: false,
@@ -307,24 +297,24 @@ export default class Defaults {
             opts.w.config.plotOptions.bar &&
             opts.w.config.plotOptions.bar.horizontal
           ) {
-            return handleTimelineTooltip(opts)
+            return handleTimelineTooltip(opts);
           } else {
-            return handleRangeColumnTooltip(opts)
+            return handleRangeColumnTooltip(opts);
           }
-        }
+        },
       },
       xaxis: {
-        tickPlacement: 'between',
+        tickPlacement: "between",
         tooltip: {
-          enabled: false
+          enabled: false,
         },
         crosshairs: {
           stroke: {
-            width: 0
-          }
-        }
-      }
-    }
+            width: 0,
+          },
+        },
+      },
+    };
   }
 
   area() {
@@ -332,451 +322,451 @@ export default class Defaults {
       stroke: {
         width: 4,
         fill: {
-          type: 'solid',
+          type: "solid",
           gradient: {
             inverseColors: false,
-            shade: 'light',
-            type: 'vertical',
+            shade: "light",
+            type: "vertical",
             opacityFrom: 0.65,
             opacityTo: 0.5,
-            stops: [0, 100, 100]
-          }
-        }
+            stops: [0, 100, 100],
+          },
+        },
       },
       fill: {
-        type: 'gradient',
+        type: "gradient",
         gradient: {
           inverseColors: false,
-          shade: 'light',
-          type: 'vertical',
+          shade: "light",
+          type: "vertical",
           opacityFrom: 0.65,
           opacityTo: 0.5,
-          stops: [0, 100, 100]
-        }
+          stops: [0, 100, 100],
+        },
       },
       markers: {
         size: 0,
         hover: {
-          sizeOffset: 6
-        }
+          sizeOffset: 6,
+        },
       },
       tooltip: {
-        followCursor: false
-      }
-    }
+        followCursor: false,
+      },
+    };
   }
 
   brush(defaults) {
     const ret = {
       chart: {
         toolbar: {
-          autoSelected: 'selection',
-          show: false
+          autoSelected: "selection",
+          show: false,
         },
         zoom: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        width: 1
+        width: 1,
       },
       tooltip: {
-        enabled: false
+        enabled: false,
       },
       xaxis: {
         tooltip: {
-          enabled: false
-        }
-      }
-    }
+          enabled: false,
+        },
+      },
+    };
 
-    return Utils.extend(defaults, ret)
+    return Utils.extend(defaults, ret);
   }
 
   stacked100(opts) {
-    opts.dataLabels = opts.dataLabels || {}
-    opts.dataLabels.formatter = opts.dataLabels.formatter || undefined
-    const existingDataLabelFormatter = opts.dataLabels.formatter
+    opts.dataLabels = opts.dataLabels || {};
+    opts.dataLabels.formatter = opts.dataLabels.formatter || undefined;
+    const existingDataLabelFormatter = opts.dataLabels.formatter;
 
     opts.yaxis.forEach((yaxe, index) => {
-      opts.yaxis[index].min = 0
-      opts.yaxis[index].max = 100
-    })
+      opts.yaxis[index].min = 0;
+      opts.yaxis[index].max = 100;
+    });
 
-    const isBar = opts.chart.type === 'bar'
+    const isBar = opts.chart.type === "bar";
 
     if (isBar) {
       opts.dataLabels.formatter =
         existingDataLabelFormatter ||
-        function(val) {
-          if (typeof val === 'number') {
-            return val ? val.toFixed(0) + '%' : val
+        function (val) {
+          if (typeof val === "number") {
+            return val ? val.toFixed(0) + "%" : val;
           }
-          return val
-        }
+          return val;
+        };
     }
-    return opts
+    return opts;
   }
 
   // This function removes the left and right spacing in chart for line/area/scatter if xaxis type = category for those charts by converting xaxis = numeric. Numeric/Datetime xaxis prevents the unnecessary spacing in the left/right of the chart area
   convertCatToNumeric(opts) {
-    opts.xaxis.convertedCatToNumeric = true
+    opts.xaxis.convertedCatToNumeric = true;
 
-    return opts
+    return opts;
   }
 
   convertCatToNumericXaxis(opts, ctx, cats) {
-    opts.xaxis.type = 'numeric'
-    opts.xaxis.labels = opts.xaxis.labels || {}
+    opts.xaxis.type = "numeric";
+    opts.xaxis.labels = opts.xaxis.labels || {};
     opts.xaxis.labels.formatter =
       opts.xaxis.labels.formatter ||
-      function(val) {
-        return Utils.isNumber(val) ? Math.floor(val) : val
-      }
+      function (val) {
+        return Utils.isNumber(val) ? Math.floor(val) : val;
+      };
 
-    const defaultFormatter = opts.xaxis.labels.formatter
+    const defaultFormatter = opts.xaxis.labels.formatter;
     let labels =
       opts.xaxis.categories && opts.xaxis.categories.length
         ? opts.xaxis.categories
-        : opts.labels
+        : opts.labels;
 
     if (cats && cats.length) {
       labels = cats.map((c) => {
-        return Array.isArray(c) ? c : String(c)
-      })
+        return Array.isArray(c) ? c : String(c);
+      });
     }
 
     if (labels && labels.length) {
-      opts.xaxis.labels.formatter = function(val) {
+      opts.xaxis.labels.formatter = function (val) {
         return Utils.isNumber(val)
           ? defaultFormatter(labels[Math.floor(val) - 1])
-          : defaultFormatter(val)
-      }
+          : defaultFormatter(val);
+      };
     }
 
-    opts.xaxis.categories = []
-    opts.labels = []
-    opts.xaxis.tickAmount = opts.xaxis.tickAmount || 'dataPoints'
-    return opts
+    opts.xaxis.categories = [];
+    opts.labels = [];
+    opts.xaxis.tickAmount = opts.xaxis.tickAmount || "dataPoints";
+    return opts;
   }
 
   bubble() {
     return {
       dataLabels: {
         style: {
-          colors: ['#fff']
-        }
+          colors: ["#fff"],
+        },
       },
       tooltip: {
         shared: false,
-        intersect: true
+        intersect: true,
       },
       xaxis: {
         crosshairs: {
-          width: 0
-        }
+          width: 0,
+        },
       },
       fill: {
-        type: 'solid',
+        type: "solid",
         gradient: {
-          shade: 'light',
+          shade: "light",
           inverse: true,
           shadeIntensity: 0.55,
           opacityFrom: 0.4,
-          opacityTo: 0.8
-        }
-      }
-    }
+          opacityTo: 0.8,
+        },
+      },
+    };
   }
 
   scatter() {
     return {
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       tooltip: {
         shared: false,
-        intersect: true
+        intersect: true,
       },
       markers: {
         size: 6,
         strokeWidth: 1,
         hover: {
-          sizeOffset: 2
-        }
-      }
-    }
+          sizeOffset: 2,
+        },
+      },
+    };
   }
 
   heatmap() {
     return {
       chart: {
-        stacked: false
+        stacked: false,
       },
       fill: {
-        opacity: 1
+        opacity: 1,
       },
       dataLabels: {
         style: {
-          colors: ['#fff']
-        }
+          colors: ["#fff"],
+        },
       },
       stroke: {
-        colors: ['#fff']
+        colors: ["#fff"],
       },
       tooltip: {
         followCursor: true,
         marker: {
-          show: false
+          show: false,
         },
         x: {
-          show: false
-        }
+          show: false,
+        },
       },
       legend: {
-        position: 'top',
+        position: "top",
         markers: {
-          shape: 'square',
+          shape: "square",
           size: 10,
-          offsetY: 2
-        }
+          offsetY: 2,
+        },
       },
       grid: {
         padding: {
-          right: 20
-        }
-      }
-    }
+          right: 20,
+        },
+      },
+    };
   }
 
   treemap() {
     return {
       chart: {
         zoom: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       dataLabels: {
         style: {
           fontSize: 14,
           fontWeight: 600,
-          colors: ['#fff']
-        }
+          colors: ["#fff"],
+        },
       },
       stroke: {
         show: true,
         width: 2,
-        colors: ['#fff']
+        colors: ["#fff"],
       },
       legend: {
-        show: false
+        show: false,
       },
       fill: {
         gradient: {
-          stops: [0, 100]
-        }
+          stops: [0, 100],
+        },
       },
       tooltip: {
         followCursor: true,
         x: {
-          show: false
-        }
+          show: false,
+        },
       },
       grid: {
         padding: {
           left: 0,
-          right: 0
-        }
+          right: 0,
+        },
       },
       xaxis: {
         crosshairs: {
-          show: false
+          show: false,
         },
         tooltip: {
-          enabled: false
-        }
-      }
-    }
+          enabled: false,
+        },
+      },
+    };
   }
 
   pie() {
     return {
       chart: {
         toolbar: {
-          show: false
-        }
+          show: false,
+        },
       },
       plotOptions: {
         pie: {
           donut: {
             labels: {
-              show: false
-            }
-          }
-        }
+              show: false,
+            },
+          },
+        },
       },
       dataLabels: {
         formatter(val) {
-          return val.toFixed(1) + '%'
+          return val.toFixed(1) + "%";
         },
         style: {
-          colors: ['#fff']
+          colors: ["#fff"],
         },
         background: {
-          enabled: false
+          enabled: false,
         },
         dropShadow: {
-          enabled: true
-        }
+          enabled: true,
+        },
       },
       stroke: {
-        colors: ['#fff']
+        colors: ["#fff"],
       },
       fill: {
         opacity: 1,
         gradient: {
-          shade: 'light',
-          stops: [0, 100]
-        }
+          shade: "light",
+          stops: [0, 100],
+        },
       },
       tooltip: {
-        theme: 'dark',
-        fillSeriesColor: true
+        theme: "dark",
+        fillSeriesColor: true,
       },
       legend: {
-        position: 'right'
-      }
-    }
+        position: "right",
+      },
+    };
   }
 
   donut() {
     return {
       chart: {
         toolbar: {
-          show: false
-        }
+          show: false,
+        },
       },
       dataLabels: {
         formatter(val) {
-          return val.toFixed(1) + '%'
+          return val.toFixed(1) + "%";
         },
         style: {
-          colors: ['#fff']
+          colors: ["#fff"],
         },
         background: {
-          enabled: false
+          enabled: false,
         },
         dropShadow: {
-          enabled: true
-        }
+          enabled: true,
+        },
       },
       stroke: {
-        colors: ['#fff']
+        colors: ["#fff"],
       },
       fill: {
         opacity: 1,
         gradient: {
-          shade: 'light',
+          shade: "light",
           shadeIntensity: 0.35,
           stops: [80, 100],
           opacityFrom: 1,
-          opacityTo: 1
-        }
+          opacityTo: 1,
+        },
       },
       tooltip: {
-        theme: 'dark',
-        fillSeriesColor: true
+        theme: "dark",
+        fillSeriesColor: true,
       },
       legend: {
-        position: 'right'
-      }
-    }
+        position: "right",
+      },
+    };
   }
 
   polarArea() {
     this.opts.yaxis[0].tickAmount = this.opts.yaxis[0].tickAmount
       ? this.opts.yaxis[0].tickAmount
-      : 6
+      : 6;
 
     return {
       chart: {
         toolbar: {
-          show: false
-        }
+          show: false,
+        },
       },
       dataLabels: {
         formatter(val) {
-          return val.toFixed(1) + '%'
+          return val.toFixed(1) + "%";
         },
-        enabled: false
+        enabled: false,
       },
       stroke: {
         show: true,
-        width: 2
+        width: 2,
       },
       fill: {
-        opacity: 0.7
+        opacity: 0.7,
       },
       tooltip: {
-        theme: 'dark',
-        fillSeriesColor: true
+        theme: "dark",
+        fillSeriesColor: true,
       },
       legend: {
-        position: 'right'
-      }
-    }
+        position: "right",
+      },
+    };
   }
 
   radar() {
     this.opts.yaxis[0].labels.offsetY = this.opts.yaxis[0].labels.offsetY
       ? this.opts.yaxis[0].labels.offsetY
-      : 6
+      : 6;
 
     return {
       dataLabels: {
         enabled: false,
         style: {
-          fontSize: '11px'
-        }
+          fontSize: "11px",
+        },
       },
       stroke: {
-        width: 2
+        width: 2,
       },
       markers: {
         size: 3,
         strokeWidth: 1,
-        strokeOpacity: 1
+        strokeOpacity: 1,
       },
       fill: {
-        opacity: 0.2
+        opacity: 0.2,
       },
       tooltip: {
         shared: false,
         intersect: true,
-        followCursor: true
+        followCursor: true,
       },
       grid: {
-        show: false
+        show: false,
       },
       xaxis: {
         labels: {
           formatter: (val) => val,
           style: {
-            colors: ['#a8a8a8'],
-            fontSize: '11px'
-          }
+            colors: ["#a8a8a8"],
+            fontSize: "11px",
+          },
         },
         tooltip: {
-          enabled: false
+          enabled: false,
         },
         crosshairs: {
-          show: false
-        }
-      }
-    }
+          show: false,
+        },
+      },
+    };
   }
 
   radialBar() {
@@ -785,73 +775,73 @@ export default class Defaults {
         animations: {
           dynamicAnimation: {
             enabled: true,
-            speed: 800
-          }
+            speed: 800,
+          },
         },
         toolbar: {
-          show: false
-        }
+          show: false,
+        },
       },
       fill: {
         gradient: {
-          shade: 'dark',
+          shade: "dark",
           shadeIntensity: 0.4,
           inverseColors: false,
-          type: 'diagonal2',
+          type: "diagonal2",
           opacityFrom: 1,
           opacityTo: 1,
-          stops: [70, 98, 100]
-        }
+          stops: [70, 98, 100],
+        },
       },
       legend: {
         show: false,
-        position: 'right'
+        position: "right",
       },
       tooltip: {
         enabled: false,
-        fillSeriesColor: true
-      }
-    }
+        fillSeriesColor: true,
+      },
+    };
   }
 
   _getBoxTooltip(w, seriesIndex, dataPointIndex, labels, chartType) {
-    const o = w.globals.seriesCandleO[seriesIndex][dataPointIndex]
-    const h = w.globals.seriesCandleH[seriesIndex][dataPointIndex]
-    const m = w.globals.seriesCandleM[seriesIndex][dataPointIndex]
-    const l = w.globals.seriesCandleL[seriesIndex][dataPointIndex]
-    const c = w.globals.seriesCandleC[seriesIndex][dataPointIndex]
+    const o = w.globals.seriesCandleO[seriesIndex][dataPointIndex];
+    const h = w.globals.seriesCandleH[seriesIndex][dataPointIndex];
+    const m = w.globals.seriesCandleM[seriesIndex][dataPointIndex];
+    const l = w.globals.seriesCandleL[seriesIndex][dataPointIndex];
+    const c = w.globals.seriesCandleC[seriesIndex][dataPointIndex];
 
     if (
       w.config.series[seriesIndex].type &&
       w.config.series[seriesIndex].type !== chartType
     ) {
-      return `<div class="apexcharts-custom-tooltip">
+      return `<div className="apexcharts-custom-tooltip">
           ${
             w.config.series[seriesIndex].name
               ? w.config.series[seriesIndex].name
-              : 'series-' + (seriesIndex + 1)
+              : "series-" + (seriesIndex + 1)
           }: <strong>${w.globals.series[seriesIndex][dataPointIndex]}</strong>
-        </div>`
+        </div>`;
     } else {
       return (
-        `<div class="apexcharts-tooltip-box apexcharts-tooltip-${w.config.chart.type}">` +
-        `<div>${labels[0]}: <span class="value">` +
+        `<div className="apexcharts-tooltip-box apexcharts-tooltip-${w.config.chart.type}">` +
+        `<div>${labels[0]}: <span className="value">` +
         o +
-        '</span></div>' +
-        `<div>${labels[1]}: <span class="value">` +
+        "</span></div>" +
+        `<div>${labels[1]}: <span className="value">` +
         h +
-        '</span></div>' +
+        "</span></div>" +
         (m
-          ? `<div>${labels[2]}: <span class="value">` + m + '</span></div>'
-          : '') +
-        `<div>${labels[3]}: <span class="value">` +
+          ? `<div>${labels[2]}: <span className="value">` + m + "</span></div>"
+          : "") +
+        `<div>${labels[3]}: <span className="value">` +
         l +
-        '</span></div>' +
-        `<div>${labels[4]}: <span class="value">` +
+        "</span></div>" +
+        `<div>${labels[4]}: <span className="value">` +
         c +
-        '</span></div>' +
-        '</div>'
-      )
+        "</span></div>" +
+        "</div>"
+      );
     }
   }
 }

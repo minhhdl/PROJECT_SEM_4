@@ -73,7 +73,7 @@ const Login = () => {
                   <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                       <label
-                        htmlFor="exampleInputEmail1"
+                        htmlhtmlFor="exampleInputEmail1"
                         className="form-label"
                       >
                         Username
@@ -90,7 +90,7 @@ const Login = () => {
                     </div>
                     <div className="mb-4">
                       <label
-                        htmlFor="exampleInputPassword1"
+                        htmlhtmlFor="exampleInputPassword1"
                         className="form-label"
                       >
                         Password
@@ -114,7 +114,7 @@ const Login = () => {
                         />
                         <label
                           className="form-check-label text-dark"
-                          htmlFor="flexCheckChecked"
+                          htmlhtmlFor="flexCheckChecked"
                         >
                           Remeber this Device
                         </label>
