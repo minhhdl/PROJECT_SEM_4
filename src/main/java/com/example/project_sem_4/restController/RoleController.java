@@ -31,6 +31,17 @@ public class RoleController {
     }
     // END GET: API
 
+    // GET BY ID: API
+    @GetMapping("/role/{roleid}")
+    public ResponseEntity<?> getRoleById(@PathVariable("roleid") int roleId) {
+        Roles role = roleService.getRoleById(roleId);
+        if (role == null) {
+            return ResponseEntity.status(HttpStatus.OK).body("This role could not be found by id: " + roleId);
+        }
+        return ResponseEntity.ok(role);
+    }
+    // END GET: API
+
     // POST: API
     @PostMapping("/insertrole")
     public ResponseEntity<?> insertRole(@Valid @RequestBody Roles role, BindingResult result) {

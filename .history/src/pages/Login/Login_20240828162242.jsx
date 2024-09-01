@@ -15,17 +15,17 @@ const Login = ()=>{
                 <p className="text-center">Your Social Campaigns</p>
                 <form>
                   <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
+                    <label htmlhtmlFor="exampleInputEmail1" className="form-label">Username</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                   </div>
                   <div className="mb-4">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                    <label htmlhtmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <input type="password" className="form-control" id="exampleInputPassword1">
                   </div>
                   <div className="d-flex align-items-center justify-content-between mb-4">
                     <div className="form-check">
                       <input className="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label className="form-check-label text-dark" htmlFor="flexCheckChecked">
+                      <label className="form-check-label text-dark" htmlhtmlFor="flexCheckChecked">
                         Remeber this Device
                       </label>
                     </div>

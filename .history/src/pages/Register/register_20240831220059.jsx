@@ -61,7 +61,7 @@ const Register = () => {
                   <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                       <label
-                        htmlFor="exampleInputEmail1"
+                        htmlhtmlFor="exampleInputEmail1"
                         className="form-label"
                       >
                         Username
@@ -77,7 +77,10 @@ const Register = () => {
                       />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="exampleInputAge" className="form-label">
+                      <label
+                        htmlhtmlFor="exampleInputAge"
+                        className="form-label"
+                      >
                         Age
                       </label>
                       <input
@@ -92,7 +95,7 @@ const Register = () => {
                     </div>
                     <div className="mb-4">
                       <label
-                        htmlFor="exampleInputPassword1"
+                        htmlhtmlFor="exampleInputPassword1"
                         className="form-label"
                       >
                         Password
@@ -117,7 +120,7 @@ const Register = () => {
                         />
                         <label
                           className="form-check-label text-dark"
-                          htmlFor="flexCheckChecked"
+                          htmlhtmlFor="flexCheckChecked"
                         >
                           Agree to our{" "}
                           <span style={{ color: "red" }}>policy</span>

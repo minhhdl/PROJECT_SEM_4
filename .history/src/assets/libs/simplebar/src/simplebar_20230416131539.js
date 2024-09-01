@@ -1,10 +1,10 @@
-import throttle from 'lodash.throttle';
-import debounce from 'lodash.debounce';
-import memoize from 'lodash.memoize';
-import { ResizeObserver } from '@juggle/resize-observer';
-import canUseDOM from 'can-use-dom';
-import scrollbarWidth from './scrollbar-width';
-import { getElementWindow, getElementDocument } from './helpers';
+import throttle from "lodash.throttle";
+import debounce from "lodash.debounce";
+import memoize from "lodash.memoize";
+import { ResizeObserver } from "@juggle/resize-observer";
+import canUseDOM from "can-use-dom";
+import scrollbarWidth from "./scrollbar-width";
+import { getElementWindow, getElementDocument } from "./helpers";
 
 export default class SimpleBar {
   constructor(element, options) {
@@ -13,37 +13,37 @@ export default class SimpleBar {
     this.options = { ...SimpleBar.defaultOptions, ...options };
     this.classNames = {
       ...SimpleBar.defaultOptions.classNames,
-      ...this.options.classNames
+      ...this.options.classNames,
     };
     this.axis = {
       x: {
-        scrollOffsetAttr: 'scrollLeft',
-        sizeAttr: 'width',
-        scrollSizeAttr: 'scrollWidth',
-        offsetSizeAttr: 'offsetWidth',
-        offsetAttr: 'left',
-        overflowAttr: 'overflowX',
+        scrollOffsetAttr: "scrollLeft",
+        sizeAttr: "width",
+        scrollSizeAttr: "scrollWidth",
+        offsetSizeAttr: "offsetWidth",
+        offsetAttr: "left",
+        overflowAttr: "overflowX",
         dragOffset: 0,
         isOverflowing: true,
         isVisible: false,
         forceVisible: false,
         track: {},
-        scrollbar: {}
+        scrollbar: {},
       },
       y: {
-        scrollOffsetAttr: 'scrollTop',
-        sizeAttr: 'height',
-        scrollSizeAttr: 'scrollHeight',
-        offsetSizeAttr: 'offsetHeight',
-        offsetAttr: 'top',
-        overflowAttr: 'overflowY',
+        scrollOffsetAttr: "scrollTop",
+        sizeAttr: "height",
+        scrollSizeAttr: "scrollHeight",
+        offsetSizeAttr: "offsetHeight",
+        offsetAttr: "top",
+        overflowAttr: "overflowY",
         dragOffset: 0,
         isOverflowing: true,
         isVisible: false,
         forceVisible: false,
         track: {},
-        scrollbar: {}
-      }
+        scrollbar: {},
+      },
     };
     this.removePreventClickId = null;
 
@@ -59,7 +59,7 @@ export default class SimpleBar {
       this.options.timeout
     );
     this.onWindowResize = debounce(this.onWindowResize.bind(this), 64, {
-      leading: true
+      leading: true,
     });
 
     SimpleBar.getRtlHelpers = memoize(SimpleBar.getRtlHelpers);
@@ -78,9 +78,9 @@ export default class SimpleBar {
    * Directly inspired by @KingSora's OverlayScrollbars https://github.com/KingSora/OverlayScrollbars/blob/master/js/OverlayScrollbars.js#L1634
    */
   static getRtlHelpers() {
-    const dummyDiv = document.createElement('div');
+    const dummyDiv = document.createElement("div");
     dummyDiv.innerHTML =
-      '<div class="hs-dummy-scrollbar-size"><div style="height: 200%; width: 200%; margin: 10px 0;"></div></div>';
+      '<div className="hs-dummy-scrollbar-size"><div style="height: 200%; width: 200%; margin: 10px 0;"></div></div>';
     const scrollbarDummyEl = dummyDiv.firstElementChild;
     document.body.appendChild(scrollbarDummyEl);
     const dummyContainerChild = scrollbarDummyEl.firstElementChild;
@@ -88,9 +88,8 @@ export default class SimpleBar {
     const dummyContainerOffset = SimpleBar.getOffset(scrollbarDummyEl);
     const dummyContainerChildOffset = SimpleBar.getOffset(dummyContainerChild);
     scrollbarDummyEl.scrollLeft = 999;
-    const dummyContainerScrollOffsetAfterScroll = SimpleBar.getOffset(
-      dummyContainerChild
-    );
+    const dummyContainerScrollOffsetAfterScroll =
+      SimpleBar.getOffset(dummyContainerChild);
 
     return {
       // determines if the scrolling is responding with negative values
@@ -101,7 +100,7 @@ export default class SimpleBar {
           0,
       // determines if the origin scrollbar position is inverted or not (positioned on left or right)
       isRtlScrollbarInverted:
-        dummyContainerOffset.left !== dummyContainerChildOffset.left
+        dummyContainerOffset.left !== dummyContainerChildOffset.left,
     };
   }
 
@@ -111,25 +110,25 @@ export default class SimpleBar {
     clickOnTrack: true,
     clickOnTrackSpeed: 40,
     classNames: {
-      contentEl: 'simplebar-content',
-      contentWrapper: 'simplebar-content-wrapper',
-      offset: 'simplebar-offset',
-      mask: 'simplebar-mask',
-      wrapper: 'simplebar-wrapper',
-      placeholder: 'simplebar-placeholder',
-      scrollbar: 'simplebar-scrollbar',
-      track: 'simplebar-track',
-      heightAutoObserverWrapperEl: 'simplebar-height-auto-observer-wrapper',
-      heightAutoObserverEl: 'simplebar-height-auto-observer',
-      visible: 'simplebar-visible',
-      horizontal: 'simplebar-horizontal',
-      vertical: 'simplebar-vertical',
-      hover: 'simplebar-hover',
-      dragging: 'simplebar-dragging'
+      contentEl: "simplebar-content",
+      contentWrapper: "simplebar-content-wrapper",
+      offset: "simplebar-offset",
+      mask: "simplebar-mask",
+      wrapper: "simplebar-wrapper",
+      placeholder: "simplebar-placeholder",
+      scrollbar: "simplebar-scrollbar",
+      track: "simplebar-track",
+      heightAutoObserverWrapperEl: "simplebar-height-auto-observer-wrapper",
+      heightAutoObserverEl: "simplebar-height-auto-observer",
+      visible: "simplebar-visible",
+      horizontal: "simplebar-horizontal",
+      vertical: "simplebar-vertical",
+      hover: "simplebar-hover",
+      dragging: "simplebar-dragging",
     },
     scrollbarMinSize: 25,
     scrollbarMaxSize: 0,
-    timeout: 1000
+    timeout: 1000,
   };
 
   static getOffset(el) {
@@ -143,7 +142,7 @@ export default class SimpleBar {
         (elWindow.pageYOffset || elDocument.documentElement.scrollTop),
       left:
         rect.left +
-        (elWindow.pageXOffset || elDocument.documentElement.scrollLeft)
+        (elWindow.pageXOffset || elDocument.documentElement.scrollLeft),
     };
   }
 
@@ -170,7 +169,7 @@ export default class SimpleBar {
   initDOM() {
     // make sure this element doesn't have the elements yet
     if (
-      Array.prototype.filter.call(this.el.children, child =>
+      Array.prototype.filter.call(this.el.children, (child) =>
         child.classList.contains(this.classNames.wrapper)
       ).length
     ) {
@@ -206,14 +205,14 @@ export default class SimpleBar {
       );
     } else {
       // Prepare DOM
-      this.wrapperEl = document.createElement('div');
-      this.contentWrapperEl = document.createElement('div');
-      this.offsetEl = document.createElement('div');
-      this.maskEl = document.createElement('div');
-      this.contentEl = document.createElement('div');
-      this.placeholderEl = document.createElement('div');
-      this.heightAutoObserverWrapperEl = document.createElement('div');
-      this.heightAutoObserverEl = document.createElement('div');
+      this.wrapperEl = document.createElement("div");
+      this.contentWrapperEl = document.createElement("div");
+      this.offsetEl = document.createElement("div");
+      this.maskEl = document.createElement("div");
+      this.contentEl = document.createElement("div");
+      this.placeholderEl = document.createElement("div");
+      this.heightAutoObserverWrapperEl = document.createElement("div");
+      this.heightAutoObserverEl = document.createElement("div");
 
       this.wrapperEl.classList.add(this.classNames.wrapper);
       this.contentWrapperEl.classList.add(this.classNames.contentWrapper);
@@ -243,8 +242,8 @@ export default class SimpleBar {
     }
 
     if (!this.axis.x.track.el || !this.axis.y.track.el) {
-      const track = document.createElement('div');
-      const scrollbar = document.createElement('div');
+      const track = document.createElement("div");
+      const scrollbar = document.createElement("div");
 
       track.classList.add(this.classNames.track);
       scrollbar.classList.add(this.classNames.scrollbar);
@@ -273,42 +272,42 @@ export default class SimpleBar {
       this.axis.y.scrollbar.el.classList.add(this.classNames.visible);
     }
 
-    this.el.setAttribute('data-simplebar', 'init');
+    this.el.setAttribute("data-simplebar", "init");
   }
 
   setAccessibilityAttributes() {
-    const ariaLabel = this.options.ariaLabel || 'scrollable content';
+    const ariaLabel = this.options.ariaLabel || "scrollable content";
 
-    this.contentWrapperEl.setAttribute('tabindex', '0');
-    this.contentWrapperEl.setAttribute('role', 'region');
-    this.contentWrapperEl.setAttribute('aria-label', ariaLabel);
+    this.contentWrapperEl.setAttribute("tabindex", "0");
+    this.contentWrapperEl.setAttribute("role", "region");
+    this.contentWrapperEl.setAttribute("aria-label", ariaLabel);
   }
 
   initListeners() {
     const elWindow = getElementWindow(this.el);
     // Event listeners
     if (this.options.autoHide) {
-      this.el.addEventListener('mouseenter', this.onMouseEnter);
+      this.el.addEventListener("mouseenter", this.onMouseEnter);
     }
 
-    ['mousedown', 'click', 'dblclick'].forEach(e => {
+    ["mousedown", "click", "dblclick"].forEach((e) => {
       this.el.addEventListener(e, this.onPointerEvent, true);
     });
 
-    ['touchstart', 'touchend', 'touchmove'].forEach(e => {
+    ["touchstart", "touchend", "touchmove"].forEach((e) => {
       this.el.addEventListener(e, this.onPointerEvent, {
         capture: true,
-        passive: true
+        passive: true,
       });
     });
 
-    this.el.addEventListener('mousemove', this.onMouseMove);
-    this.el.addEventListener('mouseleave', this.onMouseLeave);
+    this.el.addEventListener("mousemove", this.onMouseMove);
+    this.el.addEventListener("mouseleave", this.onMouseLeave);
 
-    this.contentWrapperEl.addEventListener('scroll', this.onScroll);
+    this.contentWrapperEl.addEventListener("scroll", this.onScroll);
 
     // Browser zoom triggers a window resize
-    elWindow.addEventListener('resize', this.onWindowResize);
+    elWindow.addEventListener("resize", this.onWindowResize);
 
     // Hack for https://github.com/WICG/ResizeObserver/issues/38
     let resizeObserverStarted = false;
@@ -331,14 +330,14 @@ export default class SimpleBar {
     this.mutationObserver.observe(this.contentEl, {
       childList: true,
       subtree: true,
-      characterData: true
+      characterData: true,
     });
   }
 
   recalculate() {
     const elWindow = getElementWindow(this.el);
     this.elStyles = elWindow.getComputedStyle(this.el);
-    this.isRtl = this.elStyles.direction === 'rtl';
+    this.isRtl = this.elStyles.direction === "rtl";
 
     const isHeightAuto = this.heightAutoObserverEl.offsetHeight <= 1;
     const isWidthAuto = this.heightAutoObserverEl.offsetWidth <= 1;
@@ -355,12 +354,12 @@ export default class SimpleBar {
     const contentElScrollHeight = this.contentEl.scrollHeight;
     const contentElScrollWidth = this.contentEl.scrollWidth;
 
-    this.contentWrapperEl.style.height = isHeightAuto ? 'auto' : '100%';
+    this.contentWrapperEl.style.height = isHeightAuto ? "auto" : "100%";
 
     // Determine placeholder size
     this.placeholderEl.style.width = isWidthAuto
       ? `${contentElOffsetWidth}px`
-      : 'auto';
+      : "auto";
     this.placeholderEl.style.height = `${contentElScrollHeight}px`;
 
     const contentWrapperElOffsetHeight = this.contentWrapperEl.offsetHeight;
@@ -371,14 +370,14 @@ export default class SimpleBar {
 
     // Set isOverflowing to false if user explicitely set hidden overflow
     this.axis.x.isOverflowing =
-      elOverflowX === 'hidden' ? false : this.axis.x.isOverflowing;
+      elOverflowX === "hidden" ? false : this.axis.x.isOverflowing;
     this.axis.y.isOverflowing =
-      elOverflowY === 'hidden' ? false : this.axis.y.isOverflowing;
+      elOverflowY === "hidden" ? false : this.axis.y.isOverflowing;
 
     this.axis.x.forceVisible =
-      this.options.forceVisible === 'x' || this.options.forceVisible === true;
+      this.options.forceVisible === "x" || this.options.forceVisible === true;
     this.axis.y.forceVisible =
-      this.options.forceVisible === 'y' || this.options.forceVisible === true;
+      this.options.forceVisible === "y" || this.options.forceVisible === true;
 
     this.hideNativeScrollbar();
 
@@ -398,23 +397,23 @@ export default class SimpleBar {
       contentElScrollHeight >
         contentWrapperElOffsetHeight - offsetForXScrollbar;
 
-    this.axis.x.scrollbar.size = this.getScrollbarSize('x');
-    this.axis.y.scrollbar.size = this.getScrollbarSize('y');
+    this.axis.x.scrollbar.size = this.getScrollbarSize("x");
+    this.axis.y.scrollbar.size = this.getScrollbarSize("y");
 
     this.axis.x.scrollbar.el.style.width = `${this.axis.x.scrollbar.size}px`;
     this.axis.y.scrollbar.el.style.height = `${this.axis.y.scrollbar.size}px`;
 
-    this.positionScrollbar('x');
-    this.positionScrollbar('y');
+    this.positionScrollbar("x");
+    this.positionScrollbar("y");
 
-    this.toggleTrackVisibility('x');
-    this.toggleTrackVisibility('y');
+    this.toggleTrackVisibility("x");
+    this.toggleTrackVisibility("y");
   }
 
   /**
    * Calculate scrollbar size
    */
-  getScrollbarSize(axis = 'y') {
+  getScrollbarSize(axis = "y") {
     if (!this.axis[axis].isOverflowing) {
       return 0;
     }
@@ -438,7 +437,7 @@ export default class SimpleBar {
     return scrollbarSize;
   }
 
-  positionScrollbar(axis = 'y') {
+  positionScrollbar(axis = "y") {
     if (!this.axis[axis].isOverflowing) {
       return;
     }
@@ -450,7 +449,7 @@ export default class SimpleBar {
 
     let scrollOffset = this.contentWrapperEl[this.axis[axis].scrollOffsetAttr];
     scrollOffset =
-      axis === 'x' &&
+      axis === "x" &&
       this.isRtl &&
       SimpleBar.getRtlHelpers().isRtlScrollingInverted
         ? -scrollOffset
@@ -459,40 +458,40 @@ export default class SimpleBar {
 
     let handleOffset = ~~((trackSize - scrollbar.size) * scrollPourcent);
     handleOffset =
-      axis === 'x' &&
+      axis === "x" &&
       this.isRtl &&
       SimpleBar.getRtlHelpers().isRtlScrollbarInverted
         ? handleOffset + (trackSize - scrollbar.size)
         : handleOffset;
 
     scrollbar.el.style.transform =
-      axis === 'x'
+      axis === "x"
         ? `translate3d(${handleOffset}px, 0, 0)`
         : `translate3d(0, ${handleOffset}px, 0)`;
   }
 
-  toggleTrackVisibility(axis = 'y') {
+  toggleTrackVisibility(axis = "y") {
     const track = this.axis[axis].track.el;
     const scrollbar = this.axis[axis].scrollbar.el;
 
     if (this.axis[axis].isOverflowing || this.axis[axis].forceVisible) {
-      track.style.visibility = 'visible';
-      this.contentWrapperEl.style[this.axis[axis].overflowAttr] = 'scroll';
+      track.style.visibility = "visible";
+      this.contentWrapperEl.style[this.axis[axis].overflowAttr] = "scroll";
     } else {
-      track.style.visibility = 'hidden';
-      this.contentWrapperEl.style[this.axis[axis].overflowAttr] = 'hidden';
+      track.style.visibility = "hidden";
+      this.contentWrapperEl.style[this.axis[axis].overflowAttr] = "hidden";
     }
 
     // Even if forceVisible is enabled, scrollbar itself should be hidden
     if (this.axis[axis].isOverflowing) {
-      scrollbar.style.display = 'block';
+      scrollbar.style.display = "block";
     } else {
-      scrollbar.style.display = 'none';
+      scrollbar.style.display = "none";
     }
   }
 
   hideNativeScrollbar() {
-    this.offsetEl.style[this.isRtl ? 'left' : 'right'] =
+    this.offsetEl.style[this.isRtl ? "left" : "right"] =
       this.axis.y.isOverflowing || this.axis.y.forceVisible
         ? `-${this.scrollbarWidth}px`
         : 0;
@@ -520,8 +519,8 @@ export default class SimpleBar {
 
   scrollX = () => {
     if (this.axis.x.isOverflowing) {
-      this.showScrollbar('x');
-      this.positionScrollbar('x');
+      this.showScrollbar("x");
+      this.positionScrollbar("x");
     }
 
     this.scrollXTicking = false;
@@ -529,38 +528,36 @@ export default class SimpleBar {
 
   scrollY = () => {
     if (this.axis.y.isOverflowing) {
-      this.showScrollbar('y');
-      this.positionScrollbar('y');
+      this.showScrollbar("y");
+      this.positionScrollbar("y");
     }
 
     this.scrollYTicking = false;
   };
 
   onMouseEnter = () => {
-    this.showScrollbar('x');
-    this.showScrollbar('y');
+    this.showScrollbar("x");
+    this.showScrollbar("y");
   };
 
-  onMouseMove = e => {
+  onMouseMove = (e) => {
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
 
     if (this.axis.x.isOverflowing || this.axis.x.forceVisible) {
-      this.onMouseMoveForAxis('x');
+      this.onMouseMoveForAxis("x");
     }
 
     if (this.axis.y.isOverflowing || this.axis.y.forceVisible) {
-      this.onMouseMoveForAxis('y');
+      this.onMouseMoveForAxis("y");
     }
   };
 
-  onMouseMoveForAxis(axis = 'y') {
-    this.axis[axis].track.rect = this.axis[
-      axis
-    ].track.el.getBoundingClientRect();
-    this.axis[axis].scrollbar.rect = this.axis[
-      axis
-    ].scrollbar.el.getBoundingClientRect();
+  onMouseMoveForAxis(axis = "y") {
+    this.axis[axis].track.rect =
+      this.axis[axis].track.el.getBoundingClientRect();
+    this.axis[axis].scrollbar.rect =
+      this.axis[axis].scrollbar.el.getBoundingClientRect();
 
     const isWithinScrollbarBoundsX = this.isWithinBounds(
       this.axis[axis].scrollbar.rect
@@ -584,18 +581,18 @@ export default class SimpleBar {
     this.onMouseMove.cancel();
 
     if (this.axis.x.isOverflowing || this.axis.x.forceVisible) {
-      this.onMouseLeaveForAxis('x');
+      this.onMouseLeaveForAxis("x");
     }
 
     if (this.axis.y.isOverflowing || this.axis.y.forceVisible) {
-      this.onMouseLeaveForAxis('y');
+      this.onMouseLeaveForAxis("y");
     }
 
     this.mouseX = -1;
     this.mouseY = -1;
   };
 
-  onMouseLeaveForAxis(axis = 'y') {
+  onMouseLeaveForAxis(axis = "y") {
     this.axis[axis].track.el.classList.remove(this.classNames.hover);
     this.axis[axis].scrollbar.el.classList.remove(this.classNames.hover);
   }
@@ -610,7 +607,7 @@ export default class SimpleBar {
   /**
    * Show scrollbar
    */
-  showScrollbar(axis = 'y') {
+  showScrollbar(axis = "y") {
     let scrollbar = this.axis[axis].scrollbar.el;
 
     if (!this.axis[axis].isVisible) {
@@ -641,7 +638,7 @@ export default class SimpleBar {
     }
   };
 
-  onPointerEvent = e => {
+  onPointerEvent = (e) => {
     let isWithinTrackXBounds, isWithinTrackYBounds;
 
     this.axis.x.track.rect = this.axis.x.track.el.getBoundingClientRect();
@@ -663,24 +660,26 @@ export default class SimpleBar {
       // Prevent event leaking
       e.stopPropagation();
 
-      if (e.type === 'mousedown') {
+      if (e.type === "mousedown") {
         if (isWithinTrackXBounds) {
-          this.axis.x.scrollbar.rect = this.axis.x.scrollbar.el.getBoundingClientRect();
+          this.axis.x.scrollbar.rect =
+            this.axis.x.scrollbar.el.getBoundingClientRect();
 
           if (this.isWithinBounds(this.axis.x.scrollbar.rect)) {
-            this.onDragStart(e, 'x');
+            this.onDragStart(e, "x");
           } else {
-            this.onTrackClick(e, 'x');
+            this.onTrackClick(e, "x");
           }
         }
 
         if (isWithinTrackYBounds) {
-          this.axis.y.scrollbar.rect = this.axis.y.scrollbar.el.getBoundingClientRect();
+          this.axis.y.scrollbar.rect =
+            this.axis.y.scrollbar.el.getBoundingClientRect();
 
           if (this.isWithinBounds(this.axis.y.scrollbar.rect)) {
-            this.onDragStart(e, 'y');
+            this.onDragStart(e, "y");
           } else {
-            this.onTrackClick(e, 'y');
+            this.onTrackClick(e, "y");
           }
         }
       }
@@ -690,24 +689,24 @@ export default class SimpleBar {
   /**
    * on scrollbar handle drag movement starts
    */
-  onDragStart(e, axis = 'y') {
+  onDragStart(e, axis = "y") {
     const elDocument = getElementDocument(this.el);
     const elWindow = getElementWindow(this.el);
     const scrollbar = this.axis[axis].scrollbar;
 
     // Measure how far the user's mouse is from the top of the scrollbar drag handle.
-    const eventOffset = axis === 'y' ? e.pageY : e.pageX;
+    const eventOffset = axis === "y" ? e.pageY : e.pageX;
     this.axis[axis].dragOffset =
       eventOffset - scrollbar.rect[this.axis[axis].offsetAttr];
     this.draggedAxis = axis;
 
     this.el.classList.add(this.classNames.dragging);
 
-    elDocument.addEventListener('mousemove', this.drag, true);
-    elDocument.addEventListener('mouseup', this.onEndDrag, true);
+    elDocument.addEventListener("mousemove", this.drag, true);
+    elDocument.addEventListener("mouseup", this.onEndDrag, true);
     if (this.removePreventClickId === null) {
-      elDocument.addEventListener('click', this.preventClick, true);
-      elDocument.addEventListener('dblclick', this.preventClick, true);
+      elDocument.addEventListener("click", this.preventClick, true);
+      elDocument.addEventListener("dblclick", this.preventClick, true);
     } else {
       elWindow.clearTimeout(this.removePreventClickId);
       this.removePreventClickId = null;
@@ -717,14 +716,13 @@ export default class SimpleBar {
   /**
    * Drag scrollbar handle
    */
-  drag = e => {
+  drag = (e) => {
     let eventOffset;
     const track = this.axis[this.draggedAxis].track;
     const trackSize = track.rect[this.axis[this.draggedAxis].sizeAttr];
     const scrollbar = this.axis[this.draggedAxis].scrollbar;
-    const contentSize = this.contentWrapperEl[
-      this.axis[this.draggedAxis].scrollSizeAttr
-    ];
+    const contentSize =
+      this.contentWrapperEl[this.axis[this.draggedAxis].scrollSizeAttr];
     const hostSize = parseInt(
       this.elStyles[this.axis[this.draggedAxis].sizeAttr],
       10
@@ -733,7 +731,7 @@ export default class SimpleBar {
     e.preventDefault();
     e.stopPropagation();
 
-    if (this.draggedAxis === 'y') {
+    if (this.draggedAxis === "y") {
       eventOffset = e.pageY;
     } else {
       eventOffset = e.pageX;
@@ -751,7 +749,7 @@ export default class SimpleBar {
     let scrollPos = dragPerc * (contentSize - hostSize);
 
     // Fix browsers inconsistency on RTL
-    if (this.draggedAxis === 'x') {
+    if (this.draggedAxis === "x") {
       scrollPos =
         this.isRtl && SimpleBar.getRtlHelpers().isRtlScrollbarInverted
           ? scrollPos - (trackSize + scrollbar.size)
@@ -762,15 +760,14 @@ export default class SimpleBar {
           : scrollPos;
     }
 
-    this.contentWrapperEl[
-      this.axis[this.draggedAxis].scrollOffsetAttr
-    ] = scrollPos;
+    this.contentWrapperEl[this.axis[this.draggedAxis].scrollOffsetAttr] =
+      scrollPos;
   };
 
   /**
    * End scroll handle drag
    */
-  onEndDrag = e => {
+  onEndDrag = (e) => {
     const elDocument = getElementDocument(this.el);
     const elWindow = getElementWindow(this.el);
     e.preventDefault();
@@ -778,13 +775,13 @@ export default class SimpleBar {
 
     this.el.classList.remove(this.classNames.dragging);
 
-    elDocument.removeEventListener('mousemove', this.drag, true);
-    elDocument.removeEventListener('mouseup', this.onEndDrag, true);
+    elDocument.removeEventListener("mousemove", this.drag, true);
+    elDocument.removeEventListener("mouseup", this.onEndDrag, true);
     this.removePreventClickId = elWindow.setTimeout(() => {
       // Remove these asynchronously so we still suppress click events
       // generated simultaneously with mouseup.
-      elDocument.removeEventListener('click', this.preventClick, true);
-      elDocument.removeEventListener('dblclick', this.preventClick, true);
+      elDocument.removeEventListener("click", this.preventClick, true);
+      elDocument.removeEventListener("dblclick", this.preventClick, true);
       this.removePreventClickId = null;
     });
   };
@@ -792,24 +789,23 @@ export default class SimpleBar {
   /**
    * Handler to ignore click events during drag
    */
-  preventClick = e => {
+  preventClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
   };
 
-  onTrackClick(e, axis = 'y') {
+  onTrackClick(e, axis = "y") {
     if (!this.options.clickOnTrack) return;
 
     const elWindow = getElementWindow(this.el);
-    this.axis[axis].scrollbar.rect = this.axis[
-      axis
-    ].scrollbar.el.getBoundingClientRect();
+    this.axis[axis].scrollbar.rect =
+      this.axis[axis].scrollbar.el.getBoundingClientRect();
     const scrollbar = this.axis[axis].scrollbar;
     const scrollbarOffset = scrollbar.rect[this.axis[axis].offsetAttr];
     const hostSize = parseInt(this.elStyles[this.axis[axis].sizeAttr], 10);
     let scrolled = this.contentWrapperEl[this.axis[axis].scrollOffsetAttr];
     const t =
-      axis === 'y'
+      axis === "y"
         ? this.mouseY - scrollbarOffset
         : this.mouseX - scrollbarOffset;
     const dir = t < 0 ? -1 : 1;
@@ -820,7 +816,7 @@ export default class SimpleBar {
         if (scrolled > scrollSize) {
           scrolled -= this.options.clickOnTrackSpeed;
           this.contentWrapperEl.scrollTo({
-            [this.axis[axis].offsetAttr]: scrolled
+            [this.axis[axis].offsetAttr]: scrolled,
           });
           elWindow.requestAnimationFrame(scrollTo);
         }
@@ -828,7 +824,7 @@ export default class SimpleBar {
         if (scrolled < scrollSize) {
           scrolled += this.options.clickOnTrackSpeed;
           this.contentWrapperEl.scrollTo({
-            [this.axis[axis].offsetAttr]: scrolled
+            [this.axis[axis].offsetAttr]: scrolled,
           });
           elWindow.requestAnimationFrame(scrollTo);
         }
@@ -857,10 +853,10 @@ export default class SimpleBar {
     try {
       // Detect browsers supporting CSS scrollbar styling and do not calculate
       if (
-        getComputedStyle(this.contentWrapperEl, '::-webkit-scrollbar')
-          .display === 'none' ||
-        'scrollbarWidth' in document.documentElement.style ||
-        '-ms-overflow-style' in document.documentElement.style
+        getComputedStyle(this.contentWrapperEl, "::-webkit-scrollbar")
+          .display === "none" ||
+        "scrollbarWidth" in document.documentElement.style ||
+        "-ms-overflow-style" in document.documentElement.style
       ) {
         return 0;
       } else {
@@ -875,28 +871,28 @@ export default class SimpleBar {
     const elWindow = getElementWindow(this.el);
     // Event listeners
     if (this.options.autoHide) {
-      this.el.removeEventListener('mouseenter', this.onMouseEnter);
+      this.el.removeEventListener("mouseenter", this.onMouseEnter);
     }
 
-    ['mousedown', 'click', 'dblclick'].forEach(e => {
+    ["mousedown", "click", "dblclick"].forEach((e) => {
       this.el.removeEventListener(e, this.onPointerEvent, true);
     });
 
-    ['touchstart', 'touchend', 'touchmove'].forEach(e => {
+    ["touchstart", "touchend", "touchmove"].forEach((e) => {
       this.el.removeEventListener(e, this.onPointerEvent, {
         capture: true,
-        passive: true
+        passive: true,
       });
     });
 
-    this.el.removeEventListener('mousemove', this.onMouseMove);
-    this.el.removeEventListener('mouseleave', this.onMouseLeave);
+    this.el.removeEventListener("mousemove", this.onMouseMove);
+    this.el.removeEventListener("mouseleave", this.onMouseLeave);
 
     if (this.contentWrapperEl) {
-      this.contentWrapperEl.removeEventListener('scroll', this.onScroll);
+      this.contentWrapperEl.removeEventListener("scroll", this.onScroll);
     }
 
-    elWindow.removeEventListener('resize', this.onWindowResize);
+    elWindow.removeEventListener("resize", this.onWindowResize);
 
     if (this.mutationObserver) {
       this.mutationObserver.disconnect();
@@ -942,7 +938,7 @@ export default class SimpleBar {
       el.webkitMatchesSelector ||
       el.mozMatchesSelector ||
       el.msMatchesSelector;
-    return Array.prototype.filter.call(el.children, child =>
+    return Array.prototype.filter.call(el.children, (child) =>
       matches.call(child, query)
     )[0];
   }
