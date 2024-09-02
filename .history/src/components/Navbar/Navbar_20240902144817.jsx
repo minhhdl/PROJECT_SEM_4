@@ -7,10 +7,6 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import Cookies from "js-cookie";
 
 export default function Navbar() {
-  const logout = () => {
-    Cookies.remove("username");
-    Cookies.remove("userId");
-  };
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isScrolledBlur, setIsScrolledBlur] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -93,19 +89,17 @@ export default function Navbar() {
                   >
                     Account
                     {showDropdown && (
-                      <ul className="absolute right-0 mt-4 w-48 border border-white rounded-lg shadow-lg">
-                        <li className="py-2 px-4">
+                      <ul className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                        <li className="">
                           <a href={`/profile/${Cookies.get("userId")}`}>
-                            Profile
+                            Hồ sơ
                           </a>
                         </li>
-                        <li className="py-2 px-4 ">
+                        <li className="py-2 px-4 hover:bg-gray-100 color-red">
                           <a href="/settings">Settings</a>
                         </li>
-                        <li className="py-2 px-4 ">
-                          <a href="" onClick={logout}>
-                            Sign out
-                          </a>
+                        <li className="py-2 px-4 hover:bg-gray-100">
+                          <a href="/logout">Sign out</a>
                         </li>
                       </ul>
                     )}

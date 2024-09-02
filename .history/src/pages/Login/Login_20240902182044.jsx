@@ -1,86 +1,45 @@
 import "../../assets/css/styles.min.css";
 import "../../assets/libs/jquery/dist/jquery.min.js";
 import "../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Cookies from "js-cookie";
 
-const Register = () => {
+const Login = () => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
-  let [age, setAge] = useState("");
-  let [role, setRole] = useState("");
-  let [roles, setRoles] = useState([]);
-  let [cateUsers, setCateUsers] = useState([]);
-  let [cateUser, setCateUser] = useState([]);
+  let [roleId, setRoleId] = useState("");
+  let [data, setData] = useState([]);
 
-  // Get roles
-  useEffect(() => {
-    fetch("http://localhost:8080/role/roles")
-      .then((response) => {
-        if (!response.ok) {
-          return response.text().then((text) => {
-            alert(text);
-          });
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setRoles(data);
-      })
-      .catch((error) => {
-        alert("There was a problem with the fetch operation: " + error.message);
-      });
-  }, []);
-
-  // Get Category users
-  useEffect(() => {
-    fetch("http://localhost:8080/cateuser/cateusers")
-      .then((response) => {
-        if (!response.ok) {
-          return response.text().then((text) => {
-            alert(text);
-          });
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setCateUsers(data);
-      })
-      .catch((error) => {
-        alert("There was a problem with the fetch operation: " + error.message);
-      });
-  }, []);
-
-  useEffect(() => {
-    roles.map((item, index) => {
-      if (item.roleName === "User") {
-        // alert(item.roleId);
-        setRole(item.roleId);
-      }
-    });
-  });
-
-  useEffect(() => {
-    cateUsers.map((item, index) => {
-      if (item.categoryName === "Visually impaired") {
-        // alert(item.categoryId);
-        setCateUser(item.categoryId);
-      }
-    });
-  });
+  // function useCustomHook(roleId) {
+  //   useEffect(() => {
+  //     fetch(`http://localhost:8080/role/role/${roleId}`)
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           return response.text().then((text) => {
+  //             alert(text);
+  //           });
+  //         }
+  //         return response.json();
+  //       })
+  //       .then((data) => {
+  //         setData(data);
+  //       })
+  //       .catch((error) => {
+  //         alert(
+  //           "There was a problem with the fetch operation: " + error.message
+  //         );
+  //       });
+  //   }, [roleId]);
+  //   return data;
+  // }
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:8080/user/register", {
+    fetch("http://localhost:8080/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        username: username,
-        age: age,
-        password: password,
-        categoryId: cateUser,
-        roleId: role,
-      }),
+      body: JSON.stringify({ username: username, password: password }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -88,11 +47,19 @@ const Register = () => {
             alert(text);
           });
         }
-        return response.text().then(() => {
-          window.location.href = "/sign-in";
-        });
+        return response.json();
       })
-      .then((data) => console.log("Data received:", data))
+      .then((data) => {
+        setRoleId(data.roleId);
+        Cookies.set("username", username, { expires: 7 });
+        Cookies.set("userId", data.userId, { expires: 7 });
+        if(){
+
+        }else{
+
+          window.location.href = "/";
+        }
+      })
       .catch((error) => {
         alert("There was a problem with the fetch operation: " + error.message);
       });
@@ -137,23 +104,9 @@ const Register = () => {
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
-                        autoFocus
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="exampleInputAge" className="form-label">
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="exampleInputAge"
-                        aria-describedby="emailHelp"
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
+                        autoFocus
                         required
                       />
                     </div>
@@ -178,33 +131,27 @@ const Register = () => {
                         <input
                           className="form-check-input primary"
                           type="checkbox"
-                          value="agree-policy"
+                          value=""
                           id="flexCheckChecked"
-                          required
                         />
                         <label
                           className="form-check-label text-dark"
                           htmlFor="flexCheckChecked"
                         >
-                          Agree to our{" "}
-                          <span
-                            style={{
-                              color: "blue",
-                              textDecoration: "underline",
-                            }}
-                          >
-                            policy
-                          </span>
+                          Remeber this Device
                         </label>
                       </div>
+                      <a className="text-primary fw-bold" href="./index.html">
+                        Forgot Password ?
+                      </a>
                     </div>
                     <button className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
-                      Sign Up
+                      Sign In
                     </button>
                     <div className="d-flex align-items-center justify-content-center">
-                      <p className="fs-4 mb-0 fw-bold">Have an account?</p>
-                      <a className="text-primary fw-bold ms-2" href="/sign-in">
-                        Sign in
+                      <p className="fs-4 mb-0 fw-bold">No account?</p>
+                      <a className="text-primary fw-bold ms-2" href="/sign-up">
+                        Sign up
                       </a>
                     </div>
                   </form>
@@ -218,4 +165,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

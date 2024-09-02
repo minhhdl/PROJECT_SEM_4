@@ -53,7 +53,7 @@ public class Users {
 
     @OneToOne
     @JoinColumn(name = "roleId", insertable = false, updatable = false)
-    @JsonIgnore
+//    @JsonIgnore
     private Roles roles;
 
     public Users(int categoryId, String username, int age, String password, String avatar, int roleId) {

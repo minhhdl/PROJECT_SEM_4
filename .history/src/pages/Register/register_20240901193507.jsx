@@ -88,7 +88,8 @@ const Register = () => {
             alert(text);
           });
         }
-        return response.text().then(() => {
+        return response.text().then((text) => {
+          alert(text);
           window.location.href = "/sign-in";
         });
       })

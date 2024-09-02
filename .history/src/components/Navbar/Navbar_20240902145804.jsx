@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 export default function Navbar() {
   const logout = () => {
     Cookies.remove("username");
-    Cookies.remove("userId");
+    Cookies.remove("username");
   };
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isScrolledBlur, setIsScrolledBlur] = useState(false);
@@ -96,16 +96,14 @@ export default function Navbar() {
                       <ul className="absolute right-0 mt-4 w-48 border border-white rounded-lg shadow-lg">
                         <li className="py-2 px-4">
                           <a href={`/profile/${Cookies.get("userId")}`}>
-                            Profile
+                            Hồ sơ
                           </a>
                         </li>
                         <li className="py-2 px-4 ">
                           <a href="/settings">Settings</a>
                         </li>
                         <li className="py-2 px-4 ">
-                          <a href="" onClick={logout}>
-                            Sign out
-                          </a>
+                          <a href="/logout">Sign out</a>
                         </li>
                       </ul>
                     )}
