@@ -96,7 +96,7 @@ export default function Navbar() {
                       <ul className="absolute right-0 mt-4 w-48 border border-white rounded-lg shadow-lg">
                         <li className="py-2 px-4">
                           <a href={`/profile/${Cookies.get("userId")}`}>
-                            Profile
+                            Hồ sơ
                           </a>
                         </li>
                         <li className="py-2 px-4 ">

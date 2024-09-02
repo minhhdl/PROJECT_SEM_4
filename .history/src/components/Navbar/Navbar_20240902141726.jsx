@@ -2,15 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/LOGO2.png";
 import { navLinks } from "../../data/data";
-import ResponsiveMenu from "./ResponsiveMenu/";
+import ReponsiveMenu from "./ReponsiveMenu";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Cookies from "js-cookie";
 
 export default function Navbar() {
-  const logout = () => {
-    Cookies.remove("username");
-    Cookies.remove("userId");
-  };
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isScrolledBlur, setIsScrolledBlur] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -91,24 +87,22 @@ export default function Navbar() {
                     onClick={() => setShowDropdown(!showDropdown)}
                     className="border border-white px-4 py-2 rounded-full hover:bg-primaryHover transition-all duration-300 ease-in-out cursor-pointer"
                   >
-                    Account
                     {showDropdown && (
-                      <ul className="absolute right-0 mt-4 w-48 border border-white rounded-lg shadow-lg">
-                        <li className="py-2 px-4">
+                      <ul className="absolute right-0 mt-20 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                        <li className="py-2 px-4 hover:bg-gray-100">
                           <a href={`/profile/${Cookies.get("userId")}`}>
-                            Profile
+                            Hồ sơ
                           </a>
                         </li>
-                        <li className="py-2 px-4 ">
-                          <a href="/settings">Settings</a>
+                        <li className="py-2 px-4 hover:bg-gray-100">
+                          <a href="/settings">Cài đặt</a>
                         </li>
-                        <li className="py-2 px-4 ">
-                          <a href="" onClick={logout}>
-                            Sign out
-                          </a>
+                        <li className="py-2 px-4 hover:bg-gray-100">
+                          <a href="/logout">Đăng xuất</a>
                         </li>
                       </ul>
                     )}
+                    Account
                   </a>
                 )}
                 {/* Btn show menu */}
@@ -124,7 +118,7 @@ export default function Navbar() {
         </div>
         {/* ShowMenu */}
         <div ref={menuRef}>
-          <ResponsiveMenu showMobileMenu={showMobileMenu} />
+          <ReponsiveMenu showMobileMenu={showMobileMenu} />
         </div>
       </nav>
     </>

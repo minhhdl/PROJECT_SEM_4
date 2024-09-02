@@ -20,6 +20,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     CateUserService cateUserService;
 
+    @Autowired
+    UserService userService;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -37,8 +40,10 @@ public class WebConfig implements WebMvcConfigurer {
             ArrayList<Roles> roles = new ArrayList<>();
             Roles roleAdmin = new Roles();
             Roles roleUser = new Roles();
+            Users user = new Users();
             boolean isDuplicateRole = false;
             boolean isDuplicateCateUser = false;
+            boolean isDuplicateUser = false;
             ArrayList<CategoryUser> categoryUsers = new ArrayList<>();
             CategoryUser cateUserNormal = new CategoryUser();
             CategoryUser cateUserDisability = new CategoryUser();
@@ -62,10 +67,6 @@ public class WebConfig implements WebMvcConfigurer {
                         break;
                     }
                 }
-                if (item.getRoleName().equals(roleAdmin.getRoleName())) {
-                    isDuplicateRole = true;
-                    break;
-                }
             }
             if (!isDuplicateRole) {
                 for (var role : roles) {
@@ -86,8 +87,8 @@ public class WebConfig implements WebMvcConfigurer {
             categoryUsers.add(cateUserDisability);
             List<CategoryUser> cateUserList = cateUserService.getCateUsers();
             for (CategoryUser item : cateUserList) {
-                for (CategoryUser user : categoryUsers) {
-                    if (item.getCategoryName().equals(user.getCategoryName())) {
+                for (CategoryUser cateUser : categoryUsers) {
+                    if (item.getCategoryName().equals(cateUser.getCategoryName())) {
                         isDuplicateCateUser = true;
                         break;
                     }
@@ -97,6 +98,35 @@ public class WebConfig implements WebMvcConfigurer {
                 for (var cateUser : categoryUsers) {
                     cateUserService.insertCateUser(cateUser);
                 }
+            }
+
+            // Check duplicate user
+
+            // Insert user default
+            user.setUserId(Math.abs(random.nextInt()));
+            user.setAge(17);
+            user.setPassword("$2a$10$N348Ne3.aPC36lmJ3qBJU.6m0M5CXIeXJP247cC5a8RcV4UKkHtau");
+            user.setUsername("Admin");
+            for (Roles item : roleService.getRoles()) {
+                if (item.getRoleName().equals("Admin")) {
+                    user.setRoleId(item.getRoleId());
+                    break;
+                }
+            }
+            for (CategoryUser item : cateUserService.getCateUsers()) {
+                if (item.getCategoryName().equals("Normal")) {
+                    user.setCategoryId(item.getCategoryId());
+                    break;
+                }
+            }
+            for (Users item : userService.getUsers()) {
+                if (item.getUsername().equals(user.getUsername())) {
+                    isDuplicateUser = true;
+                    break;
+                }
+            }
+            if (!isDuplicateUser) {
+                userService.register(user);
             }
         };
     }
