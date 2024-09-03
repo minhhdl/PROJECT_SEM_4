@@ -15,5 +15,5 @@ public interface IUserService {
 
     boolean deleteBook(int userId);
 
-    Users login(String username, String password);
+    Users login(String username);
 }
