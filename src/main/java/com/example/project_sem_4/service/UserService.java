@@ -88,8 +88,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Users login(String username, String password) {
-        Users user = userRepository.login(username, password);
+    public Users login(String username) {
+        Users user = userRepository.login(username);
         return user;
     }
 }

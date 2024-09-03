@@ -105,7 +105,7 @@ public class WebConfig implements WebMvcConfigurer {
             // Insert user default
             user.setUserId(Math.abs(random.nextInt()));
             user.setAge(17);
-            user.setPassword("$2a$10$N348Ne3.aPC36lmJ3qBJU.6m0M5CXIeXJP247cC5a8RcV4UKkHtau");
+            user.setPassword("$2a$10$/NOdBkQmQWe4y0bq4iPZNuxwarJKDUSL2gRlcdt1A20F8BdW3WEbG");
             user.setUsername("Admin");
             for (Roles item : roleService.getRoles()) {
                 if (item.getRoleName().equals("Admin")) {

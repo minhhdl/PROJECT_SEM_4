@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,8 @@ public class UserController {
 
     @Autowired
     RoleService roleService;
+
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     // END VARIABLE
 
     // GET: API
@@ -39,52 +42,15 @@ public class UserController {
     }
     // END GET: API
 
-    // POST: API
-    @PostMapping("/insertuser")
-    public ResponseEntity<?> insertUser(@Valid @RequestBody Users user, BindingResult result) {
-        // Validate
-        if (result.hasErrors()) {
-            List<String> errorMessages = new ArrayList<>();
-            for (var item : result.getFieldErrors()) {
-                errorMessages.add("Error: " + item.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().body(errorMessages);
-        }
-        // End Validate
-
-        // Check duplicate username
-        boolean isDuplicate = false;
-        CategoryUser cateUserExist = cateUserService.getCateUserById(user.getCategoryId());
-        if (cateUserExist != null) {
-            List<Users> usersList = userService.getUsers();
-            for (Users item : usersList) {
-                if (item.getUsername().equals(user.getUsername())) {
-                    isDuplicate = true;
-                    break;
-                }
-            }
-            if (isDuplicate) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("This username already exists. Please try another username!");
-            }
-            Roles roleExist = roleService.getRoleById(user.getRoleId());
-            if (roleExist != null) {
-                boolean isSuccessfully = userService.register(user);
-                if (!isSuccessfully) {
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Created failed. Please check your data and try again!");
-                }
-                return ResponseEntity.status(HttpStatus.OK).body("Created successfully");
-            }
-            return ResponseEntity.status(HttpStatus.OK).body("This role id does not exist");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body("This user category id does not exist");
-    }
-    // END POST: API
-
     // POST LOGIN: API
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        Users user = userService.login(loginRequest.getUsername(), loginRequest.getPassword());
+        Users user = userService.login(loginRequest.getUsername());
         if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Username or password is incorrect");
+        }
+        boolean isPasswordMatch = encoder.matches(loginRequest.getPassword(), user.getPassword());
+        if (!isPasswordMatch) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Username or password is incorrect");
         }
         return ResponseEntity.ok(user);
@@ -103,7 +69,7 @@ public class UserController {
             return ResponseEntity.badRequest().body(errorMessages);
         }
         // End Validate
-
+        user.setPassword(encoder.encode(user.getPassword()));
         boolean isCreated = userService.register(user);
         if (!isCreated) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration failed. Please check your data and try again!");
