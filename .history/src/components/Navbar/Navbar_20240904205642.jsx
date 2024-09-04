@@ -91,9 +91,9 @@ export default function Navbar() {
                     onClick={() => setShowDropdown(!showDropdown)}
                     className="border border-white px-4 py-2 rounded-full hover:bg-primaryHover transition-all duration-300 ease-in-out cursor-pointer"
                   >
-                    {Cookies.get("username")}
+                    Account
                     {showDropdown && (
-                      <ul className="absolute right-0 mt-4 w-48 border bg-black border-white rounded-lg shadow-lg">
+                      <ul className="absolute right-0 mt-4 w-48 border border-white rounded-lg shadow-lg">
                         <li className="py-2 px-4">
                           <a href={`/profile/${Cookies.get("userId")}`}>
                             Profile
@@ -107,9 +107,6 @@ export default function Navbar() {
                             <a href="/admin/dashboard">Manage</a>
                           </li>
                         )}
-                        <li className="py-2 px-4 ">
-                          <a href="/sign-in">Change account</a>
-                        </li>
                         <li className="py-2 px-4 ">
                           <button onClick={logout}>Sign out</button>
                         </li>
