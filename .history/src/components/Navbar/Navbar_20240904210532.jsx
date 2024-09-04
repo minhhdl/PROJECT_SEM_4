@@ -108,7 +108,7 @@ export default function Navbar() {
                           </li>
                         )}
                         <li className="py-2 px-4 ">
-                          <a href="/sign-in">Change account</a>
+                          <a href="/login">Change account</a>
                         </li>
                         <li className="py-2 px-4 ">
                           <button onClick={logout}>Sign out</button>
