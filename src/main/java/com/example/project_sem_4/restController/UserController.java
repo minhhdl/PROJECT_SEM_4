@@ -12,8 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
@@ -74,7 +73,7 @@ public class UserController {
         if (!isCreated) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration failed. Please check your data and try again!");
         }
-        return ResponseEntity.ok("Registered successfully");
+        return ResponseEntity.ok(Collections.singletonMap("msg", "Registered successfully"));
     }
     // END POST LOGIN: API
 
