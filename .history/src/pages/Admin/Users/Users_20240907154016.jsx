@@ -71,7 +71,6 @@ const Users = () => {
                         src={`../src/assets/images/${item.avatar}`}
                         alt=""
                         width={50}
-                        style={{ borderRadius: "50%" }}
                       />
                     ) : (
                       "No avatar"
