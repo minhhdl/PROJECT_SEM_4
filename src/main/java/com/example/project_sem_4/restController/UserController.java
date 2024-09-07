@@ -90,30 +90,23 @@ public class UserController {
         }
         // End Validate
 
-        // Check duplicate username
         boolean isDuplicate = false;
         CategoryUser cateUserExist = cateUserService.getCateUserById(user.getCategoryId());
         if (cateUserExist != null) {
-            user.setUserId(userId);
-            Users userExist = userService.getUserById(userId);
-            if (userExist != null) {
-                List<Users> usersList = userService.getUsers();
-                for (Users item : usersList) {
-                    if (item.getUsername().equals(user.getUsername())) {
-                        isDuplicate = true;
-                        break;
+            Roles roleExist = roleService.getRoleById(user.getRoleId());
+            if (roleExist != null) {
+                user.setUserId(userId);
+                Users userExist = userService.getUserById(userId);
+                if (userExist != null) {
+                    boolean isSuccessfully = userService.updateUser(user);
+                    if (!isSuccessfully) {
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Updated failed. Please check your data and try again!");
                     }
+                    return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
                 }
-                if (isDuplicate) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT).body("This username already exists. Please try another username!");
-                }
-                boolean isSuccessfully = userService.updateUser(user);
-                if (!isSuccessfully) {
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Updated failed. Please check your data and try again!");
-                }
-                return ResponseEntity.status(HttpStatus.OK).body("Updated successfully");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("This user could not be found by id: " + userId);
             }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("This user could not be found by id: " + userId);
+            return ResponseEntity.status(HttpStatus.OK).body("This role id does not exist");
         }
         return ResponseEntity.status(HttpStatus.OK).body("This user category id does not exist");
     }
