@@ -15,10 +15,6 @@ export const navLinks = [
     path: "/products",
   },
   {
-    name: "News Book",
-    path: "/newsProducts",
-  },
-  {
     name: "Blogs",
     path: "/blogs",
   },
@@ -115,5 +111,90 @@ export const featuredBooksData = [
     name: "Tiểu sử Elon Musk",
     writer: "Walter Isaacson",
     desc: "Vòng tròn 12 cung Hoàng đạo bao gồm Bạch Dương, Kim Ngưu, Song Tử, Cự Giải, Sư Tử, Xử Nữ, Thiên Bình, Thiên Yết, Nhân Mã, Ma Kết, Bảo Bình, Song Ngư. Theo đó, mỗi một cung ứng với một Chòm Sao chiếu mệnh tạo nên 12 tính cách đa dạng, phong phú, không hòa quyện, không trộn lẫn. Dựa vào cung hoàng đạo tương ứng với ngày sinh nhật của mỗi người, ngoài việc đoán được tính cách của mỗi người, các nhà chiêm tinh học còn có thể dự đoán được một phần nào đó tương lai của họ trong một năm.",
+  },
+];
+
+//Books Data
+import Historiaslocos from "../assets/Books/Historiaslocos.jpg";
+export const booksData = [
+  {
+    id: 1,
+    title: "Historias de locos 1",
+    image: Historiaslocos,
+    category: "Fiction",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable",
+  },
+  {
+    id: 2,
+    title: "Historias de locos 2",
+    image: Historiaslocos,
+    category: "Horror",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 3,
+    title: "Historias de locose 3",
+    image: Historiaslocos,
+    category: "Horror",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 4,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Horror",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 5,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 6,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 7,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 8,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
   },
 ];

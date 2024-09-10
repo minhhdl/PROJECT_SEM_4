@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header/Header";
 import Brand from "../components/Brand/Brand";
 import FeaturesBooks from "../components/FeaturesBooks/FeaturesBooks";
+import ProductPage from "../components/ProductPage/ProductPage";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Header />
       <Brand />
       <FeaturesBooks />
+      <ProductPage />
     </main>
   );
 }
