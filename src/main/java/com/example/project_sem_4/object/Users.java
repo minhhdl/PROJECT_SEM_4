@@ -33,6 +33,7 @@ public class Users {
     private String password;
     @Column(columnDefinition = "nvarchar(max)")
     private String avatar;
+    boolean isDeleted = false;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private ZonedDateTime createdAt = ZonedDateTime.now();
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
