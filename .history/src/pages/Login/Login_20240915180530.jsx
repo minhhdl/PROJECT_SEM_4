@@ -61,12 +61,14 @@ const Login = () => {
             <div className="col-md-8 col-lg-6 col-xxl-3">
               <div className="card mb-0">
                 <div className="card-body">
-                  {msg.length > 0 && error.length === 0 && (
-                    <label className="form-label p-2 w-100 text-center text-danger">
-                      {msg}
-                    </label>
-                  )}
-                  {error.length > 0 && msg.length === 0 && (
+                  {msg.length > 0 &&
+                    error.length ===
+                      0(
+                        <label className="form-label p-2 w-100 text-center text-danger">
+                          {msg}
+                        </label>
+                      )}
+                  {error.length > 0 && (
                     <label className="form-label p-2 w-100 text-center text-danger">
                       {error}
                     </label>

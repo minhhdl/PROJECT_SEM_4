@@ -124,13 +124,10 @@ const VoiceControl = () => {
     const voices = window.speechSynthesis.getVoices();
     console.log(voices);
     utterance.voice = voices.find((voice) =>
-      voice.name.includes("Google US English")
+      voice.name.includes("Microsoft Mark - English (United States)")
     );
-
     // Read Speed
     utterance.rate = 1.1;
-    // End Read Speed
-
     window.speechSynthesis.speak(utterance);
     utterance.onend = () => {
       window.location.reload();

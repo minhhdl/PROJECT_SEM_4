@@ -126,15 +126,12 @@ const VoiceControl = () => {
     utterance.voice = voices.find((voice) =>
       voice.name.includes("Google US English")
     );
-
     // Read Speed
     utterance.rate = 1.1;
-    // End Read Speed
-
     window.speechSynthesis.speak(utterance);
     utterance.onend = () => {
-      window.location.reload();
-      Cookies.set("isRead", "true");
+      // window.location.reload();
+      // Cookies.set("isRead", "true");
     };
   }
 };

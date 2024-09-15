@@ -44,15 +44,12 @@ const VoiceControl = () => {
         setResponse("Down successfully");
         break;
       case "top":
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        setResponse("Scroll to the top successfully");
+        window.scrollBy(0, window.innerHeight);
+        setResponse("Down successfully");
         break;
       case "bottom":
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        });
-        setResponse("Scroll to the bottom successfully");
+        window.scrollBy(0, window.innerHeight);
+        setResponse("Down successfully");
         break;
       case "help me":
         Cookies.set("isRead", "false");
@@ -106,9 +103,7 @@ const VoiceControl = () => {
 
   useEffect(() => {
     if (Cookies.get("isRead") === "false" || Cookies.get("isRead") == null) {
-      setResponse(
-        "Hello. You can read many types of books here. You can say the following words to change direction. 'Home' is to go to the home page. 'Books' is to go to the all books page. 'Blogs' is to go to the blogs page. 'Contact' is to go to the contact us page. 'Down' to scroll down the web page. 'Up' to scroll the web page up. 'Top' to scroll to the top of the web page. 'Bottom' to scroll to the bottom of the web page. 'Help me' to hear the instructions again"
-      );
+      setResponse("Hello, you can read many types of books here");
     }
   }, []);
 
@@ -122,15 +117,11 @@ const VoiceControl = () => {
   function speak(text) {
     let utterance = new SpeechSynthesisUtterance(text);
     const voices = window.speechSynthesis.getVoices();
-    console.log(voices);
     utterance.voice = voices.find((voice) =>
-      voice.name.includes("Google US English")
+      voice.name.includes("Microsoft Mark - English (United States)")
     );
-
     // Read Speed
     utterance.rate = 1.1;
-    // End Read Speed
-
     window.speechSynthesis.speak(utterance);
     utterance.onend = () => {
       window.location.reload();
