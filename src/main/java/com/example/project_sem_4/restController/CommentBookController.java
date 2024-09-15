@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,7 @@ public class CommentBookController {
     public ResponseEntity<?> getCommentBooks() {
         List<CommentBook> commentBookList = commentBookService.getCommentBooks();
         if (commentBookList.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("There are no book comments yet");
+            return ResponseEntity.ok(Collections.singletonMap("msg", "There are no book comments yet"));
         }
         return ResponseEntity.ok(commentBookList);
     }

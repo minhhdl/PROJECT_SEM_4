@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -22,10 +23,10 @@ public class RoleController {
 
     // GET: API
     @GetMapping("/roles")
-    public ResponseEntity<?> getCommentBooks() {
+    public ResponseEntity<?> getRoles() {
         List<Roles> roleList = roleService.getRoles();
         if (roleList.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("There are no roles yet");
+            return ResponseEntity.ok(Collections.singletonMap("msg", "There are no roles yet"));
         }
         return ResponseEntity.ok(roleList);
     }
