@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class CategoryBookController {
     public ResponseEntity<?> getCateBookById() {
         List<CategoryBook> categoryBookList = cateBookService.getCategories();
         if (categoryBookList.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("There are no book categories yet");
+            return ResponseEntity.ok(Collections.singletonMap("msg", "There are no book categories yet"));
         }
         return ResponseEntity.ok(categoryBookList);
     }
@@ -39,7 +40,7 @@ public class CategoryBookController {
     public ResponseEntity<?> getCateBookById(@PathVariable("cateid") int cateId) {
         CategoryBook categoryBook = cateBookService.getCateBookById(cateId);
         if (categoryBook == null) {
-            return ResponseEntity.status(HttpStatus.OK).body("This category book could not be found by id: " + cateId);
+            return ResponseEntity.ok(Collections.singletonMap("msg", "This category book could not be found by id: " + cateId));
         }
         return ResponseEntity.ok(categoryBook);
     }

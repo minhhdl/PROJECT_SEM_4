@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class TotalReaderController {
     public ResponseEntity<?> getTotalReaders() {
         List<TotalReaders> totalReaderList = totalReaderService.getTotalReaders();
         if (totalReaderList.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("There are no readers yet");
+            return ResponseEntity.ok(Collections.singletonMap("msg", "There are no readers yet"));
         }
         return ResponseEntity.ok(totalReaderList);
     }
