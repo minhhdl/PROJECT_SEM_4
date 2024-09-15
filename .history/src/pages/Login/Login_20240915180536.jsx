@@ -66,7 +66,7 @@ const Login = () => {
                       {msg}
                     </label>
                   )}
-                  {error.length > 0 && msg.length === 0 && (
+                  {error.length > 0 && (
                     <label className="form-label p-2 w-100 text-center text-danger">
                       {error}
                     </label>

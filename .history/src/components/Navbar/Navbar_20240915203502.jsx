@@ -83,7 +83,7 @@ export default function Navbar() {
                     href="/sign-in"
                     className="border border-white px-4 py-2 rounded-full hover:bg-primaryHover transition-all duration-300 ease-in-out"
                   >
-                    Sign in
+                    Sign in / sign up
                   </a>
                 )}
                 {Cookies.get("username") && (
