@@ -24,7 +24,7 @@ const Delete = () => {
 
         const deleteBook = async () => {
                 try {
-                    await axios.delete("http://localhost:8080/books/books" + "/" + ${bookId});
+                    await axios.delete("http://localhost:8080/book/books" + "/" + ${bookId});
                     alert(`Book with ID ${bookId} deleted successfully`);
                     setBookId('');
                     } catch (error) {
