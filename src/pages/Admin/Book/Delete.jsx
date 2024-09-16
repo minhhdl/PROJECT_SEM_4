@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Delete = () => {
   const [bookId, setBookId] = useState('');
+  let [errFetch, setErrFetch] = useState("");
 
     useEffect(() => {
         const fetchBooks = async () => {
