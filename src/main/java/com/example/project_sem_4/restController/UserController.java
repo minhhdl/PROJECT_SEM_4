@@ -57,6 +57,17 @@ public class UserController {
     // END POST LOGIN: API
 
     // POST LOGIN: API
+    @PostMapping("/getusername")
+    public ResponseEntity<?> getUserByUsername(@RequestBody String username) {
+        Users user = userService.getUserByUsername(username);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Username doesn't contains");
+        }
+        return ResponseEntity.ok(user);
+    }
+    // END POST LOGIN: API
+
+    // POST LOGIN: API
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody Users user, BindingResult result) {
         // Validate
