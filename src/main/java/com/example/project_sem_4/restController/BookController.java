@@ -29,7 +29,7 @@ public class BookController {
     public ResponseEntity<?> getBooks() {
         List<Book> bookList = bookService.getBooks();
         if (bookList.isEmpty()) {
-            return ResponseEntity.ok(Collections.singletonMap("msg", "There are no books yet"));
+            return ResponseEntity.status(HttpStatus.OK).body("There are no books yet");
         }
         return ResponseEntity.ok(bookList);
     }

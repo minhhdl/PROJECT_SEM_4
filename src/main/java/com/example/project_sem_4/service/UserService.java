@@ -92,4 +92,10 @@ public class UserService implements IUserService {
         Users user = userRepository.login(username);
         return user;
     }
+
+    @Override
+    public Users getUserByUsername(String username) {
+        Users user = userRepository.login(username);
+        return user;
+    }
 }
