@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import TitleTypeOne from "../../UI/TitleTypeOne/TitleTypeOne";
@@ -41,14 +41,14 @@ const breakpoints = {
   },
 };
 export default function FeaturesBooks() {
-  let [featuredBooksData, setFeaturedBooksData] = useState([]);
+  let [booksData, setBooksData] = useState([]);
   let [errFetch, setErrFetch] = useState("");
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get("http://localhost:8080/book/books");
-        setFeaturedBooksData(response.data);
+        setBooksData(response.data);
         setErrFetch(response.data);
       } catch (error) {
         setErrFetch("Network problem or server not working");
@@ -83,26 +83,23 @@ export default function FeaturesBooks() {
           }}
           breakpoints={breakpoints}
         >
-          {featuredBooksData.map((item) => (
-            <SwiperSlide key={item.bookId}>
+          {featuredBooksData.map(
+            <SwiperSlide key={index}>
               <div className="mt-14 flex flex-col gap-6 text-center">
-                <Link
-                  className="featurebook bg-light mx-[50px]"
-                  to={item.bookId}
-                >
-                  <img src={item.picture} alt="" />
+                <Link className="featurebook bg-light mx-[50px]" to={imgLlink}>
+                  <img src={img} alt="" />
                 </Link>
                 <div className="featurebook-info">
-                  <Link to={item.bookId} className="hover:text-primary">
-                    <h4>{item.bookName}</h4>
+                  <Link to={nameLink} className="hover:text-primary">
+                    <h4>{name}</h4>
                   </Link>
                   <div className="mt-2 mb-5">
-                    <small>{item.author}</small>
+                    <small>{writer}</small>
                   </div>
                 </div>
               </div>
             </SwiperSlide>
-          ))}
+          )}
           <div className="slider-button">
             <div className="button-prev-slide slidebutton flex items-center justify-center w-10 h-10 bg-primary bg-opacity-80 text-white rounded-full cursor-pointer absolute top-1/2 -translate-y-1/2 left-0 z-10 hover:bg-primaryHover hover:bg-opacity-100 active:bg-opacity-60 transition-all duration-300 ease-in-out">
               <GoArrowLeft />

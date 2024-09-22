@@ -101,7 +101,7 @@ export default function FeaturesBooks() {
                   </div>
                 </div>
               </div>
-            </SwiperSlide>
+            </SwiperSlide>;
           ))}
           <div className="slider-button">
             <div className="button-prev-slide slidebutton flex items-center justify-center w-10 h-10 bg-primary bg-opacity-80 text-white rounded-full cursor-pointer absolute top-1/2 -translate-y-1/2 left-0 z-10 hover:bg-primaryHover hover:bg-opacity-100 active:bg-opacity-60 transition-all duration-300 ease-in-out">
