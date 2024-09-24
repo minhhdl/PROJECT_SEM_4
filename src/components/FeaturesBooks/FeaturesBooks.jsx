@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Import Features Data
-import { featuredBooksData } from "../../data/data";
+import { booksData } from "../../data/data";
 
 import TitleTypeOne from "../../UI/TitleTypeOne/TitleTypeOne";
 
@@ -67,23 +67,31 @@ export default function FeaturesBooks() {
           }}
           breakpoints={breakpoints}
         >
-          {featuredBooksData.map(
-            ({ img, imgLlink, nameLink, name, writer, desc }, index) => {
+          {booksData.map(
+            (
+              { id, title, image, category, author, published_date, content },
+              index
+            ) => {
               return (
                 <SwiperSlide key={index}>
                   <div className="mt-14 flex flex-col gap-6 text-center">
                     <Link
+                      to={`/products/${id}`}
+                      key={id}
                       className="featurebook bg-light mx-[50px]"
-                      to={imgLlink}
                     >
-                      <img src={img} alt="" />
+                      <img src={image} alt="" />
                     </Link>
                     <div className="featurebook-info">
-                      <Link to={nameLink} className="hover:text-primary">
-                        <h4>{name}</h4>
+                      <Link
+                        key={id}
+                        to={`/products/${id}`}
+                        className="hover:text-primary"
+                      >
+                        <h4>{title}</h4>
                       </Link>
                       <div className="mt-2 mb-5">
-                        <small>{writer}</small>
+                        <small>{author}</small>
                       </div>
                     </div>
                   </div>

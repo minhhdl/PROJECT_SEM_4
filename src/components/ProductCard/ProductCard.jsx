@@ -13,7 +13,7 @@ export default function ProductCard({ book }) {
           alt={book.title}
           className="w-full object-cover rounded-t-lg"
         />
-        <h3 className="mt-4 mb-2 font-bold text-lg hover:text-primary cursor-pointer text-center">
+        <h3 className=" text-darkGray mt-4 mb-2 font-bold text-lg hover:text-primary cursor-pointer text-center">
           {book.title}
         </h3>
         <p className="mb-2 text-gray text-center">
@@ -23,9 +23,9 @@ export default function ProductCard({ book }) {
         <p className="text-sm text-darkGray text-center">
           Published: {book.published_date}
         </p>
-        <p className="text-sm  text-center text-primary">
+        <button className="text-sm bg-primary rounded-md px-3 py-1  text-center text-white">
           Category: {book.category}
-        </p>
+        </button>
       </div>
     </Link>
   );

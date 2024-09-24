@@ -35,11 +35,6 @@ export const navLinksMobile = [
     icon: MdOutlineDoneAll,
   },
   {
-    name: "News Book",
-    path: "/newsProducts",
-    icon: FaBook,
-  },
-  {
     name: "Blogs",
     path: "/blogs",
     icon: FaRegPenToSquare,
@@ -189,6 +184,86 @@ export const booksData = [
   },
   {
     id: 8,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 9,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 10,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 11,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 12,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 13,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 14,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 15,
+    title: "Historias de locos",
+    image: Historiaslocos,
+    category: "Health",
+    author: "Darrell Etherington",
+    published_date: "October 4, 2023",
+    content:
+      "Welcome back to Found, where we get the stories behind the startups. This week, our old friend Darrell Etherington joins Becca Szkutak to talk with Professor Esther Rodriguez-Villegas from Acurable...",
+  },
+  {
+    id: 16,
     title: "Historias de locos",
     image: Historiaslocos,
     category: "Health",

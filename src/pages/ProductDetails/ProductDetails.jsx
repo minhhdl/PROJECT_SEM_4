@@ -4,10 +4,9 @@ import { booksData } from "../../data/data";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 // import icons
 import { FaUser } from "react-icons/fa";
-import { MdOutlineCategory } from "react-icons/md";
-import { CiPlay1 } from "react-icons/ci";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { RiShareForwardFill } from "react-icons/ri";
+import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -19,13 +18,35 @@ export default function ProductDetails() {
     return <div>Product not found!</div>;
   }
 
+  // Hàm chia sẻ và sao chép liên kết
+  const handleShare = () => {
+    const urlToShare = window.location.href;
+
+    if (navigator.share) {
+      navigator
+        .share({
+          title: books.title,
+          text: `Check out this audiobook: "${books.title}" by ${books.author}`,
+          url: urlToShare,
+        })
+        .then(() => {
+          console.log("Shared successfully!");
+        })
+        .catch((error) => {
+          console.error("Error sharing:", error);
+        });
+    } else {
+      navigator.clipboard.writeText(urlToShare).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000);
+        alert("Link copied to clipboard!");
+      });
+    }
+  };
+
   return (
     <div className="bg-darkGray">
-      <div className="py-20 bg-black text-center text-white px-4">
-        <h2 className="text-5xl lg:text-7xl leading-snug font-bold mb-5">
-          {books.title}
-        </h2>
-      </div>
+      <div className="py-10 bg-black text-center text-white px-4"></div>
       {/* Book Details  */}
       <div className="container mx-auto p-6">
         <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
@@ -37,7 +58,6 @@ export default function ProductDetails() {
               className="w-full h-auto object-cover"
             />
           </div>
-
           {/* Phần thông tin bên phải */}
           <div className="md:w-2/3 p-6 md:p-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -50,16 +70,22 @@ export default function ProductDetails() {
             <p className="text-md text-gray-500 mb-6">
               Category: {books.category}
             </p>
-
-            {/* Các nút hành động */}
-            <div className="flex space-x-4 mb-8">
-              <button className="px-6 py-2 bg-primary text-white font-semibold rounded-full shadow-md hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                <CiPlay1 className="inline-flex items-center mr-2" /> Play audio
-              </button>
-              <button className="bg-red-500 text-white p-3 rounded-full shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+            {/* Các nút hành động khác */}
+            <div className="flex mb-8">
+              {/* Thanh phát audio */}
+              <AudioPlayer
+                image={books.image}
+                text={books.content}
+                title={books.title}
+                author={books.author}
+              />
+              <button className="bg-red-500 ml-4 text-white p-3 rounded-full shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
                 <IoMdHeartEmpty className="w-5 h-5" />
               </button>
-              <button className="bg-red-500 text-white p-3 rounded-full shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+              <button
+                onClick={handleShare}
+                className="bg-blue-500 ml-4 text-white p-3 rounded-full shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              >
                 <RiShareForwardFill className="w-5 h-5" />
               </button>
             </div>
@@ -72,7 +98,7 @@ export default function ProductDetails() {
                 charLimit={100}
                 readMoreText={
                   <span className="text-blue-500 hover:underline">
-                    Read a book
+                    Read more
                   </span>
                 }
                 readLessText={
