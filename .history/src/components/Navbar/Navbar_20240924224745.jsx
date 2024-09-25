@@ -88,6 +88,19 @@ export default function Navbar() {
               ))}
               <li className="flex items-center gap-4">
                 {/* Btn Login */}
+                {Cookies.get("offTheVoice") === "false" ||
+                  (Cookies.get("offTheVoice") == null && (
+                    <li className="py-2 px-4 ">
+                      <button onClick={handleClickOff}>
+                        Turn off the voice
+                      </button>
+                    </li>
+                  ))}
+                {Cookies.get("offTheVoice") === "true" && (
+                  <li className="py-2 px-4 ">
+                    <button onClick={handleClickOn}>Turn on the voice</button>
+                  </li>
+                )}
                 {!Cookies.get("username") && (
                   <a
                     href="/sign-in"
@@ -95,26 +108,6 @@ export default function Navbar() {
                   >
                     Sign in
                   </a>
-                )}
-
-                {!Cookies.get("username") && (
-                  <div>
-                    {Cookies.get("offTheVoice") === "false" ||
-                      (Cookies.get("offTheVoice") == null && (
-                        <li className="py-2 px-4 ">
-                          <button onClick={handleClickOff}>
-                            Turn off the voice
-                          </button>
-                        </li>
-                      ))}
-                    {Cookies.get("offTheVoice") === "true" && (
-                      <li className="py-2 px-4 ">
-                        <button onClick={handleClickOn}>
-                          Turn on the voice
-                        </button>
-                      </li>
-                    )}
-                  </div>
                 )}
                 {Cookies.get("username") && (
                   <div
@@ -140,21 +133,6 @@ export default function Navbar() {
                         <li className="py-2 px-4 ">
                           <a href="/sign-in">Change account</a>
                         </li>
-                        {Cookies.get("offTheVoice") === "false" ||
-                          (Cookies.get("offTheVoice") == null && (
-                            <li className="py-2 px-4 ">
-                              <button onClick={handleClickOff}>
-                                Turn off the voice
-                              </button>
-                            </li>
-                          ))}
-                        {Cookies.get("offTheVoice") === "true" && (
-                          <li className="py-2 px-4 ">
-                            <button onClick={handleClickOn}>
-                              Turn on the voice
-                            </button>
-                          </li>
-                        )}
                         <li className="py-2 px-4 ">
                           <button onClick={logout}>Sign out</button>
                         </li>

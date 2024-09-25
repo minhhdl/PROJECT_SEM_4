@@ -6,8 +6,27 @@ import { FaUser } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { RiShareForwardFill } from "react-icons/ri";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ProductDetails() {
+  let [booksData, setBooksData] = useState([]);
+  let [errFetch, setErrFetch] = useState("");
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/book/books");
+        setBooksData(response.data);
+        setErrFetch(response.data);
+      } catch (error) {
+        setErrFetch("Network problem or server not working");
+        console.log("Error fetching books: " + error);
+      }
+    };
+
+    fetchBooks();
+  }, []);
   const { productId } = useParams();
 
   // Get product by ID

@@ -1,13 +1,31 @@
 import { useParams } from "react-router-dom";
-import { booksData } from "../../data/data";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 // import icons
 import { FaUser } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { RiShareForwardFill } from "react-icons/ri";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ProductDetails() {
+  let [booksData, setBooksData] = useState([]);
+  let [errFetch, setErrFetch] = useState("");
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/book/books");
+        setBooksData(response.data);
+        setErrFetch(response.data);
+      } catch (error) {
+        setErrFetch("Network problem or server not working");
+        console.log("Error fetching books: " + error);
+      }
+    };
+
+    fetchBooks();
+  }, []);
   const { productId } = useParams();
 
   // Get product by ID
@@ -24,8 +42,8 @@ export default function ProductDetails() {
     if (navigator.share) {
       navigator
         .share({
-          title: books.title,
-          text: `Check out this audio book: "${books.title}" by ${books.author}`,
+          title: books.bookName,
+          text: `Check out this audio book: "${books.bookName}" by ${books.author}`,
           url: urlToShare,
         })
         .then(() => {
@@ -52,30 +70,30 @@ export default function ProductDetails() {
           {/* Left image */}
           <div className="md:w-1/3 flex justify-center md:justify-start">
             <img
-              src={books.image}
-              alt={books.title}
+              src={books.picture}
+              alt={books.bookName}
               className="w-full h-auto object-cover"
             />
           </div>
           {/* Right info */}
           <div className="md:w-2/3 p-6 md:p-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
-              [Audio book] | {books.title}
+              [Audio book] | {books.bookName}
             </h1>
             <p className="text-lg text-gray-600 mb-2">
               <FaUser className="inline-flex items-center mr-2" />
               {books.author}
             </p>
             <p className="text-md text-gray-500 mb-6">
-              Category: {books.category}
+              Category: {books.categoryId}
             </p>
             {/* More action button */}
             <div className="flex mb-8">
               {/* Button start audio */}
               <AudioPlayer
-                image={books.image}
+                image={books.picture}
                 text={books.content}
-                title={books.title}
+                title={books.bookName}
                 author={books.author}
               />
               <button className="bg-red-500 ml-4 text-white p-3 rounded-full shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
