@@ -69,9 +69,9 @@ export default function ProductDetails() {
             <p className="text-md text-gray-500 mb-6">
               Category: {books.category}
             </p>
-            {/* More action button */}
+            {/* Các nút hành động khác */}
             <div className="flex mb-8">
-              {/* Button start audio */}
+              {/* Thanh phát audio */}
               <AudioPlayer
                 image={books.image}
                 text={books.content}

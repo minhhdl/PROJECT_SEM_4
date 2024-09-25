@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import { booksData } from "../../data/data";
 import ReactReadMoreReadLess from "react-read-more-read-less";
@@ -10,14 +11,14 @@ import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 export default function ProductDetails() {
   const { productId } = useParams();
 
-  // Get product by ID
+  // Tìm sản phẩm dựa trên ID
   const books = booksData.find((book) => book.id === parseInt(productId));
 
   if (!books) {
     return <div>Product not found!</div>;
   }
 
-  // Function share and copy link
+  // Hàm chia sẻ và sao chép liên kết
   const handleShare = () => {
     const urlToShare = window.location.href;
 
@@ -25,7 +26,7 @@ export default function ProductDetails() {
       navigator
         .share({
           title: books.title,
-          text: `Check out this audio book: "${books.title}" by ${books.author}`,
+          text: `Check out this audiobook: "${books.title}" by ${books.author}`,
           url: urlToShare,
         })
         .then(() => {
@@ -49,7 +50,7 @@ export default function ProductDetails() {
       {/* Book Details  */}
       <div className="container mx-auto p-6">
         <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
-          {/* Left image */}
+          {/* Phần ảnh bên trái */}
           <div className="md:w-1/3 flex justify-center md:justify-start">
             <img
               src={books.image}
@@ -57,10 +58,10 @@ export default function ProductDetails() {
               className="w-full h-auto object-cover"
             />
           </div>
-          {/* Right info */}
+          {/* Phần thông tin bên phải */}
           <div className="md:w-2/3 p-6 md:p-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
-              [Audio book] | {books.title}
+              [Audiobook] | {books.title}
             </h1>
             <p className="text-lg text-gray-600 mb-2">
               <FaUser className="inline-flex items-center mr-2" />
@@ -69,9 +70,9 @@ export default function ProductDetails() {
             <p className="text-md text-gray-500 mb-6">
               Category: {books.category}
             </p>
-            {/* More action button */}
+            {/* Các nút hành động khác */}
             <div className="flex mb-8">
-              {/* Button start audio */}
+              {/* Thanh phát audio */}
               <AudioPlayer
                 image={books.image}
                 text={books.content}

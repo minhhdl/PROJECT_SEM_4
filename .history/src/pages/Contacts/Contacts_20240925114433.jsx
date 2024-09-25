@@ -26,7 +26,6 @@ const Contact = () => {
             Những cuốn sách mới luôn được cập nhật nhanh nhất. Hoan nghênh bạn
             ghé thăm. Hãy liên hệ với chúng tôi ngay bây giờ!
           </p>
-          <br />
           <button>Shop Now</button>
         </div>
       </div>

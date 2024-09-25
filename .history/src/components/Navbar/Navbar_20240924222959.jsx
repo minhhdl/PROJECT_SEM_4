@@ -10,7 +10,6 @@ export default function Navbar() {
   const logout = () => {
     Cookies.remove("username");
     Cookies.remove("userId");
-    window.location.reload();
   };
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isScrolledBlur, setIsScrolledBlur] = useState(false);
@@ -54,9 +53,8 @@ export default function Navbar() {
     Cookies.set("offTheVoice", "true");
     window.location.reload();
   };
-
-  var handleClickOn = function () {
-    Cookies.remove("offTheVoice");
+  var handleClickOff = function () {
+    Cookies.set("offTheVoice", "true");
     window.location.reload();
   };
   return (
@@ -96,26 +94,6 @@ export default function Navbar() {
                     Sign in
                   </a>
                 )}
-
-                {!Cookies.get("username") && (
-                  <div>
-                    {Cookies.get("offTheVoice") === "false" ||
-                      (Cookies.get("offTheVoice") == null && (
-                        <li className="py-2 px-4 ">
-                          <button onClick={handleClickOff}>
-                            Turn off the voice
-                          </button>
-                        </li>
-                      ))}
-                    {Cookies.get("offTheVoice") === "true" && (
-                      <li className="py-2 px-4 ">
-                        <button onClick={handleClickOn}>
-                          Turn on the voice
-                        </button>
-                      </li>
-                    )}
-                  </div>
-                )}
                 {Cookies.get("username") && (
                   <div
                     onClick={() => setShowDropdown(!showDropdown)}
@@ -140,14 +118,13 @@ export default function Navbar() {
                         <li className="py-2 px-4 ">
                           <a href="/sign-in">Change account</a>
                         </li>
-                        {Cookies.get("offTheVoice") === "false" ||
-                          (Cookies.get("offTheVoice") == null && (
-                            <li className="py-2 px-4 ">
-                              <button onClick={handleClickOff}>
-                                Turn off the voice
-                              </button>
-                            </li>
-                          ))}
+                        {Cookies.get("offTheVoice") === "false" && (
+                          <li className="py-2 px-4 ">
+                            <button onClick={handleClickOff}>
+                              Turn off the voice
+                            </button>
+                          </li>
+                        )}
                         {Cookies.get("offTheVoice") === "true" && (
                           <li className="py-2 px-4 ">
                             <button onClick={handleClickOn}>

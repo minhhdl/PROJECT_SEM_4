@@ -7,12 +7,7 @@ const Contact = () => {
       <div className="contact-header"></div>
       <div className="contact-form-container">
         <form className="contact-form">
-          <input
-            type="text"
-            placeholder="Nhập họ và tên của bạn"
-            autoFocus
-            required
-          />
+          <input type="text" placeholder="Nhập họ và tên của bạn" required />
           <input type="email" placeholder="Nhập địa chỉ email" required />
           <input type="text" placeholder="Nhập chủ đề" required />
           <textarea placeholder="Nhập tin nhắn của bạn" required></textarea>
@@ -26,9 +21,11 @@ const Contact = () => {
             Những cuốn sách mới luôn được cập nhật nhanh nhất. Hoan nghênh bạn
             ghé thăm. Hãy liên hệ với chúng tôi ngay bây giờ!
           </p>
-          <br />
-          <button>Shop Now</button>
         </div>
+        <div className="new-arrivals-image">
+          <img src="../images/img_1.png" alt="New Arrivals" />
+        </div>
+        <button>Shop Now</button>
       </div>
     </div>
   );

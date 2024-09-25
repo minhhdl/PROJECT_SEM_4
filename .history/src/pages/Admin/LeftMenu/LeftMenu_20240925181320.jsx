@@ -145,6 +145,54 @@ const LeftMenu = () => {
                 <span className="hide-menu">Deleted</span>
               </a>
             </li>
+            <li className="sidebar-item">
+              <a
+                className="sidebar-link"
+                href="/admin/roles"
+                aria-expanded="false"
+              >
+                <span>
+                  <i className="ti ti-list"></i>
+                </span>
+                <span className="hide-menu">List</span>
+              </a>
+            </li>
+            <li className="sidebar-item">
+              <a
+                className="sidebar-link"
+                href="/admin/role/create"
+                aria-expanded="false"
+              >
+                <span>
+                  <i className="ti ti-plus"></i>
+                </span>
+                <span className="hide-menu">Create</span>
+              </a>
+            </li>
+            <li className="sidebar-item">
+              <a
+                className="sidebar-link"
+                href="/admin/role/updated"
+                aria-expanded="false"
+              >
+                <span>
+                  <i className="ti ti-edit"></i>
+                </span>
+                <span className="hide-menu">Updated</span>
+              </a>
+            </li>
+            <li className="sidebar-item">
+              <a
+                className="sidebar-link"
+                href="/admin/role/deleted"
+                aria-expanded="false"
+              >
+                <span>
+                  <i className="ti ti-trash"></i>
+                </span>
+                <span className="hide-menu">Deleted</span>
+              </a>
+            </li>
             <li className="nav-small-cap">
               <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span className="hide-menu">Users</span>

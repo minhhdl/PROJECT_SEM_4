@@ -5,7 +5,7 @@ import { FaUser } from "react-icons/fa";
 
 export default function ProductCard(book) {
   return (
-    <Link to={`/product/${book.bookId}`}>
+    <Link key={book.bookId} to={`/product/${book.bookId}`}>
       <div className="flex flex-col books-center bg-white p-4 rounded-lg shadow-md">
         <img
           src={`../${book.picture}`}

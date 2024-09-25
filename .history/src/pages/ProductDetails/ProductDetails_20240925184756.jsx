@@ -1,13 +1,31 @@
 import { useParams } from "react-router-dom";
-import { booksData } from "../../data/data";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 // import icons
 import { FaUser } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { RiShareForwardFill } from "react-icons/ri";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ProductDetails() {
+  let [booksData, setBooksData] = useState([]);
+  let [errFetch, setErrFetch] = useState("");
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/book/books");
+        setBooksData(response.data);
+        setErrFetch(response.data);
+      } catch (error) {
+        setErrFetch("Network problem or server not working");
+        console.log("Error fetching books: " + error);
+      }
+    };
+
+    fetchBooks();
+  }, []);
   const { productId } = useParams();
 
   // Get product by ID
@@ -24,8 +42,8 @@ export default function ProductDetails() {
     if (navigator.share) {
       navigator
         .share({
-          title: books.title,
-          text: `Check out this audio book: "${books.title}" by ${books.author}`,
+          title: books.bookName,
+          text: `Check out this audio book: "${books.bookName}" by ${books.author}`,
           url: urlToShare,
         })
         .then(() => {
@@ -52,8 +70,8 @@ export default function ProductDetails() {
           {/* Left image */}
           <div className="md:w-1/3 flex justify-center md:justify-start">
             <img
-              src={books.image}
-              alt={books.title}
+              src={books.picture}
+              alt={books.bookName}
               className="w-full h-auto object-cover"
             />
           </div>

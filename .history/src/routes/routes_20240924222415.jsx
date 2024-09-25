@@ -26,9 +26,6 @@ export default function routes() {
     Cookies.remove("userId");
     window.location.href = "/";
   }
-  if (location.pathname === "/*") {
-    Cookies.set("notFound", "true");
-  }
   return (
     <BrowserRouter>
       {!isAdminRoute && !isSignInRoute && !isSignUpRoute && <Navbar />}

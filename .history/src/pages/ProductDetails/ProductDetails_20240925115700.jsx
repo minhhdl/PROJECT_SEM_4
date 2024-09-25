@@ -17,7 +17,7 @@ export default function ProductDetails() {
     return <div>Product not found!</div>;
   }
 
-  // Function share and copy link
+  // function share and copy link
   const handleShare = () => {
     const urlToShare = window.location.href;
 
@@ -60,7 +60,7 @@ export default function ProductDetails() {
           {/* Right info */}
           <div className="md:w-2/3 p-6 md:p-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
-              [Audio book] | {books.title}
+              [Audiobook] | {books.title}
             </h1>
             <p className="text-lg text-gray-600 mb-2">
               <FaUser className="inline-flex items-center mr-2" />
@@ -69,9 +69,9 @@ export default function ProductDetails() {
             <p className="text-md text-gray-500 mb-6">
               Category: {books.category}
             </p>
-            {/* More action button */}
+            {/* Các nút hành động khác */}
             <div className="flex mb-8">
-              {/* Button start audio */}
+              {/* Thanh phát audio */}
               <AudioPlayer
                 image={books.image}
                 text={books.content}

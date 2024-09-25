@@ -57,6 +57,36 @@ export default function ProductPage() {
         >
           All
         </button>
+        <button
+          onClick={() => handleCategoryChange("Fiction")}
+          className={`px-4 py-2 rounded ${
+            selectedCategory === "Fiction"
+              ? "bg-primary text-white"
+              : "bg-gray-200 text-white"
+          }`}
+        >
+          Fiction
+        </button>
+        <button
+          onClick={() => handleCategoryChange("Health")}
+          className={`px-4 py-2 rounded ${
+            selectedCategory === "Health"
+              ? "bg-primary text-white"
+              : "bg-gray-200 text-white"
+          }`}
+        >
+          Health
+        </button>
+        <button
+          onClick={() => handleCategoryChange("Horror")}
+          className={`px-4 py-2 rounded ${
+            selectedCategory === "Horror"
+              ? "bg-primary text-white"
+              : "bg-gray-200 text-white"
+          }`}
+        >
+          Horror
+        </button>
       </div>
 
       {/* Product Section */}

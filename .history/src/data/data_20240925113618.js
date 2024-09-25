@@ -1,5 +1,6 @@
 import { GoHome } from "react-icons/go";
 import { MdOutlineDoneAll } from "react-icons/md";
+import { FaBook } from "react-icons/fa";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { GrContact } from "react-icons/gr";
 
@@ -12,6 +13,10 @@ export const navLinks = [
   {
     name: "All Books",
     path: "/products",
+  },
+  {
+    name: "News Book",
+    path: "/newsProducts",
   },
   {
     name: "Blogs",

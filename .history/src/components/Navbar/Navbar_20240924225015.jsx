@@ -116,6 +116,7 @@ export default function Navbar() {
                     )}
                   </div>
                 )}
+
                 {Cookies.get("username") && (
                   <div
                     onClick={() => setShowDropdown(!showDropdown)}
