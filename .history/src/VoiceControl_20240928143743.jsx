@@ -3,6 +3,8 @@ import Cookies from "js-cookie";
 
 const VoiceControl = () => {
   let [response, setResponse] = useState("");
+  let recognition;
+
   useEffect(() => {
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -12,8 +14,8 @@ const VoiceControl = () => {
       return;
     }
 
-    const recognition = new window.SpeechRecognition();
-    recognition.continuous = false;
+    recognition = new window.SpeechRecognition();
+    recognition.continuous = true;
     recognition.interimResults = false;
     // recognition.lang = "vi-VN";
 
@@ -21,12 +23,16 @@ const VoiceControl = () => {
       const transcript = event.results[event.resultIndex][0].transcript
         .trim()
         .toLowerCase();
+
       handleVoiceCommand(transcript);
     };
     if (Cookies.get("offTheVoice") !== "true") {
       recognition.start();
     }
 
+    recognition.onend = () => {
+      recognition.start();
+    };
     return () => {
       recognition.stop();
     };

@@ -30,6 +30,7 @@ export default function routes() {
     Cookies.set("notFound", "true");
   }
   if (location.pathname === "/products") {
+    window.location.reload();
     Cookies.remove("pressSpace");
   }
   return (

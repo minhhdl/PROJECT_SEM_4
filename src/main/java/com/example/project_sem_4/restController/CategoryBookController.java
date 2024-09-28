@@ -35,6 +35,17 @@ public class CategoryBookController {
     }
     // END GET: API
 
+    // GET CATEGORY NAME BY ID: API
+    @GetMapping("/catebookname/{cateid}")
+    public ResponseEntity<?> getCateBookNameById(@PathVariable("cateid") int cateId) {
+        CategoryBook categoryBook = cateBookService.getCateBookById(cateId);
+        if (categoryBook == null) {
+            return ResponseEntity.ok(Collections.singletonMap("msg", "This category book could not be found by id: " + cateId));
+        }
+        return ResponseEntity.ok(categoryBook);
+    }
+    // END GET: API
+
     // GET BY ID: API
     @GetMapping("/catebook/{cateid}")
     public ResponseEntity<?> getCateBookById(@PathVariable("cateid") int cateId) {

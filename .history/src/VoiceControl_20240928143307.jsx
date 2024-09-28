@@ -3,6 +3,8 @@ import Cookies from "js-cookie";
 
 const VoiceControl = () => {
   let [response, setResponse] = useState("");
+  let recognition;
+
   useEffect(() => {
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -12,7 +14,7 @@ const VoiceControl = () => {
       return;
     }
 
-    const recognition = new window.SpeechRecognition();
+    recognition = new window.SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
     // recognition.lang = "vi-VN";
