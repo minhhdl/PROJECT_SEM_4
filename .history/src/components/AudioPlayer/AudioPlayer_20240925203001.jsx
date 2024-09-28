@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   FaPause,
   FaUser,
@@ -18,13 +18,7 @@ const AudioPlayer = ({ text, title, author, image }) => {
   const [selectedVoice, setSelectedVoice] = useState(null); // Giọng đọc đã chọn
   const [elapsedTime, setElapsedTime] = useState(0); // Thời gian đã phát
   const [totalTime, setTotalTime] = useState(0); // Tổng thời gian phát
-  const playButtonRef = useRef(null);
-  // Tự động focus vào nút play khi trang load
-  useEffect(() => {
-    if (playButtonRef.current) {
-      playButtonRef.current.focus();
-    }
-  }, []);
+
   // Lấy danh sách các giọng đọc khi component được render
   useEffect(() => {
     const synthInstance = window.speechSynthesis;

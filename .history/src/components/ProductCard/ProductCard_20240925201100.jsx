@@ -7,41 +7,37 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export default function ProductCard({ book }) {
-  // useEffect(() => {
-  //   fetch(
-  //     "http://localhost:8080/catebook/catebookname",
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(book.bookId),
-  //     },
-  //     alert(book.bookId)
-  //   )
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         return response.text().then((text) => {
-  //           // setMsg(text);
-  //           alert("");
-  //         });
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       if (data) {
-  //         alert(data);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       // setError("Network problem or server not working");
-  //       Cookies.set("msg", "Network problem or server not working");
-  //       console.log(
-  //         "There was a problem with the fetch operation: " + error.message
-  //       );
-  //       window.location.reload();
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:8080/catebook/catebookname", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(book.bookId),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            // setMsg(text);
+            alert("");
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data) {
+          alert(data);
+        }
+      })
+      .catch((error) => {
+        // setError("Network problem or server not working");
+        Cookies.set("msg", "Network problem or server not working");
+        console.log(
+          "There was a problem with the fetch operation: " + error.message
+        );
+        window.location.reload();
+      });
+  }, []);
 
   return (
     <Link to={`/product/${book.bookId}`}>

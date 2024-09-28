@@ -124,13 +124,7 @@ const VoiceControl = () => {
       setResponse("This page is not contains");
     }
     if (location.pathname.includes("/product/")) {
-      if (
-        Cookies.get("pressSpace") !== "true" ||
-        Cookies.get("pressSpace") === null
-      ) {
-        Cookies.set("pressSpace", "true");
-        setResponse("Press space bar to listen");
-      }
+      setResponse("Press space bar to listen");
     }
     if (Cookies.get("isRead") === "false" || Cookies.get("isRead") == null) {
       if (location.pathname === "/") {

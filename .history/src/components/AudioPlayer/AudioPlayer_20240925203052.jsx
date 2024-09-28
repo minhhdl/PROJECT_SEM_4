@@ -18,13 +18,7 @@ const AudioPlayer = ({ text, title, author, image }) => {
   const [selectedVoice, setSelectedVoice] = useState(null); // Giọng đọc đã chọn
   const [elapsedTime, setElapsedTime] = useState(0); // Thời gian đã phát
   const [totalTime, setTotalTime] = useState(0); // Tổng thời gian phát
-  const playButtonRef = useRef(null);
-  // Tự động focus vào nút play khi trang load
-  useEffect(() => {
-    if (playButtonRef.current) {
-      playButtonRef.current.focus();
-    }
-  }, []);
+
   // Lấy danh sách các giọng đọc khi component được render
   useEffect(() => {
     const synthInstance = window.speechSynthesis;
@@ -135,7 +129,13 @@ const AudioPlayer = ({ text, title, author, image }) => {
     const remainingSeconds = Math.floor(seconds % 60);
     return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
   };
-
+  const playButtonRef = useRef(null);
+  // Tự động focus vào nút play khi trang load
+  useEffect(() => {
+    if (playButtonRef.current) {
+      playButtonRef.current.focus();
+    }
+  }, []);
   return (
     <>
       {/* Nút để hiện thanh phát */}

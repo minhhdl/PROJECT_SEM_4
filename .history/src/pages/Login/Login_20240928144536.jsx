@@ -31,8 +31,9 @@ const Login = () => {
         if (data) {
           Cookies.set("username", data.username, { expires: 7 });
           Cookies.set("userId", data.userId, { expires: 7 });
-          Cookies.set("msg", "Signed in successfully");
           if (data.roles.roleName === "Admin") {
+            // Cookies.set("msg",data.msg);
+            alert(data.msg);
             window.location.href = "/admin/dashboard";
           } else {
             window.location.href = "/";

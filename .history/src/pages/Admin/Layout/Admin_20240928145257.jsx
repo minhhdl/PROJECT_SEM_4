@@ -10,9 +10,10 @@ import LeftMenu from "../LeftMenu/LeftMenu.jsx";
 import Header from "../Header/Header.jsx";
 import Dashboard from "../Dashboard/Dashboard.jsx";
 import Users from "../Users/Users.jsx";
+import Roles from "../Roles/Roles.jsx";
+import InsUpRole from "../Roles/InsUpRole.jsx";
 import Book from "../Book/Book";
-import CateBook from "../CategoryBook/CateBook";
-import InsUpCateBook from "../CategoryBook/InsUpCateBook";
+import CateBook from "../CategoryBook";
 import Cookies from "js-cookie";
 
 const Admin = () => {
@@ -20,7 +21,8 @@ const Admin = () => {
   const isDashboardRoute = location.pathname === "/admin/dashboard";
   const isBookRoute = location.pathname === "/admin/book";
   const isCateBookRoute = location.pathname === "/admin/cate-book";
-  const isCreateCateBookRoute = location.pathname === "/admin/cate-book/create";
+  const isRoleRoute = location.pathname === "/admin/roles";
+  const isInsertRoleRoute = location.pathname === "/admin/role/create";
   return Cookies.get("username") === "Admin" ? (
     <div
       className="page-wrapper"
@@ -39,9 +41,10 @@ const Admin = () => {
         <Header></Header>
         {isDashboardRoute && <Dashboard />}
         {isUserRoute && <Users />}
+        {isRoleRoute && <Roles />}
+        {isInsertRoleRoute && <InsUpRole />}
         {isBookRoute && <Book />}
         {isCateBookRoute && <CateBook />}
-        {isCreateCateBookRoute && <InsUpCateBook />}
       </div>
     </div>
   ) : (

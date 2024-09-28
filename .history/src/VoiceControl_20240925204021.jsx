@@ -123,15 +123,17 @@ const VoiceControl = () => {
     if (Cookies.get("notFound") === "true") {
       setResponse("This page is not contains");
     }
-    if (location.pathname.includes("/product/")) {
-      if (
-        Cookies.get("pressSpace") !== "true" ||
-        Cookies.get("pressSpace") === null
-      ) {
-        Cookies.set("pressSpace", "true");
-        setResponse("Press space bar to listen");
-      }
-    }
+    // if (location.pathname.includes("/product/")) {
+    //   if (Cookies.get("pressSpace") === "true") {
+    //     setResponse("Press space bar to listen");
+    //   }
+    //   if (
+    //     Cookies.get("pressSpace") !== "true" ||
+    //     Cookies.get("pressSpace") === null
+    //   ) {
+    //     Cookies.set("pressSpace", "true");
+    //   }
+    // }
     if (Cookies.get("isRead") === "false" || Cookies.get("isRead") == null) {
       if (location.pathname === "/") {
         setResponse(
