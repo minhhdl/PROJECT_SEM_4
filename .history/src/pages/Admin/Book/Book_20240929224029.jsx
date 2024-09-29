@@ -56,7 +56,7 @@ const Book = () => {
                     <td>{book.bookDescription}</td>
                     <td>
                       <img
-                        src={`../${book.picture}`}
+                        src={`${book.picture}`}
                         alt={book.bookName}
                         width="50"
                       />
