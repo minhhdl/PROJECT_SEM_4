@@ -129,9 +129,6 @@ export default function Navbar() {
                             Profile
                           </a>
                         </li>
-                        <li className="py-2 px-4 ">
-                          <a href="/settings">Settings</a>
-                        </li>
                         {Cookies.get("username") === "Admin" && (
                           <li className="py-2 px-4 ">
                             <a href="/admin/dashboard">Manage</a>

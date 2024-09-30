@@ -41,6 +41,17 @@ public class UserController {
     }
     // END GET: API
 
+    // GET CATEGORY NAME BY ID: API
+    @GetMapping("/user/{userid}")
+    public ResponseEntity<?> getUserById(@PathVariable("userid") int userId) {
+        Users user = userService.getUserById(userId);
+        if (user == null) {
+            return ResponseEntity.ok(Collections.singletonMap("msg", "This user could not be found by id: " + userId));
+        }
+        return ResponseEntity.ok(user);
+    }
+    // END GET: API
+
     // POST LOGIN: API
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {

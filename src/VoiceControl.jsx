@@ -92,6 +92,10 @@ const VoiceControl = () => {
         window.location.href = "/sign-up";
         setResponse("Moved to the sign up page");
         break;
+      case "profile":
+        window.location.href = `/profile/${Cookies.get("userId")}`;
+        setResponse("Moved to the profile page");
+        break;
       case "books":
         window.location.href = "/products";
         setResponse("Moved to all book page");

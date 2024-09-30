@@ -23,6 +23,8 @@ const Login = () => {
         if (!response.ok) {
           return response.text().then((text) => {
             setMsg(text);
+            Cookies.set("msg", text);
+            window.location.reload();
           });
         }
         return response.json();
@@ -119,25 +121,6 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                       />
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between mb-4">
-                      <div className="form-check">
-                        <input
-                          className="form-check-input primary"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
-                        />
-                        <label
-                          className="form-check-label text-dark"
-                          htmlFor="flexCheckChecked"
-                        >
-                          Remeber this Device
-                        </label>
-                      </div>
-                      <a className="text-primary fw-bold" href="./index.html">
-                        Forgot Password ?
-                      </a>
                     </div>
                     <button className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
                       Sign In
