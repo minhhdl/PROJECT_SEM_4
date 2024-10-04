@@ -22,6 +22,11 @@ public class CateBookService implements ICateBookService {
     }
 
     @Override
+    public List<CategoryBook> getCateBookUpdated() {
+        return cateBookRepository.getCateBookUpdated();
+    }
+
+    @Override
     public CategoryBook getCateBookById(int cateId) {
         Optional<CategoryBook> categoryBook = cateBookRepository.findById(cateId);
         return categoryBook.orElse(null);

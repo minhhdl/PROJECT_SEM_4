@@ -5,11 +5,16 @@ import com.example.project_sem_4.service.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @RestController
@@ -24,6 +29,23 @@ public class BookController {
     CateBookService cateBookService;
     // AND VARIABLE
 
+    private static final String UPLOAD_DIR = "public/uploads/";
+
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> uploadBookPicture(@RequestParam("file") MultipartFile file) {
+        try {
+            if (file.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("File is empty");
+            }
+            String filename = file.getOriginalFilename();
+            Path path = Paths.get(UPLOAD_DIR + filename);
+            Files.copy(file.getInputStream(), path);
+            return ResponseEntity.ok(filename);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload the file");
+        }
+    }
+
     // GET: API
     @GetMapping("/books")
     public ResponseEntity<?> getBooks() {
@@ -32,6 +54,17 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.OK).body("There are no books yet");
         }
         return ResponseEntity.ok(bookList);
+    }
+    // END GET: API
+
+    // GET CATEGORY NAME BY ID: API
+    @GetMapping("/book/{bookid}")
+    public ResponseEntity<?> getBookById(@PathVariable("bookid") int bookId) {
+        Book book = bookService.getBookById(bookId);
+        if (book == null) {
+            return ResponseEntity.ok(Collections.singletonMap("msg", "This book could not be found by id: " + bookId));
+        }
+        return ResponseEntity.ok(book);
     }
     // END GET: API
 

@@ -26,10 +26,21 @@ public class CategoryBookController {
 
     // GET: API
     @GetMapping("/catebooks")
-    public ResponseEntity<?> getCateBookById() {
+    public ResponseEntity<?> getCateBook() {
         List<CategoryBook> categoryBookList = cateBookService.getCategories();
         if (categoryBookList.isEmpty()) {
             return ResponseEntity.ok(Collections.singletonMap("msg", "There are no book categories yet"));
+        }
+        return ResponseEntity.ok(categoryBookList);
+    }
+    // END GET: API
+
+    // GET: API
+    @GetMapping("/updated")
+    public ResponseEntity<?> getCateBookUpdated() {
+        List<CategoryBook> categoryBookList = cateBookService.getCateBookUpdated();
+        if (categoryBookList.isEmpty()) {
+            return ResponseEntity.ok(Collections.singletonMap("msg", "There are no book updated"));
         }
         return ResponseEntity.ok(categoryBookList);
     }

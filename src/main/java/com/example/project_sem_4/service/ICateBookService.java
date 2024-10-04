@@ -16,4 +16,5 @@ public interface ICateBookService {
     boolean updateCategory(CategoryBook categoryBook);
 
     boolean deleteCategory(int cateId);
+    List<CategoryBook> getCateBookUpdated();
 }
