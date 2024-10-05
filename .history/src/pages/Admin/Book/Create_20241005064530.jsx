@@ -7,6 +7,11 @@ const CreateBook = () => {
   let [error, setError] = useState("");
   let [categoryId, setCategoryId] = useState("");
   let [bookName, setBookName] = useState("");
+  let [author, setAuthor] = useState("");
+  let [publisher, setPublisher] = useState("");
+  let [bookPrice, setBookPrice] = useState("");
+  let [bookDescription, setBookDescription] = useState("");
+  let [picture, setPicture] = useState("");
   let [initialCateName, setInitialCateName] = useState("");
   const id = window.location.pathname.split("/").pop();
 
@@ -15,7 +20,15 @@ const CreateBook = () => {
     try {
       const response = await axios.post(
         "http://localhost:8080/book/insertbook",
-        { categoryId: categoryId }
+        {
+          categoryId: categoryId,
+          bookName: bookName,
+          author: author,
+          publisher: publisher,
+          bookPrice: bookPrice,
+          bookDescription: bookDescription,
+          picture: picture,
+        }
       );
       setMsg(response.data);
       setError(response.data);
@@ -59,6 +72,7 @@ const CreateBook = () => {
       {location.pathname.includes("update") && <h1>Update</h1>}
       {location.pathname.includes("create") && <h1>Create</h1>}
       <br />
+      <h1>{error}</h1>
       <form>
         <label htmlFor="categoryId">Category Id</label>
         <div className="col-md-4">
@@ -78,8 +92,67 @@ const CreateBook = () => {
             type="text"
             className="form-control"
             id="bookName"
-            onChange={(e) => setCategoryId(e.target.value)}
+            onChange={(e) => setBookName(e.target.value)}
             value={bookName}
+            required
+          />
+        </div>
+        <br />
+        <label htmlFor="author">Author</label>
+        <div className="col-md-4">
+          <input
+            type="text"
+            className="form-control"
+            id="author"
+            onChange={(e) => setAuthor(e.target.value)}
+            value={author}
+            required
+          />
+        </div>
+        <br />
+        <label htmlFor="publisher">Publisher</label>
+        <div className="col-md-4">
+          <input
+            type="text"
+            className="form-control"
+            id="publisher"
+            onChange={(e) => setPublisher(e.target.value)}
+            value={publisher}
+            required
+          />
+        </div>
+        <br />
+        <label htmlFor="bookPrice">Price</label>
+        <div className="col-md-4">
+          <input
+            type="text"
+            className="form-control"
+            id="bookPrice"
+            onChange={(e) => setBookPrice(e.target.value)}
+            value={bookPrice}
+            required
+          />
+        </div>
+        <br />
+        <label htmlFor="bookDescription">Summary</label>
+        <div className="col-md-4">
+          <input
+            type="text"
+            className="form-control"
+            id="bookDescription"
+            onChange={(e) => setBookDescription(e.target.value)}
+            value={bookDescription}
+            required
+          />
+        </div>
+        <br />
+        <label htmlFor="image">Picture</label>
+        <div className="col-md-4">
+          <input
+            type="file"
+            className="form-control"
+            id="image"
+            onChange={(e) => setPicture(e.target.files[0])}
             required
           />
         </div>

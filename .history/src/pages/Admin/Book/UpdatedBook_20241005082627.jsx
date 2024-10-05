@@ -2,16 +2,15 @@ import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
 
-const CateBook = () => {
+const UpdatedBook = () => {
   let [data, setData] = useState([]);
   let [err, setErr] = useState("");
-  let [msg, setMsg] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/catebook/catebooks"
+          "http://localhost:8080/catebook/updated"
         );
         setData(response.data);
         setErr(response.data);
@@ -25,25 +24,6 @@ const CateBook = () => {
 
     fetchUsers();
   }, []);
-
-  const handleDelete = async (event, categoryId) => {
-    event.preventDefault();
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/catebook/deletecatebook/${categoryId}`
-      );
-      setMsg(response.data);
-      setErr(response.data);
-      if (response.status === 200) {
-        window.location.href = "/admin/cate-book";
-      }
-    } catch (error) {
-      setErr("Network problem or server not working");
-      console.log(
-        `There was a problem with the fetch operation: ${error.message}`
-      );
-    }
-  };
 
   return (
     <div className="content">
@@ -68,9 +48,11 @@ const CateBook = () => {
                     <td>{item.categoryId}</td>
                     <td>{item.categoryName}</td>
                     <td>
-                      {moment(item.createdAt, "DD/MM/yyyy").format(
-                        "DD/MM/yyyy"
-                      )}
+                      {item.createdAt
+                        ? moment(item.createdAt, "DD/MM/yyyy").format(
+                            "DD/MM/yyyy"
+                          )
+                        : "Not created yet"}
                     </td>
                     <td>
                       {item.updatedAt
@@ -86,12 +68,7 @@ const CateBook = () => {
                       >
                         <i className="ti ti-pencil"></i>
                       </a>
-                      <button
-                        className="btn btn-danger"
-                        onClick={(event) =>
-                          handleDelete(event, item.categoryId)
-                        }
-                      >
+                      <button className="btn btn-danger">
                         <i className="ti ti-trash"></i>
                       </button>
                     </td>
@@ -112,4 +89,4 @@ const CateBook = () => {
   );
 };
 
-export default CateBook;
+export default UpdatedBook;

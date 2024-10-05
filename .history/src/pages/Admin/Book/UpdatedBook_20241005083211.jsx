@@ -1,45 +1,28 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import { useEffect, useState } from "react";
 
-const Book = () => {
+const UpdatedBook = () => {
   const [books, setBooks] = useState([]);
   let [errFetch, setErrFetch] = useState("");
   let [err, setErr] = useState("");
   let [msg, setMsg] = useState("");
 
-  const handleDelete = async (event, bookId) => {
-    event.preventDefault();
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/book/deletebook/${bookId}`
-      );
-      setMsg(response.data);
-      setErr(response.data);
-      if (response.status === 200) {
-        window.location.href = "/admin/book";
-      }
-    } catch (error) {
-      setErr("Network problem or server not working");
-      console.log(
-        `There was a problem with the fetch operation: ${error.message}`
-      );
-    }
-  };
-
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/book/books");
-        setBooks(response.data);
-        setErrFetch(response.data);
+        const response = await axios.get("http://localhost:8080/book/updated");
+        setData(response.data);
+        setErr(response.data);
       } catch (error) {
-        setErrFetch("Network problem or server not working");
-        console.log("Error fetching books: " + error);
+        setErr("Network problem or server not working");
+        console.log(
+          `There was a problem with the fetch operation: ${error.message}`
+        );
       }
     };
 
-    fetchBooks();
+    fetchUsers();
   }, []);
 
   return (
@@ -130,4 +113,4 @@ const Book = () => {
   );
 };
 
-export default Book;
+export default UpdatedBook;

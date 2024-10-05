@@ -99,20 +99,15 @@ const Book = () => {
                           )
                         : "Not updated yet"}
                     </td>
-                    <td style={{ display: "flex" }}>
-                      <a
-                        href={`/admin/book/update/${book.bookId}`}
-                        className="btn btn-primary mr-1"
-                      >
-                        <i className="ti ti-pencil"></i>
-                      </a>
-                      <button
-                        className="btn btn-danger"
-                        onClick={(event) => handleDelete(event, book.bookId)}
-                      >
-                        <i className="ti ti-trash"></i>
-                      </button>
-                    </td>
+                    <a href={`/admin/book/update/${book.bookId}`}>
+                      <i className="ti ti-pencil"></i>
+                    </a>
+                    <button
+                      className="btn btn-danger"
+                      onClick={(event) => handleDelete(event, book.bookId)}
+                    >
+                      <i className="ti ti-trash"></i>
+                    </button>
                   </tr>
                 ))
               ) : (

@@ -68,9 +68,11 @@ const CateBook = () => {
                     <td>{item.categoryId}</td>
                     <td>{item.categoryName}</td>
                     <td>
-                      {moment(item.createdAt, "DD/MM/yyyy").format(
-                        "DD/MM/yyyy"
-                      )}
+                      {item.createdAt
+                        ? moment(item.createdAt, "DD/MM/yyyy").format(
+                            "DD/MM/yyyy"
+                          )
+                        : "Not created yet"}
                     </td>
                     <td>
                       {item.updatedAt

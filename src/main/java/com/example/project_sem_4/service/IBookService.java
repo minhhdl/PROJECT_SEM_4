@@ -7,6 +7,8 @@ import java.util.List;
 public interface IBookService {
     List<Book> getBooks();
 
+    List<Book> getBookUpdated();
+
     Book getBookById(int bookId);
 
     boolean insertBook(Book book);

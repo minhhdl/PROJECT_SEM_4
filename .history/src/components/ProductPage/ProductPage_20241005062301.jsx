@@ -17,7 +17,7 @@ export default function ProductPage() {
   // Phân trang
   const totalPages = Math.ceil(filteredBooks.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
-  // const currentBooks = filteredBooks.slice(startIndex, startIndex + pageSize);
+  const currentBooks = filteredBooks.slice(startIndex, startIndex + pageSize);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -61,11 +61,28 @@ export default function ProductPage() {
 
       {/* Product Section */}
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-        {Array.isArray(booksData) && booksData.length > 0 ? (
-          booksData.map((book) => <ProductCard key={book.id} book={book} />)
+        {Array.isArray(currentBooks) && currentBooks.length > 0 ? (
+          currentBooks.map((book) => <ProductCard key={book.id} book={book} />)
         ) : (
           <h1 style={{ color: "white" }}>{errFetch}</h1>
         )}
+      </div>
+
+      {/* Pagination Section */}
+      <div className="flex justify-center mt-8 space-x-2">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-4 py-2 border rounded ${
+              currentPage === index + 1
+                ? "bg-primary text-white border-white hover:bg-opacity-75"
+                : "bg-gray-200 text-white border-white hover:bg-opacity-75"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
       </div>
     </div>
   );

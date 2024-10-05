@@ -67,6 +67,23 @@ export default function ProductPage() {
           <h1 style={{ color: "white" }}>{errFetch}</h1>
         )}
       </div>
+
+      {/* Pagination Section */}
+      <div className="flex justify-center mt-8 space-x-2">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-4 py-2 border rounded ${
+              currentPage === index + 1
+                ? "bg-primary text-white border-white hover:bg-opacity-75"
+                : "bg-gray-200 text-white border-white hover:bg-opacity-75"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

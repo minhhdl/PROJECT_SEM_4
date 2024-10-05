@@ -17,7 +17,6 @@ import InsUpCateBook from "../CategoryBook/InsUpCateBook";
 import UpdatedCateBook from "../CategoryBook/UpdatedCateBook";
 import Cookies from "js-cookie";
 import InsUpBook from "../Book/InsUpBook.jsx";
-import UpdatedBook from "../Book/UpdatedBook.jsx";
 
 const Admin = () => {
   const isUserRoute = location.pathname === "/admin/users";
@@ -27,7 +26,6 @@ const Admin = () => {
   const isCateBookRoute = location.pathname === "/admin/cate-book";
   const isCreateCateBookRoute = location.pathname === "/admin/cate-book/create";
   const isUpdatedCateBook = location.pathname === "/admin/cate-book/updated";
-  const isUpdatedBook = location.pathname === "/admin/book/updated";
   const isDeletedUser = location.pathname === "/admin/user/deleted";
   const isUpdateCateBookRoute = location.pathname.includes(
     "/admin/cate-book/update/"
@@ -56,9 +54,8 @@ const Admin = () => {
         {isCateBookRoute && <CateBook />}
         {isCreateCateBookRoute && <InsUpCateBook />}
         {isUpdateCateBookRoute && <InsUpCateBook />}
-        {isUpdateBookRoute && <InsUpBook />}
+        {isUpdateBookRoute && <InsUpCateBook />}
         {isUpdatedCateBook && <UpdatedCateBook />}
-        {isUpdatedBook && <UpdatedBook />}
         {isDeletedUser && <DeletedUser />}
       </div>
     </div>

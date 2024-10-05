@@ -30,8 +30,8 @@ public class Book {
     private double bookPrice;
     @Column(columnDefinition = "nvarchar(max)")
     private String bookDescription;
-    @NotNull(message = "Book picture cannot be null")
-    @NotBlank(message = "Book picture cannot be blank")
+//    @NotNull(message = "Book picture cannot be null")
+//    @NotBlank(message = "Book picture cannot be blank")
     @Column(columnDefinition = "nvarchar(255)")
     @Size(max = 255, message = "Picture name must not exceed 255 characters")
     private String picture;

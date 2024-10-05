@@ -57,6 +57,17 @@ public class BookController {
     }
     // END GET: API
 
+    // GET: API
+    @GetMapping("/updated")
+    public ResponseEntity<?> getBookUpdated() {
+        List<Book> bookList = bookService.getBookUpdated();
+        if (bookList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK).body("There are no books updated yet");
+        }
+        return ResponseEntity.ok(bookList);
+    }
+    // END GET: API
+
     // GET CATEGORY NAME BY ID: API
     @GetMapping("/book/{bookid}")
     public ResponseEntity<?> getBookById(@PathVariable("bookid") int bookId) {
@@ -71,6 +82,9 @@ public class BookController {
     // POST: API
     @PostMapping("/insertbook")
     public ResponseEntity<?> insertBook(@Valid @RequestBody Book book, BindingResult result) {
+        if (book.getPicture() == null || book.getPicture().isEmpty()) {
+            book.setPicture("No picture");
+        }
         // Validate
         if (result.hasErrors()) {
             List<String> errorMessages = new ArrayList<>();

@@ -99,7 +99,7 @@ const Book = () => {
                           )
                         : "Not updated yet"}
                     </td>
-                    <td style={{ display: "flex" }}>
+                    <td>
                       <a
                         href={`/admin/book/update/${book.bookId}`}
                         className="btn btn-primary mr-1"

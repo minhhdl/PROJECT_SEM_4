@@ -8,16 +8,16 @@ const Book = () => {
   let [err, setErr] = useState("");
   let [msg, setMsg] = useState("");
 
-  const handleDelete = async (event, bookId) => {
+  const handleDelete = async (event, categoryId) => {
     event.preventDefault();
     try {
       const response = await axios.delete(
-        `http://localhost:8080/book/deletebook/${bookId}`
+        `http://localhost:8080/catebook/deletecatebook/${categoryId}`
       );
       setMsg(response.data);
       setErr(response.data);
       if (response.status === 200) {
-        window.location.href = "/admin/book";
+        window.location.href = "/admin/cate-book";
       }
     } catch (error) {
       setErr("Network problem or server not working");
@@ -63,7 +63,6 @@ const Book = () => {
                 <th scope="col">Favorite</th>
                 <th scope="col">Created At</th>
                 <th scope="col">Updated At</th>
-                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -99,20 +98,18 @@ const Book = () => {
                           )
                         : "Not updated yet"}
                     </td>
-                    <td style={{ display: "flex" }}>
-                      <a
-                        href={`/admin/book/update/${book.bookId}`}
-                        className="btn btn-primary mr-1"
-                      >
-                        <i className="ti ti-pencil"></i>
-                      </a>
-                      <button
-                        className="btn btn-danger"
-                        onClick={(event) => handleDelete(event, book.bookId)}
-                      >
-                        <i className="ti ti-trash"></i>
-                      </button>
-                    </td>
+                    <a
+                      href={`/admin/book/update/${book.bookId}`}
+                      className="btn btn-primary mr-1"
+                    >
+                      <i className="ti ti-pencil"></i>
+                    </a>
+                    <button
+                      className="btn btn-danger"
+                      onClick={(event) => handleDelete(event, book.bookId)}
+                    >
+                      <i className="ti ti-trash"></i>
+                    </button>
                   </tr>
                 ))
               ) : (

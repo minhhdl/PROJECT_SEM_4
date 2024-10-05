@@ -24,6 +24,11 @@ public class BookService implements IBookService {
     }
 
     @Override
+    public List<Book> getBookUpdated() {
+        return bookRepository.getBookUpdated();
+    }
+
+    @Override
     public Book getBookById(int bookId) {
         Optional<Book> book = bookRepository.findById(bookId);
         return book.orElse(null);

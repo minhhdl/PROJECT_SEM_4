@@ -5,27 +5,6 @@ import moment from "moment";
 const Book = () => {
   const [books, setBooks] = useState([]);
   let [errFetch, setErrFetch] = useState("");
-  let [err, setErr] = useState("");
-  let [msg, setMsg] = useState("");
-
-  const handleDelete = async (event, bookId) => {
-    event.preventDefault();
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/book/deletebook/${bookId}`
-      );
-      setMsg(response.data);
-      setErr(response.data);
-      if (response.status === 200) {
-        window.location.href = "/admin/book";
-      }
-    } catch (error) {
-      setErr("Network problem or server not working");
-      console.log(
-        `There was a problem with the fetch operation: ${error.message}`
-      );
-    }
-  };
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -63,7 +42,6 @@ const Book = () => {
                 <th scope="col">Favorite</th>
                 <th scope="col">Created At</th>
                 <th scope="col">Updated At</th>
-                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -88,9 +66,11 @@ const Book = () => {
                     <td>{book.star}</td>
                     <td>{book.isFavorite ? "Yes" : "No"}</td>
                     <td>
-                      {moment(book.createdAt, "DD/MM/yyyy").format(
-                        "DD/MM/yyyy"
-                      )}
+                      {book.createdAt
+                        ? moment(book.createdAt, "DD/MM/yyyy").format(
+                            "DD/MM/yyyy"
+                          )
+                        : "Not created yet"}
                     </td>
                     <td>
                       {book.updatedAt
@@ -98,20 +78,6 @@ const Book = () => {
                             "DD/MM/yyyy"
                           )
                         : "Not updated yet"}
-                    </td>
-                    <td style={{ display: "flex" }}>
-                      <a
-                        href={`/admin/book/update/${book.bookId}`}
-                        className="btn btn-primary mr-1"
-                      >
-                        <i className="ti ti-pencil"></i>
-                      </a>
-                      <button
-                        className="btn btn-danger"
-                        onClick={(event) => handleDelete(event, book.bookId)}
-                      >
-                        <i className="ti ti-trash"></i>
-                      </button>
                     </td>
                   </tr>
                 ))

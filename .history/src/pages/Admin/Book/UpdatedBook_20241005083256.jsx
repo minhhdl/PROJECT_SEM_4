@@ -1,12 +1,29 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import { useEffect, useState } from "react";
 
-const Book = () => {
+const UpdatedBook = () => {
   const [books, setBooks] = useState([]);
   let [errFetch, setErrFetch] = useState("");
   let [err, setErr] = useState("");
   let [msg, setMsg] = useState("");
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/book/updated");
+        setBooks(response.data);
+        setErr(response.data);
+      } catch (error) {
+        setErr("Network problem or server not working");
+        console.log(
+          `There was a problem with the fetch operation: ${error.message}`
+        );
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   const handleDelete = async (event, bookId) => {
     event.preventDefault();
@@ -26,22 +43,6 @@ const Book = () => {
       );
     }
   };
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/book/books");
-        setBooks(response.data);
-        setErrFetch(response.data);
-      } catch (error) {
-        setErrFetch("Network problem or server not working");
-        console.log("Error fetching books: " + error);
-      }
-    };
-
-    fetchBooks();
-  }, []);
-
   return (
     <div className="content">
       <div className="container">
@@ -79,7 +80,7 @@ const Book = () => {
                     <td>{book.bookDescription}</td>
                     <td>
                       <img
-                        src={`../${book.picture}`}
+                        src={`../../${book.picture}`}
                         alt={book.bookName}
                         width="50"
                       />
@@ -130,4 +131,4 @@ const Book = () => {
   );
 };
 
-export default Book;
+export default UpdatedBook;
