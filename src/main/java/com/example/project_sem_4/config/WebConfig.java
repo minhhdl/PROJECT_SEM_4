@@ -3,6 +3,7 @@ package com.example.project_sem_4.config;
 import com.example.project_sem_4.object.*;
 import com.example.project_sem_4.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,9 @@ import java.util.*;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+    @Value("${frontend.url}")
+    private String frontendUrl;
 
     @Autowired
     RoleService roleService;
@@ -26,7 +30,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173/")
+                .allowedOrigins(frontendUrl)
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true);

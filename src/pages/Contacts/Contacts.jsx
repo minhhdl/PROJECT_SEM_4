@@ -7,15 +7,10 @@ const Contact = () => {
       <div className="contact-header"></div>
       <div className="contact-form-container">
         <form className="contact-form">
-          <input
-            type="text"
-            placeholder="Nhập họ và tên của bạn"
-            autoFocus
-            required
-          />
-          <input type="email" placeholder="Nhập địa chỉ email" required />
-          <input type="text" placeholder="Nhập chủ đề" required />
-          <textarea placeholder="Nhập tin nhắn của bạn" required></textarea>
+          <input type="text" placeholder="Your full name" autoFocus required />
+          <input type="email" placeholder="Your email" required />
+          <input type="text" placeholder="Title" required />
+          <textarea placeholder="Content" required></textarea>
           <button type="Gửi">Submit</button>
         </form>
       </div>
@@ -23,11 +18,13 @@ const Contact = () => {
         <div className="new-arrivals-content">
           <h2>#NewArrivals</h2>
           <p>
-            Những cuốn sách mới luôn được cập nhật nhanh nhất. Hoan nghênh bạn
-            ghé thăm. Hãy liên hệ với chúng tôi ngay bây giờ!
+            New books are always updated quickly. Welcome to visit. Contact us
+            now!
           </p>
           <br />
-          <button>Shop Now</button>
+          <button>
+            <a href="/products">All book</a>
+          </button>
         </div>
       </div>
     </div>

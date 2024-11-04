@@ -10,14 +10,14 @@ import { MdStop } from "react-icons/md";
 
 const AudioPlayer = ({ text, title, author, image }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isVisible, setIsVisible] = useState(false); // Trạng thái ẩn/hiện thanh phát
-  const [volume, setVolume] = useState(1); // Volume mặc định 1 (max)
+  const [isVisible, setIsVisible] = useState(false);
+  const [volume, setVolume] = useState(1); // Volume
   const [synth, setSynth] = useState(null);
   const [utterance, setUtterance] = useState(null);
-  const [voices, setVoices] = useState([]); // Danh sách giọng đọc
-  const [selectedVoice, setSelectedVoice] = useState(null); // Giọng đọc đã chọn
-  const [elapsedTime, setElapsedTime] = useState(0); // Thời gian đã phát
-  const [totalTime, setTotalTime] = useState(0); // Tổng thời gian phát
+  const [voices, setVoices] = useState([]);
+  const [selectedVoice, setSelectedVoice] = useState(null);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
   const playButtonRef = useRef(null);
   // Tự động focus vào nút play khi trang load
   useEffect(() => {
@@ -25,7 +25,7 @@ const AudioPlayer = ({ text, title, author, image }) => {
       playButtonRef.current.focus();
     }
   }, []);
-  // Lấy danh sách các giọng đọc khi component được render
+
   useEffect(() => {
     const synthInstance = window.speechSynthesis;
     setVoices(synthInstance.getVoices());
@@ -36,7 +36,7 @@ const AudioPlayer = ({ text, title, author, image }) => {
     utteranceInstance.volume = volume; // Volume
 
     utteranceInstance.onboundary = (event) => {
-      // Tính toán thời gian đã phát
+      // thời gian đã phát
       const currentTime = (event.charIndex / text.length) * totalTime;
       setElapsedTime(currentTime);
     };
@@ -60,13 +60,12 @@ const AudioPlayer = ({ text, title, author, image }) => {
   }, [text, volume]);
 
   const handlePlayPause = () => {
-    setIsVisible(true); // Hiển thị thanh phát khi nhấn play
+    setIsVisible(true);
 
     if (!isPlaying) {
       if (synth.speaking) {
         synth.resume();
       } else {
-        // Thiết lập giọng đọc đã chọn
         if (selectedVoice) {
           utterance.voice = selectedVoice;
         }
@@ -74,7 +73,7 @@ const AudioPlayer = ({ text, title, author, image }) => {
       }
       setIsPlaying(true);
     } else {
-      synth.pause(); // Tạm dừng
+      synth.pause();
       setIsPlaying(false);
     }
   };
@@ -105,8 +104,6 @@ const AudioPlayer = ({ text, title, author, image }) => {
     setElapsedTime(seekTime);
 
     const seekCharIndex = Math.floor((seekTime / totalTime) * text.length);
-
-    // Hủy phiên bản cũ và tạo lại giọng đọc bắt đầu từ vị trí mới
     synth.cancel();
 
     const newUtterance = new SpeechSynthesisUtterance(
@@ -142,7 +139,7 @@ const AudioPlayer = ({ text, title, author, image }) => {
       <button
         ref={playButtonRef}
         onClick={handlePlayPause}
-        className="px-6 py-2 bg-primary text-white font-semibold rounded-full shadow-md hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 flex items-center space-x-2" // Thêm flex và space-x-2 để tạo khoảng cách giữa icon và text
+        className="px-6 py-2 bg-primary text-white font-semibold rounded-full shadow-md hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 flex items-center space-x-2"
       >
         {isPlaying ? (
           <>

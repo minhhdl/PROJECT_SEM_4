@@ -6,7 +6,7 @@ const Delete = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3001/books/${bookId}`);
+      await axios.delete(`http://localhost:8080/books/${bookId}`);
       alert(`Book with ID ${bookId} deleted successfully`);
       setBookId('');
     } catch (error) {

@@ -36,7 +36,7 @@ export default function ProductPage() {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    setCurrentPage(1); // Reset lại trang về trang đầu tiên khi đổi danh mục
+    setCurrentPage(1);
   };
 
   const handlePageChange = (page) => {
