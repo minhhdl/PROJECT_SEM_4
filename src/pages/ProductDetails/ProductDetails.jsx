@@ -18,7 +18,7 @@ export default function ProductDetails() {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/book/book/${productId}`
+          `${import.meta.env.VITE_API_URL}/book/book/${productId}`
         );
         setBook(response.data);
         setErrFetch(response.data);
