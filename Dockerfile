@@ -4,7 +4,7 @@ COPY . /usr/src/app
 RUN mvn package -DskipTests
 
 # Sử dụng Tomcat image
-FROM tomcat:9
+FROM tomcat:9.0-jdk21
 
 LABEL maintainer=jasonPG
 
