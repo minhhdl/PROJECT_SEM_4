@@ -47,7 +47,7 @@ export default function FeaturesBooks() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("https://visually-impaired-people.onrender.com/book/books");
+        const response = await axios.get("https://project-sem-4-api.onrender.com/book/books");
         setFeaturedBooksData(response.data);
         setErrFetch(response.data);
       } catch (error) {
