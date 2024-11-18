@@ -1,19 +1,19 @@
 FROM maven:3.9.9 as maven
 WORKDIR /usr/src/app
 COPY . /usr/src/app
+RUN mvn clean install
 RUN mvn package -DskipTests
 
 # Sử dụng Tomcat image
-FROM tomcat:9.0-jdk21
+FROM tomcat:latest
 
 LABEL maintainer=jasonPG
 
 # Đặt thư mục làm việc
 WORKDIR /usr/local/tomcat
 
-RUN mv /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/
 # Copy file WAR vào thư mục webapps của Tomcat
-COPY --from=maven /usr/src/app/target/project_sem_4-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/api.war
+COPY --from=maven /usr/src/app/target/project_sem_4-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose port 8080
 EXPOSE 8080
