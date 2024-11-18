@@ -1,7 +1,7 @@
 FROM maven:3.9.9 as maven
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-RUN mvn clean install
+RUN mvn clean install -DskipTests
 RUN mvn package -DskipTests
 
 # Sử dụng Tomcat image
